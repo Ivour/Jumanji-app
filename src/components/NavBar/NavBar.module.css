@@ -1,12 +1,16 @@
 .nav {
+  height: 10vh;
+  background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: space-between;
-  height: 10vh;
-}
-.logo {
-  max-width: fit-content;
+  align-items: center;
 }
 
-.nav ul {
+.logoContainer {
+  width: 15%;
+  height: 100%;
+
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
