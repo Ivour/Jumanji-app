@@ -1,3 +1,3 @@
 # Jumanji App
 
-Simple application for choosing three of the entered places of interest in the Czech Republic
+Simple application for picking three of the entered places of interest in the Czech Republic
