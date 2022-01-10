@@ -1,0 +1,5 @@
+.mapContainer {
+  width: 100vw;
+  height: 90vh;
+  z-index: 1;
+}

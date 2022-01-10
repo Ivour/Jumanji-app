@@ -1,0 +1,12 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+}
+.logo {
+  max-width: fit-content;
+}
+
+.nav ul {
+  display: flex;
+}
