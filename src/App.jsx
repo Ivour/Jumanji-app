@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+
 import Map from "./components/mapComps/Map";
 import NavBar from "./components/NavBar/NavBar";
 
