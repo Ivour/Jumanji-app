@@ -8,11 +8,18 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-export default function BasicTabs() {
-  const location = useLocation();
-  console.log(location.pathname);
+const pathToIndex = {
+  map: 0,
+  game: 1,
+};
 
-  const [selectedTab, setSelectedTab] = useState(0);
+const BasicTabs = () => {
+  const location = useLocation();
+  console.log(location.pathname.slice(1));
+
+  const [selectedTab, setSelectedTab] = useState(
+    pathToIndex[location.pathname.slice(1)]
+  );
 
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -40,6 +47,8 @@ export default function BasicTabs() {
       </Tabs>
     </Box>
   );
-}
+};
+
+export default BasicTabs;
 
 //<Tab label={<span style={{ color: "black" }}>Game</span>} />

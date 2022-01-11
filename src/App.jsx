@@ -11,10 +11,10 @@ const App = () => {
     <Fragment>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Navigate to="/map" />} />
+        <Route path="/" element={<Navigate to="map" />} />
         <Route path="map" element={<Map />} />
         <Route path="game" element={<Game />} />
-        <Route path="*" element={<p>nothing found</p>} />
+        <Route path="*" element={<p>404...nothing found</p>} />
       </Routes>
     </Fragment>
   );
