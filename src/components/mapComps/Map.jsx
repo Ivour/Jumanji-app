@@ -46,7 +46,7 @@ function Map() {
             <Popup>lklkl</Popup>
           </Marker>
         ))}
-        <AutoZoom isLoaded={isLoaded} />
+        {/* <AutoZoom isLoaded={isLoaded} /> */}
         <AddMarkerOnClick onGetPosition={getPositionHandler} />
       </MapContainer>
     </Fragment>
