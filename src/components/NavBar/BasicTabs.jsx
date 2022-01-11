@@ -15,11 +15,10 @@ const pathToIndex = {
 
 const BasicTabs = () => {
   const location = useLocation();
-  console.log(location.pathname.slice(1));
 
-  const [selectedTab, setSelectedTab] = useState(
-    pathToIndex[location.pathname.slice(1)]
-  );
+  const locationIndex = pathToIndex[location.pathname.slice(1)];
+
+  const [selectedTab, setSelectedTab] = useState(locationIndex || 0);
 
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);

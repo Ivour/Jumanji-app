@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-import { Outlet } from "react-router-dom";
 
 import styles from "./NavBar.module.css";
 
@@ -30,12 +29,6 @@ const NavBar = () => {
         </div>
 
         <div className={styles["nav-btns"]}>
-          {/* <Button variant="contained" color="success">
-          Map
-        </Button>
-        <Button variant="contained" color="success">
-          Game
-        </Button> */}
           <BasicTabs />
           <Button
             variant={isClicked ? "outlined" : "contained"}
@@ -56,7 +49,6 @@ const NavBar = () => {
           </IconButton>
         </div>
       </nav>
-      <Outlet />
     </Fragment>
   );
 };
