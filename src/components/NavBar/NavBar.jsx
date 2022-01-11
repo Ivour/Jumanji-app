@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./NavBar.module.css";
 
@@ -14,28 +15,45 @@ import LandscapeIcon from "@mui/icons-material/Landscape";
 import AlarmIcon from "@mui/icons-material/Alarm";
 
 const NavBar = () => {
-  const [isClicked, setIsClicked] = useState(false);
+  const [toggleIsClicked, setToggleIsClicked] = useState(false);
 
-  const toggleHandler = () => {
-    setIsClicked((prev) => !prev);
+  const navigate = useNavigate();
+
+  const toggleBtnHandler = () => {
+    setToggleIsClicked((prev) => !prev);
+  };
+
+  const navigateHomeHandler = () => {
+    navigate("/map");
   };
 
   return (
     <Fragment>
       <nav className={styles.nav}>
         <div className={styles.logoContainer}>
-          <LandscapeIcon fontSize="large" color="success" />
-          <Typography variant="h6">Jumanji App</Typography>
+          <LandscapeIcon
+            fontSize="large"
+            color="success"
+            onClick={navigateHomeHandler}
+            className={styles.icon}
+          />
+          <Typography variant="h6" onClick={navigateHomeHandler}>
+            Jumanji App
+          </Typography>
         </div>
 
         <div className={styles["nav-btns"]}>
           <BasicTabs />
           <Button
-            variant={isClicked ? "outlined" : "contained"}
+            variant={toggleIsClicked ? "outlined" : "contained"}
             color="success"
-            onClick={toggleHandler}
+            onClick={toggleBtnHandler}
             endIcon={
-              isClicked ? <ArrowForwardIosIcon /> : <ArrowBackIosNewIcon />
+              toggleIsClicked ? (
+                <ArrowForwardIosIcon />
+              ) : (
+                <ArrowBackIosNewIcon />
+              )
             }
           >
             Toggle Controller

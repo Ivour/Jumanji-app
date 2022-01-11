@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import Map from "./components/mapComps/Map";
+import Map from "./components/map-components/Map";
 import NavBar from "./components/NavBar/NavBar";
 import Game from "./components/game/Game";
 

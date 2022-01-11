@@ -14,13 +14,17 @@ const pathToIndex = {
 };
 
 const BasicTabs = () => {
+  console.log("render Cycle");
   const location = useLocation();
+  console.log(location.pathname, "location");
 
   const locationIndex = pathToIndex[location.pathname.slice(1)];
+  console.log(locationIndex, "index");
 
   const [selectedTab, setSelectedTab] = useState(locationIndex || 0);
 
   const handleChange = (event, newValue) => {
+    console.log(newValue, selectedTab, "new-Selected");
     setSelectedTab(newValue);
   };
 
