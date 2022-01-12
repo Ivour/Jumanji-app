@@ -16,9 +16,9 @@ const pathToIndex = {
 const BasicTabs = () => {
   const location = useLocation();
 
-  const locationIndex = pathToIndex[location.pathname.slice(1)];
+  const locationIndex = pathToIndex[location.pathname.slice(1)] || 0;
 
-  const [selectedTab, setSelectedTab] = useState(locationIndex || 0);
+  const [selectedTab, setSelectedTab] = useState(locationIndex);
 
   if (selectedTab !== locationIndex) setSelectedTab(locationIndex);
 
