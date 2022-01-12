@@ -15,7 +15,11 @@
   align-items: center;
 }
 
-.icon {
+.logo {
+  cursor: pointer;
+}
+
+.logo-text {
   cursor: pointer;
 }
 

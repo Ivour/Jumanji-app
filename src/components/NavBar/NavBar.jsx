@@ -35,9 +35,13 @@ const NavBar = () => {
             fontSize="large"
             color="success"
             onClick={navigateHomeHandler}
-            className={styles.icon}
+            className={styles.logo}
           />
-          <Typography variant="h6" onClick={navigateHomeHandler}>
+          <Typography
+            variant="h6"
+            onClick={navigateHomeHandler}
+            className={styles["logo-text"]}
+          >
             Jumanji App
           </Typography>
         </div>
