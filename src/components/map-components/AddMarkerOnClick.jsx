@@ -17,7 +17,6 @@ function AddMarkerToClick(props) {
     click(event) {
       //  const { lat, lng } = event.latlng;
       props.onGetPosition(event.latlng);
-      console.log(event);
 
       //setPosition((prev) => [...prev, { lat, lng }]);
     },

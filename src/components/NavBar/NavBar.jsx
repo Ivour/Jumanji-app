@@ -13,14 +13,21 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LandscapeIcon from "@mui/icons-material/Landscape";
 import AlarmIcon from "@mui/icons-material/Alarm";
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from "../../store/controllerSlice";
 
 const NavBar = () => {
-  const [toggleIsClicked, setToggleIsClicked] = useState(false);
+  //const [toggleIsClicked, setToggleIsClicked] = useState(false);
+  const dispatch = useDispatch();
+  const toggleBtnIsPressed = useSelector(
+    (state) => state.controller.toggleBtnIsPressed
+  );
 
   const navigate = useNavigate();
 
   const toggleBtnHandler = () => {
-    setToggleIsClicked((prev) => !prev);
+    dispatch(actions.toggleController()); // NEZAPOMÍNAT ODPÁLIT FUNKCI POMOCÍ ()
+    //setToggleIsClicked((prev) => !prev);
   };
 
   const navigateHomeHandler = () => {
@@ -49,16 +56,15 @@ const NavBar = () => {
         <div className={styles["nav-btns"]}>
           <BasicTabs />
           <Button
-            variant={toggleIsClicked ? "outlined" : "contained"}
+            variant={toggleBtnIsPressed ? "outlined" : "contained"}
             color="success"
             onClick={toggleBtnHandler}
-            endIcon={
+            /* endIcon={
               toggleIsClicked ? (
                 <ArrowForwardIosIcon />
               ) : (
                 <ArrowBackIosNewIcon />
-              )
-            }
+              ) */
           >
             Toggle Controller
           </Button>

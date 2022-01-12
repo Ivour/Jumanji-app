@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  controllerIsShown: true,
+  toggleBtnIsPressed: false,
 };
 
 const controllerSlice = createSlice({
@@ -9,7 +9,7 @@ const controllerSlice = createSlice({
   initialState,
   reducers: {
     toggleController: (state, amount) => {
-      state.controllerIsShown = !state.controllerIsShown;
+      state.toggleBtnIsPressed = !state.toggleBtnIsPressed;
     },
   },
 });

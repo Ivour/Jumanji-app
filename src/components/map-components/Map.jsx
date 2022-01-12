@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { useSelector } from "react-redux";
 
 import AddMarkerOnClick from "./AddMarkerOnClick";
 import styles from "./Map.module.css";
@@ -17,6 +18,10 @@ import Controller from "../controlMenu/Controller";
 function Map() {
   const [position, setPosition] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const toggleBtnIsPressed = useSelector(
+    (state) => state.controller.toggleBtnIsPressed
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -37,7 +42,7 @@ function Map() {
           zoom={5}
           zoomControl={true}
           doubleClickZoom={true}
-          scrollWheelZoom={false}
+          scrollWheelZoom={true}
         >
           <TileLayer
             url="https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=05d9beab414a4075a9a29990cc4e22bc"
@@ -52,7 +57,7 @@ function Map() {
           {/* <AutoZoom isLoaded={isLoaded} /> */}
           <AddMarkerOnClick onGetPosition={getPositionHandler} />
         </MapContainer>
-        <Controller />
+        {toggleBtnIsPressed && <Controller />}
       </div>
     </Fragment>
   );
