@@ -59,12 +59,13 @@ const NavBar = () => {
             variant={toggleBtnIsPressed ? "outlined" : "contained"}
             color="success"
             onClick={toggleBtnHandler}
-            /* endIcon={
-              toggleIsClicked ? (
+            endIcon={
+              toggleBtnIsPressed ? (
                 <ArrowForwardIosIcon />
               ) : (
                 <ArrowBackIosNewIcon />
-              ) */
+              )
+            }
           >
             Toggle Controller
           </Button>
