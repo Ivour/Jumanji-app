@@ -1,0 +1,11 @@
+.container {
+  width: auto;
+  height: 80vh;
+  border: 2px solid black;
+  border-radius: 1em;
+  position: absolute;
+  right: 5em;
+  top: 3em;
+  z-index: 3;
+  background-color: white;
+}
