@@ -7,7 +7,12 @@ import styles from "./AddForm.module.css";
 const AddForm = () => {
   return (
     <div className={styles.container}>
-      <Card>ddd</Card>
+      <Card>
+        <form>
+          <input type="text" />
+          <input type="checkbox" />
+        </form>
+      </Card>
     </div>
   );
 };

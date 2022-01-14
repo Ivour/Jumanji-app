@@ -19,8 +19,8 @@ function Map() {
   const [position, setPosition] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const toggleBtnIsPressed = useSelector(
-    (state) => state.controller.toggleBtnIsPressed
+  const toggleBtnIsActive = useSelector(
+    (state) => state.controller.toggleBtnIsActive
   );
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function Map() {
           {/* <AutoZoom isLoaded={isLoaded} /> */}
           <AddMarkerOnClick onGetPosition={getPositionHandler} />
         </MapContainer>
-        {toggleBtnIsPressed && <Controller />}
+        {toggleBtnIsActive && <Controller />}
       </div>
     </Fragment>
   );

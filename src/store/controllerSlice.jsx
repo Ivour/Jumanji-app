@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  toggleBtnIsPressed: true,
+  toggleBtnIsActive: true,
+  addMarkerBtnIsActive: false,
 };
 
 const controllerSlice = createSlice({
@@ -9,7 +10,13 @@ const controllerSlice = createSlice({
   initialState,
   reducers: {
     toggleController: (state, amount) => {
-      state.toggleBtnIsPressed = !state.toggleBtnIsPressed;
+      state.toggleBtnIsActive = !state.toggleBtnIsActive;
+    },
+    toggleAddMarker: (state) => {
+      state.addMarkerBtnIsActive = !state.addMarkerBtnIsActive;
+    },
+    disactivateAddMarkerBtn: (state) => {
+      state.addMarkerBtnIsActive = false;
     },
   },
 });
