@@ -1,7 +1,10 @@
 import { useMapEvents } from "react-leaflet";
+import { useSelector } from "react-redux";
 
 function AddMarkerToClick(props) {
-  //const [position, setPosition] = useState([]);
+  const addMarkerBtnIsActive = useSelector(
+    (state) => state.controller.addMarkerBtnIsActive
+  ); //const [position, setPosition] = useState([]);
 
   /* const map = useMapEvents({
     click(event) {
@@ -16,7 +19,7 @@ function AddMarkerToClick(props) {
   useMapEvents({
     click(event) {
       //  const { lat, lng } = event.latlng;
-      props.onGetPosition(event.latlng);
+      if (addMarkerBtnIsActive) props.onGetPosition(event.latlng);
 
       //setPosition((prev) => [...prev, { lat, lng }]);
     },

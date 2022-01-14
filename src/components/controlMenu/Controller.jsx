@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { actions } from "../../store/controllerSlice";
 
-import AddForm from "./AddForm";
+import AddForm from "./Form/AddForm";
 
 import styles from "./Controller.module.css";
 import { Typography, Button } from "@mui/material";

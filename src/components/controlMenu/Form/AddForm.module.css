@@ -1,0 +1,20 @@
+.container {
+  width: 80%;
+}
+
+.nameInput-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.nameInput-container input {
+  margin-left: 1em;
+}
+
+.nameInput-container input:focus {
+  border-color: brown;
+}
+
+.poiInput-container {
+}

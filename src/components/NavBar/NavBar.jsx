@@ -39,7 +39,8 @@ const NavBar = () => {
   };
 
   const navigateHomeHandler = () => {
-    navigate("/map");
+    navigate("/");
+    dispatch(actions.disactivateAddMarkerBtn());
   };
 
   return (
