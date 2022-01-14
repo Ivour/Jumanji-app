@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import styles from "./NavBar.module.css";
 
@@ -23,6 +23,8 @@ const NavBar = () => {
     (state) => state.controller.toggleBtnIsPressed
   );
 
+  const location = useLocation();
+
   const navigate = useNavigate();
 
   const toggleBtnHandler = () => {
@@ -33,6 +35,20 @@ const NavBar = () => {
   const navigateHomeHandler = () => {
     navigate("/map");
   };
+
+  let toggleBtn = (
+    <Button
+      variant={toggleBtnIsPressed ? "outlined" : "contained"}
+      color="success"
+      onClick={toggleBtnHandler}
+      endIcon={
+        toggleBtnIsPressed ? <ArrowForwardIosIcon /> : <ArrowBackIosNewIcon />
+      }
+      disabled={location.pathname === "/game" ? true : false}
+    >
+      Toggle Controller
+    </Button>
+  );
 
   return (
     <Fragment>
@@ -55,20 +71,7 @@ const NavBar = () => {
 
         <div className={styles["nav-btns"]}>
           <BasicTabs />
-          <Button
-            variant={toggleBtnIsPressed ? "outlined" : "contained"}
-            color="success"
-            onClick={toggleBtnHandler}
-            endIcon={
-              toggleBtnIsPressed ? (
-                <ArrowForwardIosIcon />
-              ) : (
-                <ArrowBackIosNewIcon />
-              )
-            }
-          >
-            Toggle Controller
-          </Button>
+          {toggleBtn}
           <IconButton
             color="secondary"
             aria-label="add an alarm"
