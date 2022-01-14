@@ -1,7 +1,7 @@
 .container {
   width: auto;
   height: 80vh;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 1em;
   position: absolute;
   right: 5em;

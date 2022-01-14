@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import Card from "../../../UI/Card";
+import Selector from "./Selector";
 
 import styles from "./AddForm.module.css";
 
@@ -22,16 +23,8 @@ const AddForm = () => {
               onChange={(e) => setEnteredPlace(e.target.value)}
             />
           </div>
-          <div className={styles["poiInput-container"]}>
-            <label htmlFor="name">
-              <Typography fontSize="small">Place name:</Typography>
-            </label>
-            <input
-              type="checkbox"
-              value={enteredPlace}
-              onChange={(e) => setEnteredPlace(e.target.value)}
-            />
-          </div>
+
+          <Selector />
         </form>
       </Card>
     </div>

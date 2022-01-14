@@ -13,6 +13,8 @@ const Controller = () => {
   const addMarkerIsActive = useSelector(
     (state) => state.controller.addMarkerBtnIsActive
   );
+
+  const formIsVisible = useSelector((state) => state.controller.formIsVisible);
   const dispatch = useDispatch();
 
   const activateAddMarkerHandler = () => dispatch(actions.toggleAddMarker());
@@ -35,7 +37,7 @@ const Controller = () => {
           show List
         </Button>
       </div>
-      <AddForm />
+      {formIsVisible ? <AddForm /> : null}
     </div>
   );
 };

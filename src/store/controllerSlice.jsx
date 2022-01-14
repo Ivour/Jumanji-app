@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   toggleBtnIsActive: true,
   addMarkerBtnIsActive: false,
+  formIsVisible: false,
 };
 
 const controllerSlice = createSlice({
@@ -12,11 +13,20 @@ const controllerSlice = createSlice({
     toggleController: (state, amount) => {
       state.toggleBtnIsActive = !state.toggleBtnIsActive;
     },
+
+    activateToggleBtn: (state) => {
+      state.toggleBtnIsActive = true;
+    },
+
     toggleAddMarker: (state) => {
       state.addMarkerBtnIsActive = !state.addMarkerBtnIsActive;
     },
+
     disactivateAddMarkerBtn: (state) => {
       state.addMarkerBtnIsActive = false;
+    },
+    showForm: (state) => {
+      state.formIsVisible = true;
     },
   },
 });
