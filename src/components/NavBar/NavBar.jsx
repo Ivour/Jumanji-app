@@ -19,19 +19,19 @@ import { actions } from "../../store/controllerSlice";
 const NavBar = () => {
   //const [toggleIsClicked, setToggleIsClicked] = useState(false);
   const dispatch = useDispatch();
-  const toggleBtnIsPressed = useSelector(
-    (state) => state.controller.toggleBtnIsActive
+  const controllerBtnIsActive = useSelector(
+    (state) => state.controller.controllerBtnIsActive
   );
-  const addMarkerBtnIsActive = useSelector(
-    (state) => state.controller.addMarkerBtnIsActive
+  const addMarkerSwitchIsActive = useSelector(
+    (state) => state.controller.addMarkerSwitchIsActive
   );
 
   const location = useLocation();
 
   const navigate = useNavigate();
 
-  if (location.pathname === "/game")
-    dispatch(actions.disactivateAddMarkerBtn());
+  /*  if (location.pathname === "/game")
+    dispatch(actions.disactivateAddMarkerSwitch()); */
 
   const toggleBtnHandler = () => {
     dispatch(actions.toggleController()); // NEZAPOMÍNAT ODPÁLIT FUNKCI POMOCÍ ()
@@ -40,7 +40,7 @@ const NavBar = () => {
 
   const navigateHomeHandler = () => {
     navigate("/");
-    dispatch(actions.disactivateAddMarkerBtn());
+    dispatch(actions.disactivateAddMarkerSwitch());
   };
 
   return (
@@ -62,8 +62,8 @@ const NavBar = () => {
           </Typography>
         </div>
 
-        {!toggleBtnIsPressed &&
-          addMarkerBtnIsActive &&
+        {!controllerBtnIsActive &&
+          addMarkerSwitchIsActive &&
           location.pathname !== "/game" && (
             <Typography fontSize="small" color="error">
               warning: if you click on a map marker adding form will be shown
@@ -73,11 +73,11 @@ const NavBar = () => {
         <div className={styles["nav-btns"]}>
           <BasicTabs />
           <Button
-            variant={toggleBtnIsPressed ? "outlined" : "contained"}
+            variant={controllerBtnIsActive ? "outlined" : "contained"}
             color="success"
             onClick={toggleBtnHandler}
             endIcon={
-              toggleBtnIsPressed ? (
+              controllerBtnIsActive ? (
                 <ArrowForwardIosIcon />
               ) : (
                 <ArrowBackIosNewIcon />

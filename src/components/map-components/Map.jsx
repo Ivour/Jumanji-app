@@ -20,7 +20,7 @@ function Map() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const toggleBtnIsActive = useSelector(
-    (state) => state.controller.toggleBtnIsActive
+    (state) => state.controller.controllerBtnIsActive
   );
 
   useEffect(() => {

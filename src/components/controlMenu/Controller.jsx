@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { actions } from "../../store/controllerSlice";
 
@@ -12,14 +12,14 @@ import { Typography, Button } from "@mui/material";
 import SwitchLabel from "../../UI/SwitchLabel";
 
 const Controller = () => {
-  const addMarkerIsActive = useSelector(
+  /*  const addMarkerIsActive = useSelector(
     (state) => state.controller.addMarkerBtnIsActive
-  );
+  ); */
 
   const formIsVisible = useSelector((state) => state.controller.formIsVisible);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const activateAddMarkerHandler = () => dispatch(actions.toggleAddMarker());
+  // const activateAddMarkerHandler = () => dispatch(actions.toggleAddMarker());
 
   return (
     <div className={styles.container}>

@@ -9,15 +9,22 @@ import { actions } from "../store/controllerSlice";
 export default function SwitchLabel() {
   const dispatch = useDispatch();
 
-  const activateAddMarkerHandler = () => dispatch(actions.toggleAddMarker());
+  const toggleAddMarkerHandler = (e) =>
+    dispatch(actions.toggleAddMarker(e.target.checked));
   const addMarkerIsActive = useSelector(
-    (state) => state.controller.addMarkerBtnIsActive
+    (state) => state.controller.addMarkerSwitchIsActive
   );
 
   return (
     <FormControlLabel
-      control={<Switch color="secondary" onChange={activateAddMarkerHandler} />}
-      label={addMarkerIsActive ? "activated" : "add marker"}
+      control={
+        <Switch
+          checked={addMarkerIsActive}
+          color="secondary"
+          onChange={toggleAddMarkerHandler}
+        />
+      }
+      label={addMarkerIsActive ? `Add marker activated` : `Add marker`}
     />
   );
 }

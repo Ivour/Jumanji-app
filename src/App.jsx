@@ -1,12 +1,15 @@
 import React, { Fragment } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Map from "./components/map-components/Map";
 import NavBar from "./components/NavBar/NavBar";
 import Game from "./components/game/Game";
 
 const App = () => {
+  const a = useSelector((state) => state.controller.addMarkerSwitchIsActive);
+  console.log(a);
   return (
     <Fragment>
       <NavBar />

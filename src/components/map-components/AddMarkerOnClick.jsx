@@ -4,8 +4,8 @@ import { actions } from "../../store/controllerSlice";
 
 function AddMarkerToClick(props) {
   const dispatch = useDispatch();
-  const addMarkerBtnIsActive = useSelector(
-    (state) => state.controller.addMarkerBtnIsActive
+  const addMarkerSwitchIsActive = useSelector(
+    (state) => state.controller.addMarkerSwitchIsActive
   ); //const [position, setPosition] = useState([]);
 
   /* const map = useMapEvents({
@@ -21,10 +21,10 @@ function AddMarkerToClick(props) {
   useMapEvents({
     click(event) {
       //  const { lat, lng } = event.latlng;
-      if (addMarkerBtnIsActive) {
+      if (addMarkerSwitchIsActive) {
         props.onGetPosition(event.latlng);
-        dispatch(actions.activateToggleBtn());
-        dispatch(actions.disactivateAddMarkerBtn());
+        dispatch(actions.activateControllerBtn());
+        dispatch(actions.disactivateAddMarkerSwitch());
         dispatch(actions.showForm());
       }
 

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  toggleBtnIsActive: true,
-  addMarkerBtnIsActive: false,
+  controllerBtnIsActive: true,
+  addMarkerSwitchIsActive: false,
   formIsVisible: true,
 };
 
@@ -11,19 +11,19 @@ const controllerSlice = createSlice({
   initialState,
   reducers: {
     toggleController: (state, amount) => {
-      state.toggleBtnIsActive = !state.toggleBtnIsActive;
+      state.controllerBtnIsActive = !state.controllerBtnIsActive;
     },
 
-    activateToggleBtn: (state) => {
+    activateControllerBtn: (state) => {
       state.toggleBtnIsActive = true;
     },
 
-    toggleAddMarker: (state) => {
-      state.addMarkerBtnIsActive = !state.addMarkerBtnIsActive;
+    toggleAddMarker: (state, amount) => {
+      state.addMarkerSwitchIsActive = amount.payload;
     },
 
-    disactivateAddMarkerBtn: (state) => {
-      state.addMarkerBtnIsActive = false;
+    disactivateAddMarkerSwitch: (state) => {
+      state.addMarkerSwitchIsActive = false;
     },
     showForm: (state) => {
       state.formIsVisible = true;
