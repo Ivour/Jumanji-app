@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 
 import { actions } from "../store/controllerSlice";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 export default function SwitchLabel() {
   const dispatch = useDispatch();
@@ -15,6 +16,8 @@ export default function SwitchLabel() {
     (state) => state.controller.addMarkerSwitchIsActive
   );
 
+  const icon = addMarkerIsActive ? <CheckBoxIcon /> : null;
+
   return (
     <FormControlLabel
       control={
@@ -24,7 +27,8 @@ export default function SwitchLabel() {
           onChange={toggleAddMarkerHandler}
         />
       }
-      label={addMarkerIsActive ? `Add marker activated` : `Add marker`}
+      label="Add marker switch"
+      labelPlacement="top"
     />
   );
 }

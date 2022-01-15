@@ -8,7 +8,7 @@ import FormLabel from "@mui/material/FormLabel";
 
 import styles from "./RadioBtns.module.css";
 
-const RadioBtns = () => {
+const RadioBtns = (props) => {
   return (
     <FormControl component="fieldset" className={styles.control}>
       <Typography fontSize="small" className={styles.label}>
@@ -18,7 +18,7 @@ const RadioBtns = () => {
         aria-label="user"
         name="row-radio-buttons-group"
         className={styles.group}
-        onChange={(e) => console.log(e.target.value)}
+        onChange={(e) => props.onGetRadioValue(e.target.value)}
       >
         <FormControlLabel
           value="Kubao"

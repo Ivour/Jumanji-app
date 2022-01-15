@@ -9,14 +9,52 @@ import SubmitBtn from "./SubmitBtn";
 
 import styles from "./AddForm.module.css";
 
+let re = new RegExp("[0-9]");
+const includesNum = (str) => re.test(str);
+
 const AddForm = () => {
   const [enteredPlace, setEnteredPlace] = useState("");
   const [enteredDescription, setEnteredDescription] = useState("");
-  console.log(enteredPlace, enteredDescription);
+  const [checkedUser, setCheckedUser] = useState(null);
+  const [placeInpHasError, setPlaceInpHasError] = useState(false);
+
+  const placeInpHandler = (e) => {
+    if (e.target.value.length > 2 && !includesNum(e.target.value)) {
+      setPlaceInpHasError(false);
+    }
+    setEnteredPlace(e.target.value);
+  };
+
+  const getCheckedValueHandler = (data) => {
+    setCheckedUser(data);
+  };
+
+  const placeBlurHandler = () => {
+    if (enteredPlace.length < 2 || includesNum(enteredPlace)) {
+      setPlaceInpHasError(true);
+    } else {
+      setPlaceInpHasError(false);
+    }
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log({
+      user: checkedUser,
+      enteredPlace,
+      enteredDescription,
+    });
+  };
+  console.log("render");
   return (
     <div className={styles.container}>
       <Card>
-        <form>
+        <form onSubmit={submitHandler}>
+          {placeInpHasError && (
+            <Typography fontSize="small" color="error">
+              write valid place
+            </Typography>
+          )}
           <div className={styles["input-container"]}>
             <label htmlFor="name">
               <Typography fontSize="small">Place name:</Typography>
@@ -24,7 +62,8 @@ const AddForm = () => {
             <input
               type="text"
               value={enteredPlace}
-              onChange={(e) => setEnteredPlace(e.target.value)}
+              onChange={placeInpHandler}
+              onBlur={placeBlurHandler}
             />
           </div>
 
@@ -38,10 +77,14 @@ const AddForm = () => {
               onChange={(e) => setEnteredDescription(e.target.value)}
             />
           </div>
-          <RadioBtns />
+          <RadioBtns onGetRadioValue={getCheckedValueHandler} />
           <div className={styles["submit-container"]}>
             <LocationField />
-            <SubmitBtn />
+            <SubmitBtn
+              formIsValid={!placeInpHasError && checkedUser !== null}
+            />
+
+            <button type="submit">ddd</button>
           </div>
         </form>
       </Card>
