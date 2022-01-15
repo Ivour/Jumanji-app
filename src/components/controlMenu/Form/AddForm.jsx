@@ -2,6 +2,8 @@ import { Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import Card from "../../../UI/Card";
+import LocationField from "./LocationField";
+
 import RadioBtns from "./RadioBtns";
 
 import styles from "./AddForm.module.css";
@@ -24,6 +26,10 @@ const AddForm = () => {
             />
           </div>
           <RadioBtns />
+          <div className={styles["submit-container"]}>
+            <LocationField />
+            <span>submit</span>
+          </div>
         </form>
       </Card>
     </div>
