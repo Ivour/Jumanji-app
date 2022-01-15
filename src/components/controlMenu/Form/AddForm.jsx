@@ -5,6 +5,7 @@ import Card from "../../../UI/Card";
 import LocationField from "./LocationField";
 
 import RadioBtns from "./RadioBtns";
+import SubmitBtn from "./SubmitBtn";
 
 import styles from "./AddForm.module.css";
 
@@ -28,7 +29,7 @@ const AddForm = () => {
           <RadioBtns />
           <div className={styles["submit-container"]}>
             <LocationField />
-            <span>submit</span>
+            <SubmitBtn />
           </div>
         </form>
       </Card>
