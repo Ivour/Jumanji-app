@@ -44,6 +44,8 @@ const AddForm = () => {
       enteredPlace,
       enteredDescription,
     });
+    setEnteredPlace("");
+    setEnteredDescription("");
   };
   console.log("render");
   return (
@@ -82,9 +84,8 @@ const AddForm = () => {
             <LocationField />
             <SubmitBtn
               formIsValid={!placeInpHasError && checkedUser !== null}
+              a={submitHandler}
             />
-
-            <button type="submit">ddd</button>
           </div>
         </form>
       </Card>
