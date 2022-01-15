@@ -3,18 +3,21 @@ import ReactDOM from "react-dom";
 
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { StyledEngineProvider } from "@mui/material/styles";
+import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
 
 import "./index.css";
 
 import App from "./App";
 import store from "./store/store";
+import theme from "./UI/theme";
 
 ReactDOM.render(
   <Provider store={store}>
     <StyledEngineProvider injectFirst>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </StyledEngineProvider>
   </Provider>,

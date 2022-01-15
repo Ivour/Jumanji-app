@@ -1,6 +1,11 @@
 .container {
   width: 80%;
 }
+.container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .nameInput-container {
   display: flex;
@@ -10,10 +15,6 @@
 
 .nameInput-container input {
   margin-left: 1em;
-}
-
-.nameInput-container input:focus {
-  border-color: brown;
 }
 
 .poiInput-container {

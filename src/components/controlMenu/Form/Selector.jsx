@@ -14,26 +14,28 @@ export default function Selector() {
   };
 
   return (
-    <div>
-      <FormControl variant="standard" className={styles.control}>
-        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={age}
-          onChange={handleChange}
-          label="Age"
-          size="small"
-          className={styles.select}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl size="small" className={styles.control}>
+      <InputLabel
+        id="demo-simple-select-helper-label"
+        color="secondary"
+        className={styles.label}
+      >
+        Age
+      </InputLabel>
+      <Select
+        labelId="demo-simple-select-helper-label"
+        id="demo-simple-select-helper"
+        value={age}
+        label="Age"
+        onChange={handleChange}
+        color="secondary"
+        className={styles.select}
+        size="small"
+      >
+        <MenuItem value={10} className={styles.a}>
+          Ten
+        </MenuItem>
+      </Select>
+    </FormControl>
   );
 }

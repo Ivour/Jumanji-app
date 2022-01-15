@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import Card from "../../../UI/Card";
-import Selector from "./Selector";
+import RadioBtns from "./RadioBtns";
 
 import styles from "./AddForm.module.css";
 
@@ -23,8 +23,7 @@ const AddForm = () => {
               onChange={(e) => setEnteredPlace(e.target.value)}
             />
           </div>
-
-          <Selector />
+          <RadioBtns />
         </form>
       </Card>
     </div>
