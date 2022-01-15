@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../store/controllerSlice";
 
 import AddForm from "./Form/AddForm";
+import Card from "../../UI/Card";
 
 import styles from "./Controller.module.css";
 import { Typography, Button } from "@mui/material";
+import SwitchLabel from "../../UI/SwitchLabel";
 
 const Controller = () => {
   const addMarkerIsActive = useSelector(
@@ -25,14 +27,16 @@ const Controller = () => {
         Controller
       </Typography>
       <div className={styles.mainControllerBtns}>
-        <Button
+        {/* <Button
           variant={addMarkerIsActive ? "outlined" : "contained"}
           color="success"
           className={styles.a}
           onClick={activateAddMarkerHandler}
         >
           add Marker
-        </Button>
+        </Button> */}
+        <SwitchLabel />
+
         <Button variant="contained" color="success" className={styles.a}>
           show List
         </Button>
