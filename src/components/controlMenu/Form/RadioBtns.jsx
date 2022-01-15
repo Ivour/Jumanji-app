@@ -18,6 +18,7 @@ const RadioBtns = () => {
         aria-label="user"
         name="row-radio-buttons-group"
         className={styles.group}
+        onChange={(e) => console.log(e.target.value)}
       >
         <FormControlLabel
           value="Kubao"

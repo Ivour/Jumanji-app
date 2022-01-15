@@ -11,12 +11,13 @@ import styles from "./AddForm.module.css";
 
 const AddForm = () => {
   const [enteredPlace, setEnteredPlace] = useState("");
-  console.log(enteredPlace);
+  const [enteredDescription, setEnteredDescription] = useState("");
+  console.log(enteredPlace, enteredDescription);
   return (
     <div className={styles.container}>
       <Card>
         <form>
-          <div className={styles["nameInput-container"]}>
+          <div className={styles["input-container"]}>
             <label htmlFor="name">
               <Typography fontSize="small">Place name:</Typography>
             </label>
@@ -24,6 +25,17 @@ const AddForm = () => {
               type="text"
               value={enteredPlace}
               onChange={(e) => setEnteredPlace(e.target.value)}
+            />
+          </div>
+
+          <div className={styles["input-container"]}>
+            <label htmlFor="descripiton">
+              <Typography fontSize="small">Description:</Typography>
+            </label>
+            <input
+              type="text"
+              value={enteredDescription}
+              onChange={(e) => setEnteredDescription(e.target.value)}
             />
           </div>
           <RadioBtns />
