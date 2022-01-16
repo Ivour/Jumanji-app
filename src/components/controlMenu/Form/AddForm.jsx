@@ -1,8 +1,10 @@
 import { Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import Card from "../../../UI/Card";
 import LocationField from "./LocationField";
+import { actions } from "../../../store/controllerSlice";
 
 import RadioBtns from "./RadioBtns";
 import SubmitBtn from "./SubmitBtn";
@@ -16,7 +18,10 @@ const AddForm = () => {
   const [enteredPlace, setEnteredPlace] = useState("");
   const [enteredDescription, setEnteredDescription] = useState("");
   const [checkedUser, setCheckedUser] = useState(null);
+
   const [placeInpHasError, setPlaceInpHasError] = useState(false);
+
+  const dispatch = useDispatch();
 
   const placeInpHandler = (e) => {
     if (e.target.value.length > 2 && !includesNum(e.target.value)) {
@@ -39,6 +44,7 @@ const AddForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(actions.showSpinner());
     console.log({
       user: checkedUser,
       enteredPlace,

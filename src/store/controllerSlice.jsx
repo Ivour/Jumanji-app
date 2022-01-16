@@ -4,6 +4,7 @@ const initialState = {
   controllerBtnIsActive: true,
   addMarkerSwitchIsActive: false,
   formIsVisible: true,
+  spinnerIsLoading: false,
 };
 
 const controllerSlice = createSlice({
@@ -27,6 +28,9 @@ const controllerSlice = createSlice({
     },
     showForm: (state) => {
       state.formIsVisible = true;
+    },
+    showSpinner: (state) => {
+      state.spinnerIsLoading = true;
     },
   },
 });

@@ -1,24 +1,21 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 import SendIcon from "@mui/icons-material/Send";
 
 export default function SubmitBtn(props) {
-  const [loading, setLoading] = React.useState(false);
-
-  function handleClick() {
+  //const [loading, setLoading] = React.useState(false);
+  const isLoading = useSelector((state) => state.controller.spinnerIsLoading);
+  /*  function handleClick() {
     setLoading(true);
-  }
-  const handler = () => {
-    handleClick();
-    props.a();
-  };
+  } */
 
   return (
     <LoadingButton
       onClick={props.a}
       endIcon={<SendIcon />}
-      loading={loading}
+      loading={isLoading}
       loadingPosition="end"
       variant="contained"
       size="small"
