@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  formIsVisible: true,
+  formIsVisible: false,
   spinnerIsLoading: false,
+  placesData: [],
 };
 
 const formSlice = createSlice({
@@ -15,9 +16,12 @@ const formSlice = createSlice({
     showSpinner: (state) => {
       state.spinnerIsLoading = true;
     },
+    addPlace: (state, amount) => {
+      state.placesData.push(amount.payload);
+    },
   },
 });
 
-export const { showForm, showSpinner } = formSlice.actions;
+export const { showForm, showSpinner, addPlace } = formSlice.actions;
 
 export default formSlice.reducer;

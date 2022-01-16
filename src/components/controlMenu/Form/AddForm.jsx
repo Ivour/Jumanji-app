@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import Card from "../../../UI/Card";
 import LocationField from "./LocationField";
-import { showSpinner } from "../../../store/formSlice";
+import { showSpinner, addPlace } from "../../../store/formSlice";
 
 import RadioBtns from "./RadioBtns";
 import SubmitBtn from "./SubmitBtn";
@@ -18,6 +18,7 @@ const AddForm = () => {
   const [enteredPlace, setEnteredPlace] = useState("");
   const [enteredDescription, setEnteredDescription] = useState("");
   const [checkedUser, setCheckedUser] = useState(null);
+  const [isRadioChecked, setIsRadioChecked] = useState(false);
 
   const [placeInpHasError, setPlaceInpHasError] = useState(false);
 
@@ -32,6 +33,7 @@ const AddForm = () => {
 
   const getCheckedValueHandler = (data) => {
     setCheckedUser(data);
+    setIsRadioChecked(true);
   };
 
   const placeBlurHandler = () => {
@@ -45,15 +47,16 @@ const AddForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(showSpinner());
-    console.log({
-      user: checkedUser,
-      enteredPlace,
-      enteredDescription,
-    });
+    dispatch(
+      addPlace({
+        user: checkedUser,
+        enteredPlace,
+        enteredDescription,
+      })
+    );
     setEnteredPlace("");
     setEnteredDescription("");
   };
-  console.log("render");
   return (
     <div className={styles.container}>
       <Card>
@@ -85,7 +88,10 @@ const AddForm = () => {
               onChange={(e) => setEnteredDescription(e.target.value)}
             />
           </div>
-          <RadioBtns onGetRadioValue={getCheckedValueHandler} />
+          <RadioBtns
+            onGetRadioValue={getCheckedValueHandler}
+            onUncheckRadio={isRadioChecked}
+          />
           <div className={styles["submit-container"]}>
             <LocationField />
             <SubmitBtn

@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Game from "./components/game/Game";
 
 const App = () => {
-  const a = useSelector((state) => state.controller.addMarkerSwitchIsActive);
+  const a = useSelector((state) => state.map.currentLocation);
   console.log(a);
   return (
     <Fragment>
