@@ -8,12 +8,10 @@ import { Typography } from "@mui/material";
 import styles from "./RadioBtns.module.css";
 
 const RadioBtns = (props) => {
-  let a;
-
   return (
     <FormControl component="fieldset" className={styles.control}>
       <Typography fontSize="small" className={styles.label}>
-        User:{" "}
+        User:
       </Typography>
       <RadioGroup
         aria-label="user"

@@ -14,7 +14,7 @@ const controllerSlice = createSlice({
     },
 
     activateControllerBtn: (state) => {
-      state.toggleBtnIsActive = true;
+      state.controllerBtnIsActive = true;
     },
 
     toggleAddMarker: (state, amount) => {

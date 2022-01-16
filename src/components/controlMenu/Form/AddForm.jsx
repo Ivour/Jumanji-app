@@ -1,10 +1,17 @@
 import { Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Card from "../../../UI/Card";
 import LocationField from "./LocationField";
-import { showSpinner, addPlace } from "../../../store/formSlice";
+import {
+  showSpinner,
+  addPlace,
+  setPlaceInput,
+  setDescriptionInput,
+  resetForm,
+  hideSpinner,
+} from "../../../store/formSlice";
 
 import RadioBtns from "./RadioBtns";
 import SubmitBtn from "./SubmitBtn";
@@ -15,20 +22,25 @@ let re = new RegExp("[0-9]");
 const includesNum = (str) => re.test(str);
 
 const AddForm = () => {
-  const [enteredPlace, setEnteredPlace] = useState("");
-  const [enteredDescription, setEnteredDescription] = useState("");
+  //const [enteredPlace, setEnteredPlace] = useState("");
+  // const [enteredDescription, setEnteredDescription] = useState("");
   const [checkedUser, setCheckedUser] = useState(null);
   const [isRadioChecked, setIsRadioChecked] = useState(false);
-
   const [placeInpHasError, setPlaceInpHasError] = useState(false);
 
   const dispatch = useDispatch();
+  const enteredPlace = useSelector((state) => state.form.placeInput);
+  const enteredDescription = useSelector(
+    (state) => state.form.descriptionInput
+  );
+  const currentLocation = useSelector((state) => state.map.currentLocation);
 
   const placeInpHandler = (e) => {
     if (e.target.value.length > 2 && !includesNum(e.target.value)) {
       setPlaceInpHasError(false);
     }
-    setEnteredPlace(e.target.value);
+    //setEnteredPlace(e.target.value);
+    dispatch(setPlaceInput(e.target.value));
   };
 
   const getCheckedValueHandler = (data) => {
@@ -47,15 +59,37 @@ const AddForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(showSpinner());
-    dispatch(
-      addPlace({
-        user: checkedUser,
-        enteredPlace,
-        enteredDescription,
+    const obj = {
+      user: checkedUser,
+      enteredPlace,
+      enteredDescription,
+      location: currentLocation,
+    };
+    fetch(
+      "https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test.json",
+      {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: { "Content-Type": "application/json" },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
       })
-    );
-    setEnteredPlace("");
-    setEnteredDescription("");
+      .then((data) => {
+        console.log(data);
+        dispatch(addPlace({ ...obj, key: data.name }));
+        dispatch(resetForm());
+        dispatch(hideSpinner());
+      })
+      .catch((err) => console.log(err));
+
+    //setEnteredPlace("");
+    // setEnteredDescription("");
   };
   return (
     <div className={styles.container}>
@@ -85,7 +119,7 @@ const AddForm = () => {
             <input
               type="text"
               value={enteredDescription}
-              onChange={(e) => setEnteredDescription(e.target.value)}
+              onChange={(e) => dispatch(setDescriptionInput(e.target.value))}
             />
           </div>
           <RadioBtns
