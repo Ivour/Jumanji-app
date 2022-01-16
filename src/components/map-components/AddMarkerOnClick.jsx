@@ -1,6 +1,7 @@
 import { useMapEvents } from "react-leaflet";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../store/controllerSlice";
+import { showForm } from "../../store/formSlice";
 
 function AddMarkerToClick(props) {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function AddMarkerToClick(props) {
         props.onGetPosition(event.latlng);
         dispatch(actions.activateControllerBtn());
         dispatch(actions.disactivateAddMarkerSwitch());
-        dispatch(actions.showForm());
+        dispatch(showForm());
       }
 
       //setPosition((prev) => [...prev, { lat, lng }]);

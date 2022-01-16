@@ -6,7 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 
 export default function SubmitBtn(props) {
   //const [loading, setLoading] = React.useState(false);
-  const isLoading = useSelector((state) => state.controller.spinnerIsLoading);
+  const isLoading = useSelector((state) => state.form.spinnerIsLoading);
   /*  function handleClick() {
     setLoading(true);
   } */

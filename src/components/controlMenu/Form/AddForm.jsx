@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import Card from "../../../UI/Card";
 import LocationField from "./LocationField";
-import { actions } from "../../../store/controllerSlice";
+import { showForm, showSpinner } from "../../../store/formSlice";
 
 import RadioBtns from "./RadioBtns";
 import SubmitBtn from "./SubmitBtn";
@@ -44,7 +44,7 @@ const AddForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(actions.showSpinner());
+    dispatch(showSpinner());
     console.log({
       user: checkedUser,
       enteredPlace,

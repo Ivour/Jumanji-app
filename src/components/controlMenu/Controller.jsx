@@ -2,10 +2,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
-import { actions } from "../../store/controllerSlice";
-
 import AddForm from "./Form/AddForm";
-import Card from "../../UI/Card";
 
 import styles from "./Controller.module.css";
 import { Typography, Button } from "@mui/material";
@@ -16,7 +13,7 @@ const Controller = () => {
     (state) => state.controller.addMarkerBtnIsActive
   ); */
 
-  const formIsVisible = useSelector((state) => state.controller.formIsVisible);
+  const formIsVisible = useSelector((state) => state.form.formIsVisible);
   // const dispatch = useDispatch();
 
   // const activateAddMarkerHandler = () => dispatch(actions.toggleAddMarker());
