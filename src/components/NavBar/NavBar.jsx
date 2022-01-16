@@ -14,7 +14,10 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LandscapeIcon from "@mui/icons-material/Landscape";
 import AlarmIcon from "@mui/icons-material/Alarm";
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from "../../store/controllerSlice";
+import {
+  toggleController,
+  disactivateAddMarkerSwitch,
+} from "../../store/controllerSlice";
 
 const NavBar = () => {
   //const [toggleIsClicked, setToggleIsClicked] = useState(false);
@@ -34,13 +37,13 @@ const NavBar = () => {
     dispatch(actions.disactivateAddMarkerSwitch()); */
 
   const toggleBtnHandler = () => {
-    dispatch(actions.toggleController()); // NEZAPOMÍNAT ODPÁLIT FUNKCI POMOCÍ ()
+    dispatch(toggleController()); // NEZAPOMÍNAT ODPÁLIT FUNKCI POMOCÍ ()
     //setToggleIsClicked((prev) => !prev);
   };
 
   const navigateHomeHandler = () => {
     navigate("/");
-    dispatch(actions.disactivateAddMarkerSwitch());
+    dispatch(disactivateAddMarkerSwitch());
   };
 
   return (

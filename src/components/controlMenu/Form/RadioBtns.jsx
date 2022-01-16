@@ -4,7 +4,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { Typography } from "@mui/material";
-import FormLabel from "@mui/material/FormLabel";
 
 import styles from "./RadioBtns.module.css";
 

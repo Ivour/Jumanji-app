@@ -27,6 +27,11 @@ const controllerSlice = createSlice({
   },
 });
 
-export const actions = controllerSlice.actions;
+export const {
+  toggleController,
+  activateControllerBtn,
+  toggleAddMarker,
+  disactivateAddMarkerSwitch,
+} = controllerSlice.actions;
 
 export default controllerSlice.reducer;
