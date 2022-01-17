@@ -61,8 +61,8 @@ const AddForm = () => {
     dispatch(showSpinner());
     const obj = {
       user: checkedUser,
-      enteredPlace,
-      enteredDescription,
+      placeName: enteredPlace,
+      description: enteredDescription,
       location: currentLocation,
     };
     fetch(
@@ -82,7 +82,7 @@ const AddForm = () => {
       })
       .then((data) => {
         console.log(data);
-        dispatch(addPlace({ ...obj, key: data.name }));
+        dispatch(addPlace({ ...obj, id: data.name }));
         dispatch(resetForm());
         dispatch(hideSpinner());
       })

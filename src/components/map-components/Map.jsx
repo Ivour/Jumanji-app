@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { useEffect, Fragment } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,13 +11,15 @@ import { Typography } from "@mui/material";
 
 import { updatePlacesData } from "../../store/formSlice";
 
+import customMarker from "../../UI/customMarker";
+
 /* function MyComponent() {
   const map = useMapEvent("click", (e) => {
     console.log(e);
   });
   return null;
 } */
-const a = [];
+let isInitial = true;
 
 function Map() {
   /* const [position, setPosition] = useState([]);
@@ -36,11 +38,13 @@ function Map() {
     )
       .then((res) => res.json())
       .then((data) => {
+        const a = [];
         for (const key in data) {
-          a.push({ ...data[key], key });
+          a.push({ ...data[key], id: key });
         }
         dispatch(updatePlacesData(a));
       });
+    isInitial = false;
   }, [dispatch]);
 
   /* useEffect(() => {
@@ -48,7 +52,6 @@ function Map() {
       setIsLoaded(true);
     }, 200);
   }); */
-  console.log("render");
 
   /*  const getPositionHandler = (objPos) => {
     setPosition((prev) => [...prev, objPos]);
@@ -59,8 +62,8 @@ function Map() {
       <div className={styles.container}>
         <MapContainer
           className={styles.mapContainer}
-          center={[49.194011782178066, 16.60989809635794]}
-          zoom={5}
+          center={[49.75287993415023, 15.435791015625002]}
+          zoom={isInitial ? 5 : 8}
           zoomControl={true}
           doubleClickZoom={true}
           scrollWheelZoom={true}
@@ -69,7 +72,6 @@ function Map() {
             url="https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=05d9beab414a4075a9a29990cc4e22bc"
             attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-
           {/* <Marker position={[49.194011782178066, 16.60989809635794]}>
             <Popup>
               <div className={styles.popup}>
@@ -79,21 +81,19 @@ function Map() {
               </div>
             </Popup>
           </Marker> */}
-
           {places.map((placeObj) => (
             <Marker
               position={[placeObj.location[0], placeObj.location[1]]}
-              key={placeObj.key}
+              key={placeObj.id}
+              icon={customMarker}
             >
               <Popup>
-                <Typography variant="button">
-                  {placeObj.enteredPlace}
-                </Typography>
-                <Typography>ddd</Typography>
+                <Typography variant="button">{placeObj.placeName}</Typography>
+                <Typography>{placeObj.description}</Typography>
               </Popup>
             </Marker>
           ))}
-          {/* <AutoZoom isLoaded={isLoaded} /> */}
+          {isInitial && <AutoZoom />}
           <AddMarkerOnClick />
         </MapContainer>
         {controllerBtnIsActive && <Controller />}

@@ -24,7 +24,11 @@
 }
 
 .nav-btns {
-  width: 45%;
+  width: 35%;
   display: flex;
   justify-content: space-between;
+}
+
+.toggleBtn {
+  margin-right: 2em;
 }

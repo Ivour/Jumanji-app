@@ -19,6 +19,8 @@ import {
   disactivateAddMarkerSwitch,
 } from "../../store/controllerSlice";
 
+let infoText;
+
 const NavBar = () => {
   //const [toggleIsClicked, setToggleIsClicked] = useState(false);
   const dispatch = useDispatch();
@@ -87,16 +89,17 @@ const NavBar = () => {
               )
             }
             disabled={location.pathname === "/game" ? true : false}
+            className={styles.toggleBtn}
           >
             Toggle Controller
           </Button>
-          <IconButton
+          {/*  <IconButton
             color="secondary"
             aria-label="add an alarm"
             href="https://www.seznam.cz"
           >
             <AlarmIcon />
-          </IconButton>
+          </IconButton> */}
         </div>
       </nav>
     </Fragment>

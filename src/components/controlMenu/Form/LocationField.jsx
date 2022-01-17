@@ -9,6 +9,7 @@ import { DecimalConverter } from "migratory-js";
 
 const LocationField = () => {
   const [lat, lng] = useSelector((state) => state.map.currentLocation);
+  console.log(lat, lng);
   const decimalConverter = new DecimalConverter(
     +lat.toFixed(2),
     +lng.toFixed(2)
