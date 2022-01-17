@@ -11,7 +11,7 @@ import { Typography } from "@mui/material";
 
 import { updatePlacesData } from "../../store/formSlice";
 
-import customMarker from "../../UI/customMarker";
+import { greenMarker, redMarker } from "../../UI/customMarker";
 
 /* function MyComponent() {
   const map = useMapEvent("click", (e) => {
@@ -31,6 +31,9 @@ function Map() {
   );
 
   const places = useSelector((state) => state.form.placesData);
+
+  const currentLocation = useSelector((state) => state.map.currentLocation);
+  console.log(currentLocation);
 
   useEffect(() => {
     fetch(
@@ -81,11 +84,15 @@ function Map() {
               </div>
             </Popup>
           </Marker> */}
+          {currentLocation ? (
+            <Marker icon={redMarker} position={currentLocation} />
+          ) : null}
+
           {places.map((placeObj) => (
             <Marker
               position={[placeObj.location[0], placeObj.location[1]]}
               key={placeObj.id}
-              icon={customMarker}
+              icon={greenMarker}
             >
               <Popup>
                 <Typography variant="button">{placeObj.placeName}</Typography>
@@ -93,6 +100,7 @@ function Map() {
               </Popup>
             </Marker>
           ))}
+
           {isInitial && <AutoZoom />}
           <AddMarkerOnClick />
         </MapContainer>

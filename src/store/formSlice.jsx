@@ -16,6 +16,9 @@ const formSlice = createSlice({
     showForm: (state) => {
       state.formIsVisible = true;
     },
+    hideForm: (state) => {
+      state.formIsVisible = false;
+    },
     showSpinner: (state) => {
       state.spinnerIsLoading = true;
     },
@@ -44,6 +47,7 @@ const formSlice = createSlice({
 
 export const {
   showForm,
+  hideForm,
   showSpinner,
   addPlace,
   setPlaceInput,

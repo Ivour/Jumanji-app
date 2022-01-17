@@ -11,12 +11,16 @@ import {
   setDescriptionInput,
   resetForm,
   hideSpinner,
+  hideForm,
 } from "../../../store/formSlice";
+
+import { disactivateAddMarkerSwitch } from "../../../store/controllerSlice";
 
 import RadioBtns from "./RadioBtns";
 import SubmitBtn from "./SubmitBtn";
 
 import styles from "./AddForm.module.css";
+import { deleteCurrentLocation } from "../../../store/mapSlice";
 
 let re = new RegExp("[0-9]");
 const includesNum = (str) => re.test(str);
@@ -81,10 +85,12 @@ const AddForm = () => {
         }
       })
       .then((data) => {
-        console.log(data);
         dispatch(addPlace({ ...obj, id: data.name }));
+        dispatch(disactivateAddMarkerSwitch());
+        dispatch(hideForm());
         dispatch(resetForm());
         dispatch(hideSpinner());
+        dispatch(deleteCurrentLocation());
       })
       .catch((err) => console.log(err));
 
@@ -128,6 +134,7 @@ const AddForm = () => {
           />
           <div className={styles["submit-container"]}>
             <LocationField />
+
             <SubmitBtn
               formIsValid={!placeInpHasError && checkedUser !== null}
               a={submitHandler}

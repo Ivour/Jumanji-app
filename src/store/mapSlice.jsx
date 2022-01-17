@@ -11,9 +11,12 @@ const mapSlice = createSlice({
     getCurrentLocation: (state, amount) => {
       state.currentLocation = amount.payload;
     },
+    deleteCurrentLocation: (state) => {
+      state.currentLocation = "";
+    },
   },
 });
 
-export const { getCurrentLocation } = mapSlice.actions;
+export const { getCurrentLocation, deleteCurrentLocation } = mapSlice.actions;
 
 export default mapSlice.reducer;

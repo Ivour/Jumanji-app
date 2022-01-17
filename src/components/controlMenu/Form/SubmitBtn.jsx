@@ -24,7 +24,7 @@ export default function SubmitBtn(props) {
       sx={{ margin: "0.5em" }}
       disabled={!props.formIsValid}
     >
-      Send
+      Add marker
     </LoadingButton>
   );
 }
