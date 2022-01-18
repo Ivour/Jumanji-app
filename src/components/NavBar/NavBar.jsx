@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import styles from "./NavBar.module.css";
@@ -23,6 +23,7 @@ import { hideForm, resetForm } from "../../store/formSlice";
 import { deleteCurrentLocation } from "../../store/mapSlice";
 
 const NavBar = () => {
+  const [listBtnIsActive, setListBtnIsActive] = useState(false);
   //const [toggleIsClicked, setToggleIsClicked] = useState(false);
   const dispatch = useDispatch();
   const controllerBtnIsActive = useSelector(
@@ -39,7 +40,7 @@ const NavBar = () => {
   /*  if (location.pathname === "/game")
     dispatch(actions.disactivateAddMarkerSwitch()); */
 
-  const toggleBtnHandler = () => {
+  const toggleControlerBtnHandler = () => {
     dispatch(toggleController()); // NEZAPOMÍNAT ODPÁLIT FUNKCI POMOCÍ ()
     //setToggleIsClicked((prev) => !prev);
   };
@@ -50,6 +51,10 @@ const NavBar = () => {
     dispatch(hideForm());
     dispatch(resetForm());
     dispatch(deleteCurrentLocation());
+  };
+
+  const toggleListBtnHandler = () => {
+    setListBtnIsActive((prevState) => !prevState);
   };
 
   return (
@@ -81,25 +86,33 @@ const NavBar = () => {
 
         <div className={styles["nav-btns"]}>
           <BasicTabs />
-          <Button
-            variant={controllerBtnIsActive ? "outlined" : "contained"}
-            color="success"
-            onClick={toggleBtnHandler}
-            endIcon={
-              controllerBtnIsActive ? (
-                <ArrowForwardIosIcon />
-              ) : (
-                <ArrowBackIosNewIcon />
-              )
-            }
-            disabled={location.pathname === "/game" ? true : false}
-            className={styles.toggleBtn}
-          >
-            Toggle Controller
-          </Button>
-          <Button variant="contained" color="success" className={styles.a}>
-            show List
-          </Button>
+          <div>
+            <Button
+              variant={controllerBtnIsActive ? "outlined" : "contained"}
+              color="success"
+              onClick={toggleControlerBtnHandler}
+              endIcon={
+                controllerBtnIsActive ? (
+                  <ArrowForwardIosIcon />
+                ) : (
+                  <ArrowBackIosNewIcon />
+                )
+              }
+              disabled={location.pathname === "/game" ? true : false}
+              className={styles.toggleBtn}
+            >
+              Toggle Controller
+            </Button>
+            <Button
+              variant={listBtnIsActive ? "outlined" : "contained"}
+              color="secondary"
+              className={styles.listBtn}
+              onClick={toggleListBtnHandler}
+              disabled={location.pathname === "/game" ? true : false}
+            >
+              Show List
+            </Button>
+          </div>
           {/*  <IconButton
             color="secondary"
             aria-label="add an alarm"

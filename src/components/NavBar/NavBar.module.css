@@ -24,11 +24,15 @@
 }
 
 .nav-btns {
-  width: 35%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
 }
 
 .toggleBtn {
-  margin-right: 2em;
+}
+.listBtn {
+  margin: 0 2em;
 }
