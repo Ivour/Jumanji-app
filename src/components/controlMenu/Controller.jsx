@@ -33,10 +33,9 @@ const Controller = () => {
           add Marker
         </Button> */}
         <SwitchLabel />
+        <SwitchLabel />
 
-        <Button variant="contained" color="success" className={styles.a}>
-          show List
-        </Button>
+        
       </div>
       {formIsVisible ? <AddForm /> : null}
     </div>

@@ -97,6 +97,9 @@ const NavBar = () => {
           >
             Toggle Controller
           </Button>
+          <Button variant="contained" color="success" className={styles.a}>
+            show List
+          </Button>
           {/*  <IconButton
             color="secondary"
             aria-label="add an alarm"
