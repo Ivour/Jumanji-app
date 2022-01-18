@@ -21,6 +21,7 @@ import SubmitBtn from "./SubmitBtn";
 
 import styles from "./AddForm.module.css";
 import { deleteCurrentLocation } from "../../../store/mapSlice";
+import Button from "@mui/material/Button";
 
 let re = new RegExp("[0-9]");
 const includesNum = (str) => re.test(str);
@@ -97,6 +98,13 @@ const AddForm = () => {
     //setEnteredPlace("");
     // setEnteredDescription("");
   };
+
+  const onCancelHandler = () => {
+    dispatch(disactivateAddMarkerSwitch());
+    dispatch(hideForm());
+    dispatch(resetForm());
+    dispatch(deleteCurrentLocation());
+  };
   return (
     <div className={styles.container}>
       <Card>
@@ -135,10 +143,20 @@ const AddForm = () => {
           <div className={styles["submit-container"]}>
             <LocationField />
 
-            <SubmitBtn
-              formIsValid={!placeInpHasError && checkedUser !== null}
-              a={submitHandler}
-            />
+            <div>
+              <Button
+                size="small"
+                variant="contained"
+                color="error"
+                onClick={onCancelHandler}
+              >
+                Cancel
+              </Button>
+              <SubmitBtn
+                formIsValid={!placeInpHasError && checkedUser !== null}
+                a={submitHandler}
+              />
+            </div>
           </div>
         </form>
       </Card>

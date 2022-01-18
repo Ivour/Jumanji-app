@@ -8,6 +8,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
+import { hideForm } from "../../store/formSlice";
+import { useDispatch } from "react-redux";
+import { deleteCurrentLocation } from "../../store/mapSlice";
+import { resetForm } from "../../store/formSlice";
+
 const pathToIndex = {
   map: 0,
   game: 1,
@@ -16,6 +21,7 @@ const pathToIndex = {
 const BasicTabs = () => {
   const location = useLocation();
 
+  const dispatch = useDispatch();
   const locationIndex = pathToIndex[location.pathname.slice(1)] || 0;
 
   const [selectedTab, setSelectedTab] = useState(locationIndex);
@@ -38,6 +44,11 @@ const BasicTabs = () => {
           to="/map"
           LinkComponent={Link}
           className={styles.link}
+          onClick={() => {
+            dispatch(hideForm());
+            dispatch(resetForm());
+            dispatch(deleteCurrentLocation());
+          }}
         />
         <Tab
           label="Game"

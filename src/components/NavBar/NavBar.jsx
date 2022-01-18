@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import styles from "./NavBar.module.css";
@@ -7,19 +7,20 @@ import BasicTabs from "./BasicTabs";
 
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LandscapeIcon from "@mui/icons-material/Landscape";
-import AlarmIcon from "@mui/icons-material/Alarm";
+
 import { useSelector, useDispatch } from "react-redux";
 import {
   toggleController,
   disactivateAddMarkerSwitch,
 } from "../../store/controllerSlice";
 
-let infoText;
+import { hideForm, resetForm } from "../../store/formSlice";
+
+import { deleteCurrentLocation } from "../../store/mapSlice";
 
 const NavBar = () => {
   //const [toggleIsClicked, setToggleIsClicked] = useState(false);
@@ -46,6 +47,9 @@ const NavBar = () => {
   const navigateHomeHandler = () => {
     navigate("/");
     dispatch(disactivateAddMarkerSwitch());
+    dispatch(hideForm());
+    dispatch(resetForm());
+    dispatch(deleteCurrentLocation());
   };
 
   return (

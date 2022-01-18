@@ -6,6 +6,7 @@ const initialState = {
   radioBtnInput: "",
   formIsVisible: false,
   spinnerIsLoading: false,
+  formIsCanceled: false,
   placesData: [],
 };
 
@@ -13,7 +14,7 @@ const formSlice = createSlice({
   name: "formSlice",
   initialState,
   reducers: {
-    showForm: (state) => {
+    showForm(state) {
       state.formIsVisible = true;
     },
     hideForm: (state) => {

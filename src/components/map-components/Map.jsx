@@ -33,20 +33,22 @@ function Map() {
   const places = useSelector((state) => state.form.placesData);
 
   const currentLocation = useSelector((state) => state.map.currentLocation);
-  console.log(currentLocation);
+  console.log("render");
 
   useEffect(() => {
-    fetch(
-      "https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test.json"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const a = [];
-        for (const key in data) {
-          a.push({ ...data[key], id: key });
-        }
-        dispatch(updatePlacesData(a));
-      });
+    if (isInitial) {
+      fetch(
+        "https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test.json"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          const a = [];
+          for (const key in data) {
+            a.push({ ...data[key], id: key });
+          }
+          dispatch(updatePlacesData(a));
+        });
+    }
     isInitial = false;
   }, [dispatch]);
 
