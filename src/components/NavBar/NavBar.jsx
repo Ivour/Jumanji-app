@@ -84,7 +84,7 @@ const NavBar = () => {
             </Typography>
           )}
 
-        <div className={styles["nav-btns"]}>
+        <div className={styles["nav-tabs-btns-container"]}>
           <BasicTabs />
           <div>
             <Button

@@ -1,17 +1,29 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import AddForm from "./Form/AddForm";
 
 import styles from "./Controller.module.css";
-import { Typography, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import SwitchLabel from "../../UI/SwitchLabel";
+
+import { toggleAddMarker } from "../../store/controllerSlice";
+import { resetForm } from "../../store/formSlice";
 
 const Controller = () => {
   /*  const addMarkerIsActive = useSelector(
     (state) => state.controller.addMarkerBtnIsActive
-  ); */
+  ); */ const dispatch = useDispatch();
+  const addMarkerIsActive = useSelector(
+    (state) => state.controller.addMarkerSwitchIsActive
+  );
+
+  const toggleAddMarkerHandler = (e) => {
+    dispatch(toggleAddMarker(e.target.checked));
+
+    if (!e.target.checked) dispatch(resetForm());
+  };
 
   const formIsVisible = useSelector((state) => state.form.formIsVisible);
   // const dispatch = useDispatch();
@@ -32,10 +44,13 @@ const Controller = () => {
         >
           add Marker
         </Button> */}
-        <SwitchLabel />
-        <SwitchLabel />
-
-        
+        <SwitchLabel
+          title="Add Marker"
+          color="secondary"
+          onChange={toggleAddMarkerHandler}
+          checked={addMarkerIsActive}
+        />
+        <SwitchLabel title="Delete Marker" color="error" />
       </div>
       {formIsVisible ? <AddForm /> : null}
     </div>
