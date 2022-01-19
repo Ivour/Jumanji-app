@@ -4,23 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Card from "../../../UI/Card";
 import LocationField from "./LocationField";
-import {
-  showSpinner,
-  addPlace,
-  resetForm,
-  hideSpinner,
-  hideForm,
-} from "../../../store/formSlice";
-
-import { disactivateAddMarkerSwitch } from "../../../store/controllerSlice";
+import { showSpinner } from "../../../store/formSlice";
 
 import RadioBtns from "./RadioBtns";
 import SubmitBtn from "./SubmitBtn";
 
 import styles from "./AddForm.module.css";
-import { deleteCurrentLocation } from "../../../store/mapSlice";
 import Button from "@mui/material/Button";
 import Inputs from "./Inputs";
+
+import { sendForm, cancelForm } from "../../../store/formActions";
 
 const AddForm = () => {
   //const [enteredPlace, setEnteredPlace] = useState("");
@@ -52,41 +45,10 @@ const AddForm = () => {
       description: enteredDescription,
       location: currentLocation,
     };
-    fetch(
-      "https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test.json",
-      {
-        method: "POST",
-        body: JSON.stringify(obj),
-        headers: { "Content-Type": "application/json" },
-      }
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error("Something went wrong");
-        }
-      })
-      .then((data) => {
-        dispatch(addPlace({ ...obj, id: data.name }));
-        dispatch(disactivateAddMarkerSwitch());
-        dispatch(hideForm());
-        dispatch(resetForm());
-        dispatch(hideSpinner());
-        dispatch(deleteCurrentLocation());
-      })
-      .catch((err) => console.log(err));
 
-    //setEnteredPlace("");
-    // setEnteredDescription("");
+    dispatch(sendForm(obj));
   };
 
-  const onCancelHandler = () => {
-    dispatch(disactivateAddMarkerSwitch());
-    dispatch(hideForm());
-    dispatch(resetForm());
-    dispatch(deleteCurrentLocation());
-  };
   return (
     <div className={styles.container}>
       <Card>
@@ -111,7 +73,7 @@ const AddForm = () => {
                 size="small"
                 variant="contained"
                 color="error"
-                onClick={onCancelHandler}
+                onClick={() => dispatch(cancelForm())}
               >
                 Cancel
               </Button>
