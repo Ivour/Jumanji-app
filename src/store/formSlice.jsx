@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   placeInput: "",
   descriptionInput: "",
+  placeInputHasError: false,
   radioBtnInput: "",
   formIsVisible: false,
   spinnerIsLoading: false,
@@ -43,6 +44,9 @@ const formSlice = createSlice({
       state.placeInput = "";
       state.descriptionInput = "";
     },
+    placeInputHasError: (state, amount) => {
+      state.placeInputHasError = amount.payload;
+    },
   },
 });
 
@@ -56,6 +60,7 @@ export const {
   resetForm,
   hideSpinner,
   updatePlacesData,
+  placeInputHasError
 } = formSlice.actions;
 
 export default formSlice.reducer;

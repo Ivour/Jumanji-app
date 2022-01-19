@@ -7,8 +7,6 @@ import LocationField from "./LocationField";
 import {
   showSpinner,
   addPlace,
-  setPlaceInput,
-  setDescriptionInput,
   resetForm,
   hideSpinner,
   hideForm,
@@ -22,16 +20,13 @@ import SubmitBtn from "./SubmitBtn";
 import styles from "./AddForm.module.css";
 import { deleteCurrentLocation } from "../../../store/mapSlice";
 import Button from "@mui/material/Button";
-
-let re = new RegExp("[0-9]");
-const includesNum = (str) => re.test(str);
+import Inputs from "./Inputs";
 
 const AddForm = () => {
   //const [enteredPlace, setEnteredPlace] = useState("");
   // const [enteredDescription, setEnteredDescription] = useState("");
   const [checkedUser, setCheckedUser] = useState(null);
   const [isRadioChecked, setIsRadioChecked] = useState(false);
-  const [placeInpHasError, setPlaceInpHasError] = useState(false);
 
   const dispatch = useDispatch();
   const enteredPlace = useSelector((state) => state.form.placeInput);
@@ -39,26 +34,13 @@ const AddForm = () => {
     (state) => state.form.descriptionInput
   );
   const currentLocation = useSelector((state) => state.map.currentLocation);
-
-  const placeInpHandler = (e) => {
-    if (e.target.value.length > 2 && !includesNum(e.target.value)) {
-      setPlaceInpHasError(false);
-    }
-    //setEnteredPlace(e.target.value);
-    dispatch(setPlaceInput(e.target.value));
-  };
+  const placeInpHasError = useSelector(
+    (state) => state.form.placeInputHasError
+  );
 
   const getCheckedValueHandler = (data) => {
     setCheckedUser(data);
     setIsRadioChecked(true);
-  };
-
-  const placeBlurHandler = () => {
-    if (enteredPlace.length < 2 || includesNum(enteredPlace)) {
-      setPlaceInpHasError(true);
-    } else {
-      setPlaceInpHasError(false);
-    }
   };
 
   const submitHandler = (e) => {
@@ -114,28 +96,9 @@ const AddForm = () => {
               write valid place
             </Typography>
           )}
-          <div className={styles["input-container"]}>
-            <label htmlFor="name">
-              <Typography fontSize="small">Place name:</Typography>
-            </label>
-            <input
-              type="text"
-              value={enteredPlace}
-              onChange={placeInpHandler}
-              onBlur={placeBlurHandler}
-            />
-          </div>
 
-          <div className={styles["input-container"]}>
-            <label htmlFor="descripiton">
-              <Typography fontSize="small">Description:</Typography>
-            </label>
-            <input
-              type="text"
-              value={enteredDescription}
-              onChange={(e) => dispatch(setDescriptionInput(e.target.value))}
-            />
-          </div>
+          <Inputs />
+
           <RadioBtns
             onGetRadioValue={getCheckedValueHandler}
             onUncheckRadio={isRadioChecked}
