@@ -8,16 +8,22 @@ import styles from "./Controller.module.css";
 import { Typography } from "@mui/material";
 import SwitchLabel from "../../UI/SwitchLabel";
 
-import { toggleAddMarker } from "../../store/controllerSlice";
+import {
+  activateDeleteSwitch,
+  disactivateDeleteSwitch,
+  toggleAddMarker,
+} from "../../store/controllerSlice";
 import { resetForm } from "../../store/formSlice";
 
 const Controller = () => {
-  /*  const addMarkerIsActive = useSelector(
-    (state) => state.controller.addMarkerBtnIsActive
-  ); */ const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const addMarkerIsActive = useSelector(
     (state) => state.controller.addMarkerSwitchIsActive
   );
+  const deleteSwitchIsActive = useSelector(
+    (state) => state.controller.deleteSwitchIsActive
+  );
+  const formIsVisible = useSelector((state) => state.form.formIsVisible);
 
   const toggleAddMarkerHandler = (e) => {
     dispatch(toggleAddMarker(e.target.checked));
@@ -25,10 +31,11 @@ const Controller = () => {
     if (!e.target.checked) dispatch(resetForm());
   };
 
-  const formIsVisible = useSelector((state) => state.form.formIsVisible);
-  // const dispatch = useDispatch();
-
-  // const activateAddMarkerHandler = () => dispatch(actions.toggleAddMarker());
+  const toggleDeleteSwitchHandler = () => {
+    deleteSwitchIsActive
+      ? dispatch(disactivateDeleteSwitch())
+      : dispatch(activateDeleteSwitch());
+  };
 
   return (
     <div className={styles.container}>
@@ -36,21 +43,18 @@ const Controller = () => {
         Controller
       </Typography>
       <div className={styles.mainControllerBtns}>
-        {/* <Button
-          variant={addMarkerIsActive ? "outlined" : "contained"}
-          color="success"
-          className={styles.a}
-          onClick={activateAddMarkerHandler}
-        >
-          add Marker
-        </Button> */}
         <SwitchLabel
           title="Add Marker"
           color="secondary"
           onChange={toggleAddMarkerHandler}
           checked={addMarkerIsActive}
         />
-        <SwitchLabel title="Delete Marker" color="error" />
+        <SwitchLabel
+          title="Delete Marker"
+          color="error"
+          onChange={toggleDeleteSwitchHandler}
+          checked={deleteSwitchIsActive}
+        />
       </div>
       {formIsVisible ? <AddForm /> : null}
     </div>

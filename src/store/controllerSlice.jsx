@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   controllerBtnIsActive: true,
   addMarkerSwitchIsActive: false,
+  deleteSwitchIsActive: false,
 };
 
 const controllerSlice = createSlice({
@@ -18,11 +19,19 @@ const controllerSlice = createSlice({
     },
 
     toggleAddMarker: (state, amount) => {
+      if (state.deleteSwitchIsActive) return;
       state.addMarkerSwitchIsActive = amount.payload;
     },
 
     disactivateAddMarkerSwitch: (state) => {
       state.addMarkerSwitchIsActive = false;
+    },
+    activateDeleteSwitch: (state) => {
+      if (state.addMarkerSwitchIsActive) return;
+      state.deleteSwitchIsActive = true;
+    },
+    disactivateDeleteSwitch: (state) => {
+      state.deleteSwitchIsActive = false;
     },
   },
 });
@@ -32,6 +41,8 @@ export const {
   activateControllerBtn,
   toggleAddMarker,
   disactivateAddMarkerSwitch,
+  activateDeleteSwitch,
+  disactivateDeleteSwitch,
 } = controllerSlice.actions;
 
 export default controllerSlice.reducer;

@@ -16,10 +16,7 @@ import Inputs from "./Inputs";
 import { sendForm, cancelForm } from "../../../store/formActions";
 
 const AddForm = () => {
-  //const [enteredPlace, setEnteredPlace] = useState("");
-  // const [enteredDescription, setEnteredDescription] = useState("");
   const [checkedUser, setCheckedUser] = useState(null);
-  const [isRadioChecked, setIsRadioChecked] = useState(false);
 
   const dispatch = useDispatch();
   const enteredPlace = useSelector((state) => state.form.placeInput);
@@ -33,12 +30,10 @@ const AddForm = () => {
 
   const getCheckedValueHandler = (data) => {
     setCheckedUser(data);
-    setIsRadioChecked(true);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(showSpinner());
     const obj = {
       user: checkedUser,
       placeName: enteredPlace,
@@ -63,7 +58,7 @@ const AddForm = () => {
 
           <RadioBtns
             onGetRadioValue={getCheckedValueHandler}
-            onUncheckRadio={isRadioChecked}
+            // onUncheckRadio={isRadioChecked}
           />
           <div className={styles["submit-container"]}>
             <LocationField />

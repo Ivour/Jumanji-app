@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Game from "./components/game/Game";
 
 const App = () => {
-  const a = useSelector((state) => state.form.placesData);
+  const a = useSelector((state) => state.controller.deleteSwitchIsActive);
   console.log(a);
   return (
     <Fragment>

@@ -7,7 +7,7 @@ import styles from "./Map.module.css";
 import AutoZoom from "./AutoZoom";
 
 import Controller from "../controlMenu/Controller";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 
 import { updatePlacesData } from "../../store/formSlice";
 
@@ -31,6 +31,9 @@ function Map() {
   );
 
   const places = useSelector((state) => state.form.placesData);
+  const deleteSwitchIsActive = useSelector(
+    (state) => state.controller.deleteSwitchIsActive
+  );
 
   const currentLocation = useSelector((state) => state.map.currentLocation);
   console.log("render");
@@ -42,11 +45,11 @@ function Map() {
       )
         .then((res) => res.json())
         .then((data) => {
-          const a = [];
+          const arr = [];
           for (const key in data) {
-            a.push({ ...data[key], id: key });
+            arr.push({ ...data[key], id: key });
           }
-          dispatch(updatePlacesData(a));
+          dispatch(updatePlacesData(arr));
         });
     }
     isInitial = false;
@@ -96,10 +99,16 @@ function Map() {
               key={placeObj.id}
               icon={greenMarker}
             >
-              <Popup>
-                <Typography variant="button">{placeObj.placeName}</Typography>
-                <Typography>{placeObj.description}</Typography>
-              </Popup>
+              {deleteSwitchIsActive ? (
+                <Popup>
+                  <Button>delete</Button>
+                </Popup>
+              ) : (
+                <Popup>
+                  <Typography variant="button">{placeObj.placeName}</Typography>
+                  <Typography>{placeObj.description}</Typography>
+                </Popup>
+              )}
             </Marker>
           ))}
 
