@@ -16,6 +16,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   toggleController,
   disactivateAddMarkerSwitch,
+  hideList,
+  showList,
 } from "../../store/controllerSlice";
 
 import { hideForm, resetForm } from "../../store/formSlice";
@@ -23,8 +25,6 @@ import { hideForm, resetForm } from "../../store/formSlice";
 import { deleteCurrentLocation } from "../../store/mapSlice";
 
 const NavBar = () => {
-  const [listBtnIsActive, setListBtnIsActive] = useState(false);
-  //const [toggleIsClicked, setToggleIsClicked] = useState(false);
   const dispatch = useDispatch();
   const controllerBtnIsActive = useSelector(
     (state) => state.controller.controllerBtnIsActive
@@ -32,6 +32,7 @@ const NavBar = () => {
   const addMarkerSwitchIsActive = useSelector(
     (state) => state.controller.addMarkerSwitchIsActive
   );
+  const listIsVisible = useSelector((state) => state.controller.listIsVisible);
 
   const location = useLocation();
 
@@ -54,7 +55,7 @@ const NavBar = () => {
   };
 
   const toggleListBtnHandler = () => {
-    setListBtnIsActive((prevState) => !prevState);
+    listIsVisible ? dispatch(hideList()) : dispatch(showList());
   };
 
   return (
@@ -104,7 +105,7 @@ const NavBar = () => {
               Toggle Controller
             </Button>
             <Button
-              variant={listBtnIsActive ? "outlined" : "contained"}
+              variant={listIsVisible ? "outlined" : "contained"}
               color="secondary"
               className={styles.listBtn}
               onClick={toggleListBtnHandler}

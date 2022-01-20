@@ -4,6 +4,7 @@ const initialState = {
   controllerBtnIsActive: true,
   addMarkerSwitchIsActive: false,
   deleteSwitchIsActive: false,
+  listIsVisible: false,
 };
 
 const controllerSlice = createSlice({
@@ -16,6 +17,13 @@ const controllerSlice = createSlice({
 
     activateControllerBtn: (state) => {
       state.controllerBtnIsActive = true;
+    },
+
+    showList: (state) => {
+      state.listIsVisible = true;
+    },
+    hideList: (state) => {
+      state.listIsVisible = false;
     },
 
     toggleAddMarker: (state, amount) => {
@@ -43,6 +51,8 @@ export const {
   disactivateAddMarkerSwitch,
   activateDeleteSwitch,
   disactivateDeleteSwitch,
+  showList,
+  hideList,
 } = controllerSlice.actions;
 
 export default controllerSlice.reducer;

@@ -57,7 +57,6 @@ const Controller = () => {
           title="Delete Marker"
           color="error"
           onChange={toggleDeleteSwitchHandler}
-          checked={deleteSwitchIsActive}
         />
       </div>
       {formIsVisible ? <AddForm /> : null}

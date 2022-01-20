@@ -4,6 +4,7 @@ import { Marker, Popup } from "react-leaflet";
 import { Typography, Button } from "@mui/material";
 import { greenMarker, redMarker } from "../../UI/markerColors";
 import { removePlace } from "../../store/formActions";
+import styles from "./MarkersAndPopups.module.css";
 
 const MarkersAndPopups = () => {
   const dispatch = useDispatch();
@@ -30,12 +31,14 @@ const MarkersAndPopups = () => {
         >
           {deleteSwitchIsActive ? (
             <Popup>
+              <Typography color="error">Are you sure?</Typography>
               <Button
                 variant="contained"
                 size="small"
                 color="error"
                 onClick={deleteHandler}
                 id={placeObj.id}
+                sx={{ margin: "auto" }}
               >
                 Delete
               </Button>
