@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  controllerBtnIsActive: true,
+  controllerBtnIsActive: false,
   addMarkerSwitchIsActive: false,
   deleteSwitchIsActive: false,
   listIsVisible: false,

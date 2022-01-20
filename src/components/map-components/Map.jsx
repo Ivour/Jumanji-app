@@ -11,6 +11,7 @@ import Controller from "../controlMenu/Controller";
 import { updatePlacesData } from "../../store/formSlice";
 
 import MarkersAndPopups from "./MarkersAndPopups";
+import ListContainer from "../controlMenu/list/ListContainer";
 
 /* function MyComponent() {
   const map = useMapEvent("click", (e) => {
@@ -24,6 +25,8 @@ function Map() {
   /* const [position, setPosition] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false); */
   const dispatch = useDispatch();
+
+  const listIsVisible = useSelector((state) => state.controller.listIsVisible);
 
   const controllerBtnIsActive = useSelector(
     (state) => state.controller.controllerBtnIsActive
@@ -64,6 +67,7 @@ function Map() {
           <AddMarkerOnClick />
         </MapContainer>
         {controllerBtnIsActive && <Controller />}
+        {listIsVisible && <ListContainer />}
       </div>
     </Fragment>
   );
