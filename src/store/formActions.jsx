@@ -4,9 +4,13 @@ import {
   hideForm,
   resetForm,
   hideSpinner,
+  removePlaceAndUpdate,
 } from "./formSlice";
 
-import { disactivateAddMarkerSwitch } from "./controllerSlice";
+import {
+  disactivateAddMarkerSwitch,
+  disactivateDeleteSwitch,
+} from "./controllerSlice";
 
 import { deleteCurrentLocation } from "./mapSlice";
 
@@ -47,5 +51,18 @@ export const cancelForm = () => {
     dispatch(hideForm());
     dispatch(resetForm());
     dispatch(deleteCurrentLocation());
+  };
+};
+
+export const removePlace = (id) => {
+  return (dispatch) => {
+    fetch(
+      `https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test/${id}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+    dispatch(removePlaceAndUpdate(id));
+    dispatch(disactivateDeleteSwitch());
   };
 };

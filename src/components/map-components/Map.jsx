@@ -1,5 +1,5 @@
 import { useEffect, Fragment } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { useSelector, useDispatch } from "react-redux";
 
 import AddMarkerOnClick from "./AddMarkerOnClick";
@@ -7,11 +7,10 @@ import styles from "./Map.module.css";
 import AutoZoom from "./AutoZoom";
 
 import Controller from "../controlMenu/Controller";
-import { Typography, Button } from "@mui/material";
 
 import { updatePlacesData } from "../../store/formSlice";
 
-import { greenMarker, redMarker } from "../../UI/customMarker";
+import MarkersAndPopups from "./MarkersAndPopups";
 
 /* function MyComponent() {
   const map = useMapEvent("click", (e) => {
@@ -30,14 +29,6 @@ function Map() {
     (state) => state.controller.controllerBtnIsActive
   );
 
-  const places = useSelector((state) => state.form.placesData);
-  const deleteSwitchIsActive = useSelector(
-    (state) => state.controller.deleteSwitchIsActive
-  );
-
-  const currentLocation = useSelector((state) => state.map.currentLocation);
-  console.log("render");
-
   useEffect(() => {
     if (isInitial) {
       fetch(
@@ -45,26 +36,12 @@ function Map() {
       )
         .then((res) => res.json())
         .then((data) => {
-          const arr = [];
-          for (const key in data) {
-            arr.push({ ...data[key], id: key });
-          }
-          dispatch(updatePlacesData(arr));
+          dispatch(updatePlacesData(data));
         });
     }
     isInitial = false;
   }, [dispatch]);
 
-  /* useEffect(() => {
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 200);
-  }); */
-
-  /*  const getPositionHandler = (objPos) => {
-    setPosition((prev) => [...prev, objPos]);
-  };
- */
   return (
     <Fragment>
       <div className={styles.container}>
@@ -80,37 +57,8 @@ function Map() {
             url="https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=05d9beab414a4075a9a29990cc4e22bc"
             attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {/* <Marker position={[49.194011782178066, 16.60989809635794]}>
-            <Popup>
-              <div className={styles.popup}>
-                <Typography variant="button" fontSize="small">
-                  BRNO
-                </Typography>
-              </div>
-            </Popup>
-          </Marker> */}
-          {currentLocation ? (
-            <Marker icon={redMarker} position={currentLocation} />
-          ) : null}
 
-          {places.map((placeObj) => (
-            <Marker
-              position={[placeObj.location[0], placeObj.location[1]]}
-              key={placeObj.id}
-              icon={greenMarker}
-            >
-              {deleteSwitchIsActive ? (
-                <Popup>
-                  <Button>delete</Button>
-                </Popup>
-              ) : (
-                <Popup>
-                  <Typography variant="button">{placeObj.placeName}</Typography>
-                  <Typography>{placeObj.description}</Typography>
-                </Popup>
-              )}
-            </Marker>
-          ))}
+          <MarkersAndPopups />
 
           {isInitial && <AutoZoom />}
           <AddMarkerOnClick />
@@ -122,9 +70,3 @@ function Map() {
 }
 
 export default Map;
-
-/* <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup> 
-       </Marker>*/

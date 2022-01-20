@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   placeInput: "",
@@ -28,7 +28,11 @@ const formSlice = createSlice({
       state.spinnerIsLoading = false;
     },
     updatePlacesData: (state, amount) => {
-      state.placesData = amount.payload;
+      const arr = [];
+      for (const key in amount.payload) {
+        arr.push({ ...amount.payload[key], id: key });
+      }
+      state.placesData = arr;
     },
 
     addPlace: (state, amount) => {
@@ -47,6 +51,13 @@ const formSlice = createSlice({
     placeInputHasError: (state, amount) => {
       state.placeInputHasError = amount.payload;
     },
+    removePlaceAndUpdate: (state, amount) => {
+      const updatedPlaces = current(state.placesData).filter(
+        (obj) => obj.id !== amount.payload
+      );
+      state.placesData = updatedPlaces;
+      //state.placesData.filter((obj) => obj.id !== placeToRemove);
+    },
   },
 });
 
@@ -60,7 +71,8 @@ export const {
   resetForm,
   hideSpinner,
   updatePlacesData,
-  placeInputHasError
+  placeInputHasError,
+  removePlaceAndUpdate,
 } = formSlice.actions;
 
 export default formSlice.reducer;
