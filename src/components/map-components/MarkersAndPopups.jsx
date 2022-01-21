@@ -5,6 +5,7 @@ import { Typography, Button } from "@mui/material";
 import { greenMarker, redMarker } from "../../UI/markerColors";
 import { removePlace } from "../../store/formActions";
 import styles from "./MarkersAndPopups.module.css";
+import { disactivateDeleteSwitch } from "../../store/controllerSlice";
 
 const MarkersAndPopups = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const MarkersAndPopups = () => {
 
   const deleteHandler = (e) => {
     dispatch(removePlace(e.target.id));
+    dispatch(disactivateDeleteSwitch());
   };
 
   return (
