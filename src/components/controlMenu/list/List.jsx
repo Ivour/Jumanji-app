@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./List.module.css";
 import { useSelector } from "react-redux";
 import { useMap } from "react-leaflet";
@@ -15,6 +15,10 @@ const List = () => {
   const getClickedListItemLocation = (location) => {
     map.flyTo(location, 12);
   };
+
+  let footerContent = "";
+  if (placesArr.length === 0) footerContent = <p>nothing to show here</p>;
+  if (placesArr.length > 5) footerContent = <MyPagination />;
 
   return (
     <div className={styles.container}>
@@ -34,7 +38,7 @@ const List = () => {
           />
         ))}
 
-      <MyPagination />
+      {footerContent}
     </div>
   );
 };
