@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ListItem.module.css";
 import { Typography } from "@mui/material";
 
 const ListItem = (props) => {
+  const showBorderOnSelectHandler = () => {
+    props.onGetLocation(props.location);
+  };
+
   return (
-    <div
-      className={styles.item}
-      onClick={() => props.onGetLocation(props.location)}
-    >
+    <div className={styles.item} onClick={showBorderOnSelectHandler}>
       <div className={styles["item-header"]}>
         <Typography variant="subtitle2">{props.placeName} </Typography>
         <Typography variant="body2">

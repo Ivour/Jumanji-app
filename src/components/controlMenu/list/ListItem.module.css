@@ -2,8 +2,17 @@
   width: 100%;
   margin: 0.5em 0;
   padding: 0 1em;
-  -webkit-box-shadow: 3px 2px 8px -1px #000000;
+  -webkit-box-shadow: 3px 2px 8px -1px #317737;
   box-shadow: 3px 2px 8px -1px #317737;
+
+  border-radius: 0.6rem;
+}
+.item-active {
+  width: 100%;
+  margin: 0.5em 0;
+  padding: 0 1em;
+  -webkit-box-shadow: 3px 2px 8px -1px #c7ca1d;
+  box-shadow: 3px 2px 8px -1px #c7ca1d;
 
   border-radius: 0.6rem;
 }
