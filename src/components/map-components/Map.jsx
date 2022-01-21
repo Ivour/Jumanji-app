@@ -11,7 +11,7 @@ import Controller from "../controlMenu/Controller";
 import { updatePlacesData } from "../../store/formSlice";
 
 import MarkersAndPopups from "./MarkersAndPopups";
-import ListContainer from "../controlMenu/list/ListContainer";
+import List from "../controlMenu/list/List";
 
 /* function MyComponent() {
   const map = useMapEvent("click", (e) => {
@@ -65,9 +65,9 @@ function Map() {
 
           {isInitial && <AutoZoom />}
           <AddMarkerOnClick />
+          {listIsVisible && <List />}
         </MapContainer>
         {controllerBtnIsActive && <Controller />}
-        {listIsVisible && <ListContainer />}
       </div>
     </Fragment>
   );

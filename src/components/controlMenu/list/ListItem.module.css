@@ -1,0 +1,25 @@
+.item {
+  width: 100%;
+  margin: 0.5em 0;
+  padding: 0 1em;
+  -webkit-box-shadow: 3px 2px 8px -1px #000000;
+  box-shadow: 3px 2px 8px -1px #317737;
+
+  border-radius: 0.6rem;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-around;
+}
+.item-main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.description {
+}
+
+.userTypo {
+  margin-left: 0.5em;
+}

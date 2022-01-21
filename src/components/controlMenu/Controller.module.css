@@ -4,8 +4,8 @@
   border: 1px solid black;
   border-radius: 1em;
   position: absolute;
-  right: 5em;
-  top: 3em;
+  right: 2em;
+  top: 2em;
   z-index: 3;
   background-color: white;
   display: flex;
