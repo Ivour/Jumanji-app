@@ -9,21 +9,24 @@ import styles from "./RadioBtns.module.css";
 
 const RadioBtns = (props) => {
   return (
-    <FormControl component="fieldset" className={styles.control}>
-      <Typography fontSize="small" className={styles.label}>
+    <FormControl component="fieldset" className={styles.container}>
+      <Typography fontSize="small" className={styles["container__main-label"]}>
         User:
       </Typography>
       <RadioGroup
         aria-label="user"
         name="row-radio-buttons-group"
-        className={styles.group}
+        className={styles["container__buttons"]}
         onChange={(e) => props.onGetRadioValue(e.target.value)}
       >
         <FormControlLabel
           value="Kubao"
           control={<Radio size="small" color="secondary" />}
           label={
-            <Typography fontSize="small" className={styles.typo}>
+            <Typography
+              fontSize="small"
+              className={styles["container__btn-label"]}
+            >
               Kubao
             </Typography>
           }
@@ -32,7 +35,10 @@ const RadioBtns = (props) => {
           value="Vohři"
           control={<Radio size="small" color="secondary" />}
           label={
-            <Typography fontSize="small" className={styles.typo}>
+            <Typography
+              fontSize="small"
+              className={styles["container__btn-label"]}
+            >
               Vohři
             </Typography>
           }
@@ -41,17 +47,14 @@ const RadioBtns = (props) => {
           value="Ivour"
           control={<Radio size="small" color="secondary" />}
           label={
-            <Typography fontSize="small" className={styles.typo}>
+            <Typography
+              fontSize="small"
+              className={styles["container__btn-label"]}
+            >
               Ivour
             </Typography>
           }
         />
-        {/* <FormControlLabel
-          value="disabled"
-          disabled
-          control={<Radio />}
-          label="other"
-        /> */}
       </RadioGroup>
     </FormControl>
   );

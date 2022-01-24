@@ -21,7 +21,7 @@ const List = () => {
   if (placesArr.length > 5) footerContent = <MyPagination />;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.list}>
       <Typography variant="h6">List of locations</Typography>
 
       {placesArr

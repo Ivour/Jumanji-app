@@ -43,10 +43,10 @@ const Controller = () => {
 
   return (
     <div className={styles.container}>
-      <Typography variant="h6" className={styles.title}>
+      <Typography variant="h6" className={styles["container__title"]}>
         Controller
       </Typography>
-      <div className={styles.mainControllerBtns}>
+      <div className={styles["container__switches"]}>
         <SwitchLabel
           title="Add Marker"
           color="secondary"

@@ -13,17 +13,9 @@ import { updatePlacesData } from "../../store/formSlice";
 import MarkersAndPopups from "./MarkersAndPopups";
 import List from "../controlMenu/list/List";
 
-/* function MyComponent() {
-  const map = useMapEvent("click", (e) => {
-    console.log(e);
-  });
-  return null;
-} */
 let isInitial = true;
 
 function Map() {
-  /* const [position, setPosition] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false); */
   const dispatch = useDispatch();
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
@@ -49,7 +41,7 @@ function Map() {
     <Fragment>
       <div className={styles.container}>
         <MapContainer
-          className={styles.mapContainer}
+          className={styles["container__map"]}
           center={[49.75287993415023, 15.435791015625002]}
           zoom={isInitial ? 5 : 8}
           zoomControl={true}

@@ -20,7 +20,7 @@ const LocationField = () => {
   return (
     <div className={styles.container}>
       <MyLocationIcon fontSize="small" color="secondary" />
-      <Typography fontSize="small" className={styles.typo}>
+      <Typography fontSize="small" className={styles["container__text"]}>
         {`${finalLat} ${finalLng}`}
       </Typography>
     </div>

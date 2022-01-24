@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   activateControllerBtn,
   disactivateAddMarkerSwitch,
+  hideList,
 } from "../../store/controllerSlice";
 import { showForm, resetForm } from "../../store/formSlice";
 import { getCurrentLocation } from "../../store/mapSlice";
@@ -37,6 +38,7 @@ function AddMarkerToClick(props) {
         //dispatch(disactivateAddMarkerSwitch());
         dispatch(showForm());
         dispatch(disactivateAddMarkerSwitch());
+        dispatch(hideList());
       }
 
       //setPosition((prev) => [...prev, { lat, lng }]);

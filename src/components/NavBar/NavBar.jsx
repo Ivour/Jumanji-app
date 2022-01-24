@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import styles from "./NavBar.module.css";
@@ -38,12 +38,8 @@ const NavBar = () => {
 
   const navigate = useNavigate();
 
-  /*  if (location.pathname === "/game")
-    dispatch(actions.disactivateAddMarkerSwitch()); */
-
   const toggleControlerBtnHandler = () => {
     dispatch(toggleController()); // NEZAPOMÍNAT ODPÁLIT FUNKCI POMOCÍ ()
-    //setToggleIsClicked((prev) => !prev);
   };
 
   const navigateHomeHandler = () => {
@@ -61,17 +57,17 @@ const NavBar = () => {
   return (
     <Fragment>
       <nav className={styles.nav}>
-        <div className={styles.logoContainer}>
+        <div className={styles["nav__logo-container"]}>
           <LandscapeIcon
             fontSize="large"
             color="success"
             onClick={navigateHomeHandler}
-            className={styles.logo}
+            className={styles["nav__logo"]}
           />
           <Typography
             variant="h6"
             onClick={navigateHomeHandler}
-            className={styles["logo-text"]}
+            className={styles["nav__logo-text"]}
           >
             Jumanji App
           </Typography>
@@ -85,9 +81,17 @@ const NavBar = () => {
             </Typography>
           )}
 
-        <div className={styles["nav-tabs-btns-container"]}>
+        <div className={styles["nav__btns"]}>
           <BasicTabs />
           <div>
+            <Button
+              variant={listIsVisible ? "outlined" : "contained"}
+              color="secondary"
+              onClick={toggleListBtnHandler}
+              disabled={location.pathname === "/game" ? true : false}
+            >
+              Show List
+            </Button>
             <Button
               variant={controllerBtnIsActive ? "outlined" : "contained"}
               color="success"
@@ -100,18 +104,9 @@ const NavBar = () => {
                 )
               }
               disabled={location.pathname === "/game" ? true : false}
-              className={styles.toggleBtn}
+              className={styles["nav__controller-btn"]}
             >
               Toggle Controller
-            </Button>
-            <Button
-              variant={listIsVisible ? "outlined" : "contained"}
-              color="secondary"
-              className={styles.listBtn}
-              onClick={toggleListBtnHandler}
-              disabled={location.pathname === "/game" ? true : false}
-            >
-              Show List
             </Button>
           </div>
           {/*  <IconButton

@@ -44,9 +44,9 @@ const AddForm = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Card>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className={styles.form}>
           {placeInpHasError && (
             <Typography fontSize="small" color="error">
               write valid place
@@ -59,23 +59,22 @@ const AddForm = () => {
             onGetRadioValue={getCheckedValueHandler}
             // onUncheckRadio={isRadioChecked}
           />
-          <div className={styles["submit-container"]}>
-            <LocationField />
 
-            <div>
-              <Button
-                size="small"
-                variant="contained"
-                color="error"
-                onClick={() => dispatch(cancelForm())}
-              >
-                Cancel
-              </Button>
-              <SubmitBtn
-                formIsValid={!placeInpHasError && checkedUser !== null}
-                a={submitHandler}
-              />
-            </div>
+          <LocationField />
+
+          <div>
+            <Button
+              size="small"
+              variant="contained"
+              color="error"
+              onClick={() => dispatch(cancelForm())}
+            >
+              Cancel
+            </Button>
+            <SubmitBtn
+              formIsValid={!placeInpHasError && checkedUser !== null}
+              a={submitHandler}
+            />
           </div>
         </form>
       </Card>

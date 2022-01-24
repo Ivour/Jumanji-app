@@ -12,6 +12,8 @@ const controllerSlice = createSlice({
   initialState,
   reducers: {
     toggleController: (state, amount) => {
+      if (!state.controllerBtnIsActive) state.listIsVisible = false;
+
       state.controllerBtnIsActive = !state.controllerBtnIsActive;
     },
 
@@ -21,6 +23,7 @@ const controllerSlice = createSlice({
 
     showList: (state) => {
       state.listIsVisible = true;
+      state.controllerBtnIsActive = false;
     },
     hideList: (state) => {
       state.listIsVisible = false;

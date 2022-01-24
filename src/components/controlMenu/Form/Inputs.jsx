@@ -40,7 +40,7 @@ const Inputs = () => {
   };
   return (
     <Fragment>
-      <div className={styles["input-container"]}>
+      <div className={styles.container}>
         <label htmlFor="name">
           <Typography fontSize="small">Place name:</Typography>
         </label>
@@ -49,10 +49,11 @@ const Inputs = () => {
           value={enteredPlace}
           onChange={placeInpHandler}
           onBlur={placeBlurHandler}
+          className={styles["container__input"]}
         />
       </div>
 
-      <div className={styles["input-container"]}>
+      <div className={styles.container}>
         <label htmlFor="descripiton">
           <Typography fontSize="small">Description:</Typography>
         </label>
@@ -60,6 +61,7 @@ const Inputs = () => {
           type="text"
           value={enteredDescription}
           onChange={(e) => dispatch(setDescriptionInput(e.target.value))}
+          className={styles["container__input"]}
         />
       </div>
     </Fragment>
