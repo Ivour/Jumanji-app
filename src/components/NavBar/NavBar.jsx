@@ -23,6 +23,7 @@ import {
 import { hideForm, resetForm } from "../../store/formSlice";
 
 import { deleteCurrentLocation } from "../../store/mapSlice";
+import { cancelForm } from "../../store/formActions";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -44,10 +45,7 @@ const NavBar = () => {
 
   const navigateHomeHandler = () => {
     navigate("/");
-    dispatch(disactivateAddMarkerSwitch());
-    dispatch(hideForm());
-    dispatch(resetForm());
-    dispatch(deleteCurrentLocation());
+    dispatch(cancelForm());
   };
 
   const toggleListBtnHandler = () => {
@@ -109,13 +107,6 @@ const NavBar = () => {
               Toggle Controller
             </Button>
           </div>
-          {/*  <IconButton
-            color="secondary"
-            aria-label="add an alarm"
-            href="https://www.seznam.cz"
-          >
-            <AlarmIcon />
-          </IconButton> */}
         </div>
       </nav>
     </Fragment>

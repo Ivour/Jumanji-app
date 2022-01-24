@@ -12,6 +12,12 @@ import { updatePlacesData } from "../../store/formSlice";
 
 import MarkersAndPopups from "./MarkersAndPopups";
 import List from "../controlMenu/list/List";
+import {
+  INIT_MAP_CENTER_POS,
+  INIT_ZOOM,
+  NORMAL_ZOOM,
+} from "../../helpers/constants";
+import Scale from "./Scale";
 
 let isInitial = true;
 
@@ -42,8 +48,8 @@ function Map() {
       <div className={styles.container}>
         <MapContainer
           className={styles["container__map"]}
-          center={[49.75287993415023, 15.435791015625002]}
-          zoom={isInitial ? 5 : 8}
+          center={INIT_MAP_CENTER_POS}
+          zoom={isInitial ? INIT_ZOOM : NORMAL_ZOOM}
           zoomControl={true}
           doubleClickZoom={true}
           scrollWheelZoom={true}

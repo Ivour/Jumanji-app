@@ -7,22 +7,16 @@ import {
 } from "../../store/controllerSlice";
 import { showForm, resetForm } from "../../store/formSlice";
 import { getCurrentLocation } from "../../store/mapSlice";
+import {
+  ADD_MARKER_PAN_DURATION,
+  EASE_LINEARITY,
+} from "../../helpers/constants";
 
 function AddMarkerToClick(props) {
   const dispatch = useDispatch();
   const addMarkerSwitchIsActive = useSelector(
     (state) => state.controller.addMarkerSwitchIsActive
   );
-
-  /* const map = useMapEvents({
-    click(event) {
-      const { lat, lng } = event.latlng;
-      setPosition({
-        latitude: lat,
-        longitude: lng,
-      });
-    },
-  }); */
 
   const map = useMapEvents({
     click(event) {
@@ -32,25 +26,20 @@ function AddMarkerToClick(props) {
         // props.onGetPosition(event.latlng);
         dispatch(getCurrentLocation([lat, lng]));
 
-        map.panTo([lat, lng], { animate: true, duration: 1 });
+        map.panTo([lat, lng], {
+          animate: true,
+          duration: ADD_MARKER_PAN_DURATION,
+          easeLinearity: EASE_LINEARITY,
+        });
 
         dispatch(activateControllerBtn());
-        //dispatch(disactivateAddMarkerSwitch());
         dispatch(showForm());
         dispatch(disactivateAddMarkerSwitch());
         dispatch(hideList());
       }
-
-      //setPosition((prev) => [...prev, { lat, lng }]);
     },
   });
 
-  /* return position.latitude !== 0 ? (
-    <Marker
-      position={[position.latitude, position.longitude]}
-      interactive={false}
-    />
-  ) : null; */
   return <></>;
 }
 

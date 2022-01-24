@@ -7,6 +7,10 @@
 
   border-radius: 0.6rem;
 }
+.item:hover {
+  background-color: rgba(0, 128, 0, 0.137);
+  cursor: pointer;
+}
 .item--active {
   width: 100%;
   margin: 0.5em 0;

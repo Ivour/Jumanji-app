@@ -1,11 +1,17 @@
 import { useMap } from "react-leaflet";
+import {
+  AUTOZOOM_DURATION,
+  EASE_LINEARITY,
+  INIT_MAP_CENTER_POS,
+  NORMAL_ZOOM,
+} from "../../helpers/constants";
 
 const AutoZoom = (props) => {
   const map = useMap();
 
-  map.flyTo([49.75287993415023, 15.435791015625002], 8, {
-    duration: 6,
-    easeLinearity: 0.0001,
+  map.flyTo(INIT_MAP_CENTER_POS, NORMAL_ZOOM, {
+    duration: AUTOZOOM_DURATION,
+    easeLinearity: EASE_LINEARITY,
   });
 
   /* useEffect(() => {

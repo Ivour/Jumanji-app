@@ -3,6 +3,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedPagination } from "../../../store/listSlice";
+import { ITEMS_PER_PAGE } from "../../../helpers/constants";
 
 const MyPagination = () => {
   const placesCount = useSelector((state) => state.form.placesData.length);
@@ -10,7 +11,7 @@ const MyPagination = () => {
   return (
     <Stack spacing={2} sx={{ marginTop: "1em" }}>
       <Pagination
-        count={Math.ceil(placesCount / 5)}
+        count={Math.ceil(placesCount / ITEMS_PER_PAGE)}
         variant="outlined"
         shape="rounded"
         color="success"

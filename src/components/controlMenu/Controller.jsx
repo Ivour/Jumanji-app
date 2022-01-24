@@ -13,7 +13,7 @@ import {
   disactivateDeleteSwitch,
   toggleAddMarker,
 } from "../../store/controllerSlice";
-import { resetForm, hideForm } from "../../store/formSlice";
+import { resetForm } from "../../store/formSlice";
 import { cancelForm } from "../../store/formActions";
 
 const Controller = () => {

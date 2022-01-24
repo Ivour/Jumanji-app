@@ -4,7 +4,6 @@ import { Marker, Popup } from "react-leaflet";
 import { Typography, Button } from "@mui/material";
 import { greenMarker, redMarker } from "../../UI/markerColors";
 import { removePlace } from "../../store/formActions";
-import styles from "./MarkersAndPopups.module.css";
 import { disactivateDeleteSwitch } from "../../store/controllerSlice";
 
 const MarkersAndPopups = () => {
