@@ -1,6 +1,6 @@
 import { useEffect, Fragment } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import AddMarkerOnClick from "./AddMarkerOnClick";
 import styles from "./Map.module.css";
@@ -16,13 +16,15 @@ import {
   INIT_MAP_CENTER_POS,
   INIT_ZOOM,
   NORMAL_ZOOM,
+  URL_FIREBASE,
 } from "../../helpers/constants";
 import Scale from "./Scale";
+import useHttp from "../../hooks/useHttp";
 
 let isInitial = true;
 
 function Map() {
-  const dispatch = useDispatch();
+  const sendRequest = useHttp();
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
 
@@ -32,16 +34,10 @@ function Map() {
 
   useEffect(() => {
     if (isInitial) {
-      fetch(
-        "https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test.json"
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch(updatePlacesData(data));
-        });
+      sendRequest({ url: URL_FIREBASE }, updatePlacesData);
     }
     isInitial = false;
-  }, [dispatch]);
+  }, [sendRequest]);
 
   return (
     <Fragment>

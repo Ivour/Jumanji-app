@@ -13,9 +13,13 @@ import Button from "@mui/material/Button";
 import Inputs from "./Inputs";
 
 import { sendForm, cancelForm } from "../../../store/formActions";
+import useHttp from "../../../hooks/useHttp";
+import { URL_FIREBASE } from "../../../helpers/constants";
+import { addPlace } from "../../../store/formSlice";
 
 const AddForm = () => {
   const [checkedUser, setCheckedUser] = useState(null);
+  const sendRequest = useHttp();
 
   const dispatch = useDispatch();
   const enteredPlace = useSelector((state) => state.form.placeInput);

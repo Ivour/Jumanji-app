@@ -1,4 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import { useCallback } from "react";
 
 const initialState = {
   placeInput: "",

@@ -10,3 +10,6 @@ export const AUTOZOOM_DURATION = 6; //seconds
 export const ADD_MARKER_PAN_DURATION = 1; //seconds
 
 export const EASE_LINEARITY = 0.0001;
+
+export const URL_FIREBASE =
+  "https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test.json";
