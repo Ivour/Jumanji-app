@@ -15,15 +15,11 @@ import LandscapeIcon from "@mui/icons-material/Landscape";
 import { useSelector, useDispatch } from "react-redux";
 import {
   toggleController,
-  disactivateAddMarkerSwitch,
   hideList,
   showList,
 } from "../../store/controllerSlice";
 
-import { hideForm, resetForm } from "../../store/formSlice";
-
-import { deleteCurrentLocation } from "../../store/mapSlice";
-import { cancelForm } from "../../store/formActions";
+import { cancelForm } from "../../store/formSlice";
 
 const NavBar = () => {
   const dispatch = useDispatch();

@@ -6,8 +6,11 @@ import FormControl from "@mui/material/FormControl";
 import { Typography } from "@mui/material";
 
 import styles from "./RadioBtns.module.css";
+import { useDispatch } from "react-redux";
+import { selectUser } from "../../../store/formSlice";
 
 const RadioBtns = (props) => {
+  const dispatch = useDispatch();
   return (
     <FormControl component="fieldset" className={styles.container}>
       <Typography fontSize="small" className={styles["container__main-label"]}>
@@ -17,7 +20,7 @@ const RadioBtns = (props) => {
         aria-label="user"
         name="row-radio-buttons-group"
         className={styles["container__buttons"]}
-        onChange={(e) => props.onGetRadioValue(e.target.value)}
+        onChange={(e) => dispatch(selectUser(e.target.value))}
       >
         <FormControlLabel
           value="Kubao"

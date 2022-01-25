@@ -10,8 +10,7 @@ import Box from "@mui/material/Box";
 
 import { hideForm } from "../../store/formSlice";
 import { useDispatch } from "react-redux";
-import { deleteCurrentLocation } from "../../store/mapSlice";
-import { resetForm } from "../../store/formSlice";
+import { cancelForm, deleteCurrentLocation } from "../../store/formSlice";
 
 const pathToIndex = {
   map: 0,
@@ -46,7 +45,7 @@ const BasicTabs = () => {
           className={styles.link}
           onClick={() => {
             dispatch(hideForm());
-            dispatch(resetForm());
+            dispatch(cancelForm());
             dispatch(deleteCurrentLocation());
           }}
         />

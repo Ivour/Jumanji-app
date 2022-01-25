@@ -4,8 +4,14 @@ import { useDispatch } from "react-redux";
 const useHttp = () => {
   const dispatch = useDispatch();
   const sendRequest = useCallback(
-    async (requestConfig, applyDataFn, arrToDispatch = []) => {
+    async (
+      requestConfig,
+      applyDataFn,
+      firstArrToDispatch = [],
+      arrToDispatch = []
+    ) => {
       try {
+        firstArrToDispatch.map((fn) => dispatch(fn()));
         const response = await fetch(requestConfig.url, {
           method: requestConfig.method || "GET",
           body: JSON.stringify(requestConfig.body) || null,
@@ -19,7 +25,7 @@ const useHttp = () => {
         dispatch(applyDataFn(data));
         arrToDispatch.map((fn) => dispatch(fn()));
       } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
       }
     },
     [dispatch]

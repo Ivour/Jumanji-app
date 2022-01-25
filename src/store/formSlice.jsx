@@ -1,11 +1,11 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { useCallback } from "react";
 
 const initialState = {
   placeInput: "",
   descriptionInput: "",
+  currentLocation: "",
+  userInput: null,
   placeInputHasError: false,
-  radioBtnInput: "",
   formIsVisible: false,
   spinnerIsLoading: false,
   formIsCanceled: false,
@@ -35,9 +35,19 @@ const formSlice = createSlice({
       }
       state.placesData = arr;
     },
+    selectUser: (state, amount) => {
+      state.userInput = amount.payload;
+    },
 
     addPlace: (state, amount) => {
-      state.placesData.push(amount.payload);
+      const obj = {
+        user: state.userInput,
+        placeName: state.placeInput,
+        description: state.descriptionInput,
+        location: state.currentLocation,
+        id: amount.payload.name,
+      };
+      state.placesData.push(obj);
     },
     setPlaceInput: (state, amount) => {
       state.placeInput = amount.payload;
@@ -45,9 +55,12 @@ const formSlice = createSlice({
     setDescriptionInput: (state, amount) => {
       state.descriptionInput = amount.payload;
     },
-    resetForm: (state) => {
+    cancelForm: (state) => {
       state.placeInput = "";
       state.descriptionInput = "";
+      state.currentLocation = "";
+      state.formIsVisible = false;
+      state.spinnerIsLoading = false;
     },
     placeInputHasError: (state, amount) => {
       state.placeInputHasError = amount.payload;
@@ -59,6 +72,12 @@ const formSlice = createSlice({
       state.placesData = updatedPlaces;
       //state.placesData.filter((obj) => obj.id !== placeToRemove);
     },
+    getCurrentLocation: (state, amount) => {
+      state.currentLocation = amount.payload;
+    },
+    deleteCurrentLocation: (state) => {
+      state.currentLocation = "";
+    },
   },
 });
 
@@ -69,11 +88,14 @@ export const {
   addPlace,
   setPlaceInput,
   setDescriptionInput,
-  resetForm,
+  cancelForm,
   hideSpinner,
   updatePlacesData,
   placeInputHasError,
   removePlaceAndUpdate,
+  getCurrentLocation,
+  deleteCurrentLocation,
+  selectUser,
 } = formSlice.actions;
 
 export default formSlice.reducer;

@@ -9,7 +9,7 @@ import "./index.css";
 
 import App from "./App";
 import store from "./store/store";
-import theme from "./UI/theme";
+import theme from "./helpers/theme";
 
 ReactDOM.render(
   <Provider store={store}>

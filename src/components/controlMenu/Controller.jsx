@@ -13,8 +13,7 @@ import {
   disactivateDeleteSwitch,
   toggleAddMarker,
 } from "../../store/controllerSlice";
-import { resetForm } from "../../store/formSlice";
-import { cancelForm } from "../../store/formActions";
+import { cancelForm } from "../../store/formSlice";
 
 const Controller = () => {
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const Controller = () => {
   const toggleAddMarkerHandler = (e) => {
     dispatch(toggleAddMarker(e.target.checked));
 
-    if (!e.target.checked) dispatch(resetForm());
+    if (!e.target.checked) dispatch(cancelForm());
   };
 
   const toggleDeleteSwitchHandler = () => {

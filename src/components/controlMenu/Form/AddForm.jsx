@@ -12,13 +12,13 @@ import styles from "./AddForm.module.css";
 import Button from "@mui/material/Button";
 import Inputs from "./Inputs";
 
-import { sendForm, cancelForm } from "../../../store/formActions";
 import useHttp from "../../../hooks/useHttp";
 import { URL_FIREBASE } from "../../../helpers/constants";
-import { addPlace } from "../../../store/formSlice";
+import { addPlace, showSpinner } from "../../../store/formSlice";
+import { cancelForm } from "../../../store/formSlice";
 
 const AddForm = () => {
-  const [checkedUser, setCheckedUser] = useState(null);
+  // const [checkedUser, setCheckedUser] = useState(null);
   const sendRequest = useHttp();
 
   const dispatch = useDispatch();
@@ -26,14 +26,11 @@ const AddForm = () => {
   const enteredDescription = useSelector(
     (state) => state.form.descriptionInput
   );
-  const currentLocation = useSelector((state) => state.map.currentLocation);
+  const currentLocation = useSelector((state) => state.form.currentLocation);
+  const checkedUser = useSelector((state) => state.form.userInput);
   const placeInpHasError = useSelector(
     (state) => state.form.placeInputHasError
   );
-
-  const getCheckedValueHandler = (data) => {
-    setCheckedUser(data);
-  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -44,7 +41,19 @@ const AddForm = () => {
       location: currentLocation,
     };
 
-    dispatch(sendForm(obj));
+    sendRequest(
+      {
+        url: URL_FIREBASE,
+        method: "POST",
+        body: obj,
+        headers: { "Content-Type": "application/json" },
+      },
+      addPlace,
+      [showSpinner],
+      [cancelForm]
+    );
+
+    //dispatch(sendForm(obj));
   };
 
   return (
@@ -60,8 +69,8 @@ const AddForm = () => {
           <Inputs />
 
           <RadioBtns
-            onGetRadioValue={getCheckedValueHandler}
-            // onUncheckRadio={isRadioChecked}
+          //onGetRadioValue={getCheckedValueHandler}
+          // onUncheckRadio={isRadioChecked}
           />
 
           <LocationField />

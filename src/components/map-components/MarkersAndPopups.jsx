@@ -2,9 +2,8 @@ import React, { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Marker, Popup } from "react-leaflet";
 import { Typography, Button } from "@mui/material";
-import { greenMarker, redMarker } from "../../UI/markerColors";
+import { greenMarker, redMarker } from "../../helpers/markerColors";
 import { removePlace } from "../../store/formActions";
-import { disactivateDeleteSwitch } from "../../store/controllerSlice";
 
 const MarkersAndPopups = () => {
   const dispatch = useDispatch();
@@ -12,11 +11,11 @@ const MarkersAndPopups = () => {
   const deleteSwitchIsActive = useSelector(
     (state) => state.controller.deleteSwitchIsActive
   );
-  const currentLocation = useSelector((state) => state.map.currentLocation);
+  const currentLocation = useSelector((state) => state.form.currentLocation);
+  console.log(places);
 
   const deleteHandler = (e) => {
-    dispatch(removePlace(e.target.id));
-    dispatch(disactivateDeleteSwitch());
+    dispatch(removePlace(e.target.id)); // using action creator thunk
   };
 
   return (

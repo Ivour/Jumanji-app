@@ -5,6 +5,7 @@ import {
   resetForm,
   hideSpinner,
   removePlaceAndUpdate,
+  deleteCurrentLocation,
 } from "./formSlice";
 
 import {
@@ -12,9 +13,7 @@ import {
   disactivateDeleteSwitch,
 } from "./controllerSlice";
 
-import { deleteCurrentLocation } from "./mapSlice";
-
-export const sendForm = (obj) => {
+/* export const sendForm = (obj) => {
   return (dispatch) => {
     dispatch(showSpinner());
 
@@ -34,7 +33,7 @@ export const sendForm = (obj) => {
         }
       })
       .then((data) => {
-        dispatch(addPlace({ ...obj, id: data.name }));
+        dispatch(addPlace(data.name));
         dispatch(disactivateAddMarkerSwitch());
         dispatch(hideForm());
         dispatch(resetForm());
@@ -44,15 +43,16 @@ export const sendForm = (obj) => {
       .catch((err) => console.log(err));
   };
 };
-
-export const cancelForm = () => {
+ */
+/* export const cancelForm = () => {
   return (dispatch) => {
     dispatch(disactivateAddMarkerSwitch());
     dispatch(hideForm());
     dispatch(resetForm());
+    dispatch(hideSpinner());
     dispatch(deleteCurrentLocation());
   };
-};
+}; */
 
 export const removePlace = (id) => {
   return (dispatch) => {
@@ -61,8 +61,12 @@ export const removePlace = (id) => {
       {
         method: "DELETE",
       }
-    );
-    dispatch(removePlaceAndUpdate(id));
-    dispatch(disactivateDeleteSwitch());
+    )
+      .then((res) => {
+        if (!res.ok) throw new Error("something went wrong");
+        dispatch(removePlaceAndUpdate(id));
+        dispatch(disactivateDeleteSwitch());
+      })
+      .catch((err) => console.error(err));
   };
 };

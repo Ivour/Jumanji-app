@@ -5,8 +5,11 @@ import {
   disactivateAddMarkerSwitch,
   hideList,
 } from "../../store/controllerSlice";
-import { showForm, resetForm } from "../../store/formSlice";
-import { getCurrentLocation } from "../../store/mapSlice";
+import {
+  showForm,
+  cancelForm,
+  getCurrentLocation,
+} from "../../store/formSlice";
 import {
   ADD_MARKER_PAN_DURATION,
   EASE_LINEARITY,
@@ -21,7 +24,7 @@ function AddMarkerToClick(props) {
   const map = useMapEvents({
     click(event) {
       if (addMarkerSwitchIsActive) {
-        dispatch(resetForm());
+        dispatch(cancelForm());
         const { lat, lng } = event.latlng;
         // props.onGetPosition(event.latlng);
         dispatch(getCurrentLocation([lat, lng]));
