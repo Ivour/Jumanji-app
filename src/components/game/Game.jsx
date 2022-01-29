@@ -1,9 +1,13 @@
 import React from "react";
+import LotterySlot from "./LotterySlot";
+import MapGame from "./MapGame";
+import styles from "./Game.module.css";
 
 const Game = () => {
   return (
-    <div>
-      <h1>game</h1>
+    <div className={styles.container}>
+      <MapGame />
+      <LotterySlot />
     </div>
   );
 };

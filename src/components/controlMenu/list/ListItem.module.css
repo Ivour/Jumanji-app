@@ -7,6 +7,15 @@
 
   border-radius: 0.6rem;
 }
+.item--game {
+  width: 80%;
+  margin: 0.5em 0;
+  padding: 0 1em;
+  -webkit-box-shadow: 3px 2px 8px -1px #000000;
+  box-shadow: 3px 2px 8px -1px #000000;
+
+  border-radius: 0.6rem;
+}
 .item:hover {
   background-color: rgba(0, 128, 0, 0.137);
   cursor: pointer;

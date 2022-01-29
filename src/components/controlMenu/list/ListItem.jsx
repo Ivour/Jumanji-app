@@ -13,8 +13,8 @@ const ListItem = (props) => {
 
   return (
     <div
-      className={styles["item"]}
-      onClick={showBorderOnSelectHandler}
+      className={props.isGameList ? styles["item--game"] : styles["item"]}
+      onClick={props.isGameList ? null : showBorderOnSelectHandler}
       id={props.id}
     >
       <div className={styles["item__first-line"]}>
