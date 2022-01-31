@@ -12,6 +12,7 @@ const controllerSlice = createSlice({
   initialState,
   reducers: {
     toggleController: (state, amount) => {
+      if (amount.payload === "hide") state.controllerBtnIsActive = true; // tohle je obrovskej bordel, sprav to!
       if (!state.controllerBtnIsActive) state.listIsVisible = false;
 
       state.controllerBtnIsActive = !state.controllerBtnIsActive;

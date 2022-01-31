@@ -17,6 +17,8 @@ import {
   toggleController,
   hideList,
   showList,
+  disactivateAddMarkerSwitch,
+  disactivateDeleteSwitch,
 } from "../../store/controllerSlice";
 
 import { cancelForm } from "../../store/formSlice";
@@ -30,6 +32,7 @@ const NavBar = () => {
     (state) => state.controller.addMarkerSwitchIsActive
   );
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
+  const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
 
   const location = useLocation();
 
@@ -48,6 +51,12 @@ const NavBar = () => {
     listIsVisible ? dispatch(hideList()) : dispatch(showList());
   };
 
+  if (gameIsLoaded) {
+    dispatch(disactivateAddMarkerSwitch());
+    dispatch(disactivateDeleteSwitch());
+    dispatch(cancelForm());
+    dispatch(toggleController("hide"));
+  }
   return (
     <Fragment>
       <nav className={styles.nav}>
@@ -97,7 +106,13 @@ const NavBar = () => {
                   <ArrowBackIosNewIcon />
                 )
               }
-              disabled={location.pathname === "/game" ? true : false}
+              disabled={
+                location.pathname === "/game"
+                  ? true
+                  : gameIsLoaded
+                  ? true
+                  : false
+              }
               className={styles["nav__controller-btn"]}
             >
               Toggle Controller

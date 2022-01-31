@@ -11,6 +11,7 @@ export default function BasicSelect(props) {
   const [value, setValue] = useState("");
   const handleChange = (event) => {
     setValue(event.target.value);
+    console.log(event.target.value);
     props.onGetValue(event.target.value);
   };
 

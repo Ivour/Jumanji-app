@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-import { useLocation } from "react-router-dom";
 import styles from "./ListItem.module.css";
 import { Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -11,15 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ListItem = (props) => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const [isVisible, setIsVisible] = useState(
-    location.pathname === "/game" ? false : true
-  );
+
   const a = useSelector((state) => state.game.randomPlaces);
   console.log(a);
 
   const revealPlaceHandler = (e) => {
-    setIsVisible(true);
     dispatch(randomPlaceIsClicked(e.target.id));
   };
 
@@ -35,8 +30,8 @@ const ListItem = (props) => {
       }
       id={props.id}
     >
-      {!isVisible && <p id={props.id}>Reveal me</p>}
-      {isVisible && (
+      {!props.isClicked && props.isGameList && <p id={props.id}>Reveal me</p>}
+      {props.isClicked && (
         <Fragment>
           <div className={styles["item__first-line"]}>
             <div className={styles["item__containter"]}>

@@ -46,6 +46,7 @@ const List = () => {
             description={obj.description}
             location={obj.location}
             user={obj.user}
+            isClicked={true}
             onGetLocation={getClickedListItemLocation}
           />
         ))}

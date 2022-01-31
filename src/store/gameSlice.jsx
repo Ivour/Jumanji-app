@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { sampleSize } from "lodash";
 
 const initialState = {
-  randomPlaces: null,
+  randomPlaces: [],
   checkboxIsChecked: true,
+  placesToShow: 0,
   gameIsLoading: false,
   gameIsLoaded: false,
 };
@@ -23,12 +24,23 @@ const gameSlice = createSlice({
         );
         state.randomPlaces = uniquePlaces;
       } else {
-        const shuffled = sampleSize(amount.payload, 3);
+        const shuffled = sampleSize(amount.payload, state.setPlacesToShow);
+        console.log(amount.payload, state.setPlacesToShow);
         state.randomPlaces = shuffled;
       }
     },
     addOnePlace(state, amount) {
-      state.randomPlaces.push(...amount.payload);
+      const idOfRandomPlaces = state.randomPlaces.map((obj) => obj.id);
+      const filteredPlaces = amount.payload.filter(
+        (obj) => !idOfRandomPlaces.includes(obj.id)
+      );
+      const randomFromFiltered = sampleSize(filteredPlaces, 1);
+
+      const randomPlacesClone = [...state.randomPlaces, ...randomFromFiltered];
+      state.randomPlaces = randomPlacesClone;
+    },
+    setPlacesToShow(state, amount) {
+      state.placesToShow = amount.payload;
     },
     setCheckboxIsChecked(state, amount) {
       state.checkboxIsChecked = amount.payload;
@@ -38,6 +50,7 @@ const gameSlice = createSlice({
       state.gameIsLoading = amount.payload;
     },
     setGameIsLoaded(state) {
+      state.gameIsLoading = false;
       state.gameIsLoaded = true;
     },
     randomPlaceIsClicked(state, amount) {
@@ -55,6 +68,7 @@ export const {
   setGameIsLoaded,
   randomPlaceIsClicked,
   setCheckboxIsChecked,
+  setPlacesToShow,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
