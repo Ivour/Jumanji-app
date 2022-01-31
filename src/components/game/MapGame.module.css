@@ -1,5 +1,14 @@
 .container {
-  width: 40vw;
-  height: 60vh;
-  border: 2px solid black;
+  width: 60vw;
+  height: 100%;
+}
+.container__map {
+  width: 100%;
+  height: 100%;
+}
+
+.container--loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

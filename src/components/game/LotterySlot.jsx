@@ -4,34 +4,43 @@ import { Typography, Button } from "@mui/material";
 import GameCheckbox from "./GameCheckbox";
 import ListItem from "../controlMenu/list/ListItem";
 import { useDispatch, useSelector } from "react-redux";
-import { sampleSize } from "lodash";
 import Selector from "./Selector";
+import { sampleSize } from "lodash";
+
 import LoadingSpinner from "./LoadingSpinner";
-import { updateRandomPlaces, addOnePlace } from "../../store/gameSlice";
+import {
+  updateRandomPlaces,
+  addOnePlace,
+  setGameIsLoading,
+  setGameIsLoaded,
+  setCheckboxIsChecked,
+} from "../../store/gameSlice";
 
 let chooseBtnIsClicked = false;
 let isInitial = true;
 let content;
 
 const LotterySlot = () => {
-  const [isChecked, setIsChecked] = useState(true);
   const [value, setValue] = useState(3); // co to kurva je?!
   const placesData = useSelector((state) => state.form.placesData);
+  const checkboxIsChecked = useSelector(
+    (state) => state.game.checkboxIsChecked
+  );
 
-  const [isLoading, setIsLoading] = useState(false);
+  const gameIsLoading = useSelector((state) => state.game.gameIsLoading);
 
   const randomPlaces = useSelector((state) => state.game.randomPlaces);
 
   const dispatch = useDispatch();
-  console.log("renderCycle");
 
   useEffect(() => {
     if (chooseBtnIsClicked && isInitial) {
-      setIsLoading(true);
+      dispatch(setGameIsLoading(true));
       setTimeout(() => {
         content = randomPlaces.map((obj) => (
           <ListItem
             key={obj.id}
+            id={obj.id}
             placeName={obj.placeName}
             description={obj.description}
             location={obj.location}
@@ -39,29 +48,18 @@ const LotterySlot = () => {
             isGameList={true}
           />
         ));
-        setIsLoading(false);
+        dispatch(setGameIsLoading(false));
+        dispatch(setGameIsLoaded());
         isInitial = false;
-      }, 2400);
+      }, 1000);
     }
-  }, [randomPlaces]);
+  }, [randomPlaces, dispatch]);
 
   const getCheckStateHandler = (e) => {
-    setIsChecked(e);
+    dispatch(setCheckboxIsChecked(e));
   };
   const choosePlaceHandler = () => {
-    const users = [...new Set(placesData.map((obj) => obj.user))];
-    const usersPlaces = users.map((user) =>
-      placesData.filter((obj) => obj.user === user)
-    );
-    if (isChecked) {
-      const uniquePlaces = usersPlaces.map(
-        (arr) => arr[Math.floor(Math.random() * arr.length)]
-      );
-      dispatch(updateRandomPlaces(uniquePlaces));
-    } else {
-      const shuffled = sampleSize(placesData, value);
-      dispatch(updateRandomPlaces(shuffled));
-    }
+    dispatch(updateRandomPlaces(placesData));
 
     chooseBtnIsClicked = true;
   };
@@ -81,6 +79,7 @@ const LotterySlot = () => {
     content = randomPlacesClone.map((obj) => (
       <ListItem
         key={obj.id}
+        id={obj.id}
         placeName={obj.placeName}
         description={obj.description}
         location={obj.location}
@@ -98,8 +97,11 @@ const LotterySlot = () => {
       {!chooseBtnIsClicked && (
         <GameCheckbox onGetCheckState={getCheckStateHandler} />
       )}
-      {!isChecked && !chooseBtnIsClicked && (
-        <Selector onGetValue={getSelectorValueHandler} isChecked={isChecked} />
+      {!checkboxIsChecked && !chooseBtnIsClicked && (
+        <Selector
+          onGetValue={getSelectorValueHandler}
+          isChecked={checkboxIsChecked}
+        />
       )}
       {!chooseBtnIsClicked && (
         <Button
@@ -110,7 +112,7 @@ const LotterySlot = () => {
           Choose random places
         </Button>
       )}
-      {isLoading && <LoadingSpinner />}
+      {gameIsLoading && <LoadingSpinner />}
       {content}
       {content && randomPlaces.length < 5 && (
         <Button onClick={addOnePlaceHandler}>Pick one more place</Button>

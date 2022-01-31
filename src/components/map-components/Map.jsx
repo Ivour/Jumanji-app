@@ -8,8 +8,6 @@ import AutoZoom from "./AutoZoom";
 
 import Controller from "../controlMenu/Controller";
 
-import { updatePlacesData } from "../../store/formSlice";
-
 import MarkersAndPopups from "./MarkersAndPopups";
 import List from "../controlMenu/list/List";
 import {
@@ -19,25 +17,19 @@ import {
   URL_FIREBASE,
 } from "../../helpers/constants";
 import Scale from "./Scale";
-import useHttp from "../../hooks/useHttp";
 
 let isInitial = true;
 
 function Map() {
-  const sendRequest = useHttp();
+  useEffect(() => {
+    isInitial = false;
+  }, []);
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
 
   const controllerBtnIsActive = useSelector(
     (state) => state.controller.controllerBtnIsActive
   );
-
-  useEffect(() => {
-    if (isInitial) {
-      sendRequest({ url: URL_FIREBASE }, updatePlacesData);
-    }
-    isInitial = false;
-  }, [sendRequest]);
 
   return (
     <Fragment>
