@@ -1,23 +1,26 @@
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { setPlacesToShow } from "../../store/gameSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const arr = Array.from({ length: 10 }, (_, i) => i + 1);
+const arr = Array.from({ length: 5 }, (_, i) => i + 1);
 
 export default function BasicSelect(props) {
-  const [value, setValue] = useState("");
+
+  const dispatch = useDispatch();
+  const placesToShow = useSelector(state => state.game.placesToShow)
+
   const handleChange = (event) => {
-    setValue(event.target.value);
-    console.log(event.target.value);
-    props.onGetValue(event.target.value);
+    dispatch(setPlacesToShow( event.target.value));
   };
 
+
   return (
-    <Box sx={{ width: "50%" }}>
-      <FormControl fullWidth>
+    <Box sx={{ width: "90%" }}>
+      <FormControl fullWidth size="small">
         <InputLabel id="demo-simple-select-label" color="secondary">
           How many places you want to pick?
         </InputLabel>
@@ -27,7 +30,7 @@ export default function BasicSelect(props) {
           label="How many places you want to pick?"
           onChange={handleChange}
           color="secondary"
-          value={value}
+          value={placesToShow}
           disabled={props.isChecked}
         >
           {arr.map((n) => (

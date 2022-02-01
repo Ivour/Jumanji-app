@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./NavBar.module.css";
 
@@ -24,6 +24,8 @@ import {
 import { cancelForm } from "../../store/formSlice";
 
 const NavBar = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const controllerBtnIsActive = useSelector(
     (state) => state.controller.controllerBtnIsActive
@@ -36,15 +38,13 @@ const NavBar = () => {
 
   const location = useLocation();
 
-  const navigate = useNavigate();
-
   const toggleControlerBtnHandler = () => {
     dispatch(toggleController()); // NEZAPOMÍNAT ODPÁLIT FUNKCI POMOCÍ ()
   };
 
-  const navigateHomeHandler = () => {
+  const refreshPageHandler = () => {
     navigate("/");
-    dispatch(cancelForm());
+    window.location.reload(true);
   };
 
   const toggleListBtnHandler = () => {
@@ -57,20 +57,34 @@ const NavBar = () => {
     dispatch(cancelForm());
     dispatch(toggleController("hide"));
   }
+
+  const mouseOverHandler = (e) => {
+    if ((e.target.id === "jumanji" || e.target.id === "logo") && gameIsLoaded)
+      setIsHovered(true);
+  };
+  const mouseLeaveHandler = (e) => {
+    if (gameIsLoaded) setIsHovered(false);
+  };
   return (
     <Fragment>
       <nav className={styles.nav}>
-        <div className={styles["nav__logo-container"]}>
+        <div
+          className={styles["nav__logo-container"]}
+          onMouseOver={mouseOverHandler}
+          onMouseLeave={mouseLeaveHandler}
+        >
           <LandscapeIcon
             fontSize="large"
             color="success"
-            onClick={navigateHomeHandler}
+            onClick={refreshPageHandler}
             className={styles["nav__logo"]}
+            id="logo"
           />
           <Typography
             variant="h6"
-            onClick={navigateHomeHandler}
+            onClick={refreshPageHandler}
             className={styles["nav__logo-text"]}
+            id="jumanji"
           >
             Jumanji App
           </Typography>
@@ -83,6 +97,11 @@ const NavBar = () => {
               warning: if you click on a map marker adding form will be shown
             </Typography>
           )}
+        {isHovered && (
+          <Typography fontSize="small" color="error">
+            warning: if you click the chosen places will be gone...
+          </Typography>
+        )}
 
         <div className={styles["nav__btns"]}>
           <BasicTabs />

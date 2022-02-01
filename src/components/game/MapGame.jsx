@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import styles from "./MapGame.module.css";
 
-import { INIT_MAP_CENTER_POS, NORMAL_ZOOM } from "../../helpers/constants";
+import { INIT_MAP_CENTER_POS, NORMAL_ZOOM_GAME } from "../../helpers/constants";
 import { useSelector } from "react-redux";
 import { greenMarker } from "../../helpers/markerColors";
 import Scale from "../map-components/Scale";
@@ -13,7 +13,7 @@ function Map() {
     <MapContainer
       className={styles.map}
       center={INIT_MAP_CENTER_POS}
-      zoom={NORMAL_ZOOM}
+      zoom={NORMAL_ZOOM_GAME}
       zoomControl={true}
       doubleClickZoom={true}
       scrollWheelZoom={true}

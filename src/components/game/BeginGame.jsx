@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Typography, Button } from "@mui/material";
 import Selector from "./Selector";
@@ -10,6 +10,7 @@ import {
   updateRandomPlaces,
   setPlacesToShow,
 } from "../../store/gameSlice";
+import styles from "./BeginGame.module.css";
 
 const BeginGame = () => {
   const placesData = useSelector((state) => state.form.placesData);
@@ -31,8 +32,8 @@ const BeginGame = () => {
     dispatch(setGameIsLoading(true));
   };
   return (
-    <Fragment>
-      <Typography variant="h4">Let's play!</Typography>
+    <div className={styles["choose-form"]}>
+      <Typography variant="h4">LET THE GAME BEGIN</Typography>
 
       <GameCheckbox onGetCheckState={getCheckStateHandler} />
 
@@ -50,7 +51,7 @@ const BeginGame = () => {
       >
         Choose random places
       </Button>
-    </Fragment>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import { sampleSize } from "lodash";
 const initialState = {
   randomPlaces: [],
   checkboxIsChecked: true,
-  placesToShow: 0,
+  placesToShow: 3,
   gameIsLoading: false,
   gameIsLoaded: false,
 };
@@ -24,8 +24,7 @@ const gameSlice = createSlice({
         );
         state.randomPlaces = uniquePlaces;
       } else {
-        const shuffled = sampleSize(amount.payload, state.setPlacesToShow);
-        console.log(amount.payload, state.setPlacesToShow);
+        const shuffled = sampleSize(amount.payload, state.placesToShow);
         state.randomPlaces = shuffled;
       }
     },
