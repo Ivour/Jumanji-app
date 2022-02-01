@@ -1,14 +1,6 @@
-.container {
-  width: 60vw;
-  height: 100%;
-}
-.container__map {
-  width: 100%;
-  height: 100%;
-}
-
-.container--loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.map {
+  width: 55vw;
+  height: 80vh;
+  border-radius: 1rem;
+  border: 1px solid black;
 }

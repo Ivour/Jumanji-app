@@ -6,3 +6,7 @@
 .link:visited {
   color: black;
 }
+
+.link:hover {
+  background-color: rgba(199, 197, 197, 0.212);
+}

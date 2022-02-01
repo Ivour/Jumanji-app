@@ -4,5 +4,8 @@
   align-items: center;
   justify-content: center;
   width: 40vw;
-  height: 100%;
+  margin: 1em;
+  padding: 2em;
+  border-radius: 1rem;
+  background-color: white;
 }
