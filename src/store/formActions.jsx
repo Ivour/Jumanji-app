@@ -1,17 +1,6 @@
-import {
-  showSpinner,
-  addPlace,
-  hideForm,
-  resetForm,
-  hideSpinner,
-  removePlaceAndUpdate,
-  deleteCurrentLocation,
-} from "./formSlice";
+import { removePlaceAndUpdate } from "./formSlice";
 
-import {
-  disactivateAddMarkerSwitch,
-  disactivateDeleteSwitch,
-} from "./controllerSlice";
+import { disactivateDeleteSwitch } from "./controllerSlice";
 
 /* export const sendForm = (obj) => {
   return (dispatch) => {

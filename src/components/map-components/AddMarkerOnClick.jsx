@@ -1,7 +1,6 @@
 import { useMapEvents } from "react-leaflet";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  activateControllerBtn,
   disactivateAddMarkerSwitch,
   hideList,
 } from "../../store/controllerSlice";
@@ -35,7 +34,6 @@ function AddMarkerToClick(props) {
           easeLinearity: EASE_LINEARITY,
         });
 
-        dispatch(activateControllerBtn());
         dispatch(showForm());
         dispatch(disactivateAddMarkerSwitch());
         dispatch(hideList());

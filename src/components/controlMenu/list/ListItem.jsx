@@ -6,13 +6,10 @@ import MyLocationIcon from "@mui/icons-material/MyLocation";
 import NotesIcon from "@mui/icons-material/Notes";
 import PersonIcon from "@mui/icons-material/Person";
 import { randomPlaceIsClicked } from "../../../store/gameSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const ListItem = (props) => {
   const dispatch = useDispatch();
-
-  const a = useSelector((state) => state.game.randomPlaces);
-  console.log(a);
 
   const revealPlaceHandler = (e) => {
     dispatch(randomPlaceIsClicked(e.target.id));

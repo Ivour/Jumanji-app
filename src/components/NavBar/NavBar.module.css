@@ -21,14 +21,3 @@
 .nav__logo-text {
   cursor: pointer;
 }
-
-.nav__btns {
-  width: 50%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.nav__controller-btn {
-  margin-left: 2em;
-}

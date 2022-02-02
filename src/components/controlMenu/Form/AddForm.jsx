@@ -1,8 +1,7 @@
 import { Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Card from "../../../UI/Card";
 import LocationField from "./LocationField";
 
 import RadioBtns from "./RadioBtns";
@@ -57,41 +56,40 @@ const AddForm = () => {
   };
 
   return (
-    <div>
-      <Card>
-        <form onSubmit={submitHandler} className={styles.form}>
-          {placeInpHasError && (
-            <Typography fontSize="small" color="error">
-              write valid place
-            </Typography>
-          )}
+    <form onSubmit={submitHandler} className={styles.form}>
+      <Typography variant="h6" className={styles["container__title"]}>
+        Add marker form
+      </Typography>
+      {placeInpHasError && (
+        <Typography fontSize="small" color="error">
+          write valid place
+        </Typography>
+      )}
 
-          <Inputs />
+      <Inputs />
 
-          <RadioBtns
-          //onGetRadioValue={getCheckedValueHandler}
-          // onUncheckRadio={isRadioChecked}
-          />
+      <RadioBtns
+      //onGetRadioValue={getCheckedValueHandler}
+      // onUncheckRadio={isRadioChecked}
+      />
 
-          <LocationField />
+      <LocationField />
 
-          <div>
-            <Button
-              size="small"
-              variant="contained"
-              color="error"
-              onClick={() => dispatch(cancelForm())}
-            >
-              Cancel
-            </Button>
-            <SubmitBtn
-              formIsValid={!placeInpHasError && checkedUser !== null}
-              a={submitHandler}
-            />
-          </div>
-        </form>
-      </Card>
-    </div>
+      <div>
+        <Button
+          size="small"
+          variant="contained"
+          color="error"
+          onClick={() => dispatch(cancelForm())}
+        >
+          Cancel
+        </Button>
+        <SubmitBtn
+          formIsValid={!placeInpHasError && checkedUser !== null}
+          a={submitHandler}
+        />
+      </div>
+    </form>
   );
 };
 

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  controllerBtnIsActive: false,
   addMarkerSwitchIsActive: false,
   deleteSwitchIsActive: false,
   listIsVisible: false,
@@ -11,17 +10,6 @@ const controllerSlice = createSlice({
   name: "controller",
   initialState,
   reducers: {
-    toggleController: (state, amount) => {
-      if (amount.payload === "hide") state.controllerBtnIsActive = true; // tohle je obrovskej bordel, sprav to!
-      if (!state.controllerBtnIsActive) state.listIsVisible = false;
-
-      state.controllerBtnIsActive = !state.controllerBtnIsActive;
-    },
-
-    activateControllerBtn: (state) => {
-      state.controllerBtnIsActive = true;
-    },
-
     showList: (state) => {
       state.listIsVisible = true;
       state.controllerBtnIsActive = false;

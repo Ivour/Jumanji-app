@@ -8,8 +8,10 @@ export default function SwitchLabel(props) {
     <FormControlLabel
       control={
         <Switch
+          size="medium"
           checked={props.checked}
           color={props.color}
+          sx={{ "margin-top": "-0.7em" }}
           onChange={props.onChange}
         />
       }

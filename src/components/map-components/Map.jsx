@@ -6,8 +6,7 @@ import AddMarkerOnClick from "./AddMarkerOnClick";
 import styles from "./Map.module.css";
 import AutoZoom from "./AutoZoom";
 
-import Controller from "../controlMenu/Controller";
-
+import AddForm from "../controlMenu/Form/AddForm";
 import MarkersAndPopups from "./MarkersAndPopups";
 import List from "../controlMenu/list/List";
 import {
@@ -16,7 +15,6 @@ import {
   NORMAL_ZOOM,
   URL_FIREBASE,
 } from "../../helpers/constants";
-import Scale from "./Scale";
 
 let isInitial = true;
 
@@ -27,9 +25,7 @@ function Map() {
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
 
-  const controllerBtnIsActive = useSelector(
-    (state) => state.controller.controllerBtnIsActive
-  );
+  const formIsVisible = useSelector((state) => state.form.formIsVisible);
 
   return (
     <Fragment>
@@ -53,7 +49,7 @@ function Map() {
           <AddMarkerOnClick />
           {listIsVisible && <List />}
         </MapContainer>
-        {controllerBtnIsActive && <Controller />}
+        {formIsVisible ? <AddForm /> : null}
       </div>
     </Fragment>
   );
