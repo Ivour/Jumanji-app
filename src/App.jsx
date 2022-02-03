@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
-
-import Map from "./components/map-components/Map";
-import NavBar from "./components/NavBar/NavBar";
-import Game from "./components/game/Game";
 
 import { updatePlacesData } from "./store/formSlice";
 import { URL_FIREBASE } from "./helpers/constants";
 import useHttp from "./hooks/useHttp";
 import styles from "./App.module.css";
+import LoadingSpinner from "./components/game/LoadingSpinner";
+const Game = lazy(() => import("./components/game/Game"));
+const Map = lazy(() => import("./components/map-components/Map"));
+const NavBar = lazy(() => import("./components/NavBar/NavBar"));
 
 let isInitial = true;
 
@@ -24,14 +24,15 @@ const App = () => {
   }, [sendRequest]);
   return (
     <div className={styles.app}>
-      <NavBar />
-
-      <Routes>
-        <Route path="/" element={<Navigate to="map" />} />
-        <Route path="map" element={<Map />} />
-        <Route path="game" element={<Game />} />
-        <Route path="*" element={<p>404...nothing found</p>} />
-      </Routes>
+      <Suspense fallback={<LoadingSpinner appIsLoading={true} />}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Navigate to="map" />} />
+          <Route path="map" element={<Map />} />
+          <Route path="game" element={<Game />} />
+          <Route path="*" element={<p>404...nothing found</p>} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };

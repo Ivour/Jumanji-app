@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-self: flex-start;
 }
 
 .nav__logo-container {
