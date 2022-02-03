@@ -1,5 +1,4 @@
-import React, { Fragment, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -10,6 +9,7 @@ import Game from "./components/game/Game";
 import { updatePlacesData } from "./store/formSlice";
 import { URL_FIREBASE } from "./helpers/constants";
 import useHttp from "./hooks/useHttp";
+import styles from "./App.module.css";
 
 let isInitial = true;
 
@@ -23,15 +23,16 @@ const App = () => {
     isInitial = false;
   }, [sendRequest]);
   return (
-    <Fragment>
+    <div className={styles.app}>
       <NavBar />
+
       <Routes>
         <Route path="/" element={<Navigate to="map" />} />
         <Route path="map" element={<Map />} />
         <Route path="game" element={<Game />} />
         <Route path="*" element={<p>404...nothing found</p>} />
       </Routes>
-    </Fragment>
+    </div>
   );
 };
 

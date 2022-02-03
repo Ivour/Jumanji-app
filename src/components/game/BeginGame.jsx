@@ -48,6 +48,7 @@ const BeginGame = () => {
         variant="contained"
         color="secondary"
         onClick={choosePlaceHandler}
+        sx={{ borderRadius: "1rem" }}
       >
         Choose random places
       </Button>

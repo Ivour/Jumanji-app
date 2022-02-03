@@ -9,7 +9,7 @@ import styles from "./RadioBtns.module.css";
 import { useDispatch } from "react-redux";
 import { selectUser } from "../../../store/formSlice";
 
-const RadioBtns = (props) => {
+const RadioBtns = () => {
   const dispatch = useDispatch();
   return (
     <FormControl component="fieldset" className={styles.container}>

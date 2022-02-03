@@ -15,6 +15,7 @@ import useHttp from "../../../hooks/useHttp";
 import { URL_FIREBASE } from "../../../helpers/constants";
 import { addPlace, showSpinner } from "../../../store/formSlice";
 import { cancelForm } from "../../../store/formSlice";
+import { toggleAddMarker } from "../../../store/controllerSlice";
 
 const AddForm = () => {
   // const [checkedUser, setCheckedUser] = useState(null);
@@ -49,7 +50,7 @@ const AddForm = () => {
       },
       addPlace,
       [showSpinner],
-      [cancelForm]
+      [cancelForm, toggleAddMarker]
     );
 
     //dispatch(sendForm(obj));
@@ -62,16 +63,13 @@ const AddForm = () => {
       </Typography>
       {placeInpHasError && (
         <Typography fontSize="small" color="error">
-          write valid place
+          Write valid place
         </Typography>
       )}
 
       <Inputs />
 
-      <RadioBtns
-      //onGetRadioValue={getCheckedValueHandler}
-      // onUncheckRadio={isRadioChecked}
-      />
+      <RadioBtns />
 
       <LocationField />
 
@@ -85,7 +83,7 @@ const AddForm = () => {
           Cancel
         </Button>
         <SubmitBtn
-          formIsValid={!placeInpHasError && checkedUser !== null}
+          formIsValid={!placeInpHasError && enteredPlace && checkedUser}
           a={submitHandler}
         />
       </div>

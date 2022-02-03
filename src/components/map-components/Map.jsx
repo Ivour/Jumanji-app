@@ -13,7 +13,6 @@ import {
   INIT_MAP_CENTER_POS,
   INIT_ZOOM,
   NORMAL_ZOOM,
-  URL_FIREBASE,
 } from "../../helpers/constants";
 
 let isInitial = true;
@@ -28,30 +27,28 @@ function Map() {
   const formIsVisible = useSelector((state) => state.form.formIsVisible);
 
   return (
-    <Fragment>
-      <div className={styles.container}>
-        <MapContainer
-          className={styles["container__map"]}
-          center={INIT_MAP_CENTER_POS}
-          zoom={isInitial ? INIT_ZOOM : NORMAL_ZOOM}
-          zoomControl={true}
-          doubleClickZoom={true}
-          scrollWheelZoom={true}
-        >
-          <TileLayer
-            url="https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=05d9beab414a4075a9a29990cc4e22bc"
-            attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
+    <div className={styles.container}>
+      <MapContainer
+        className={styles["container__map"]}
+        center={INIT_MAP_CENTER_POS}
+        zoom={isInitial ? INIT_ZOOM : NORMAL_ZOOM}
+        zoomControl={true}
+        doubleClickZoom={true}
+        scrollWheelZoom={true}
+      >
+        <TileLayer
+          url="https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=05d9beab414a4075a9a29990cc4e22bc"
+          attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
 
-          <MarkersAndPopups />
+        <MarkersAndPopups />
 
-          {isInitial && <AutoZoom />}
-          <AddMarkerOnClick />
-          {listIsVisible && <List />}
-        </MapContainer>
-        {formIsVisible ? <AddForm /> : null}
-      </div>
-    </Fragment>
+        {isInitial && <AutoZoom />}
+        <AddMarkerOnClick />
+        {listIsVisible && <List />}
+      </MapContainer>
+      {formIsVisible && <AddForm />}
+    </div>
   );
 }
 

@@ -9,8 +9,8 @@ import LandscapeIcon from "@mui/icons-material/Landscape";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
-  disactivateAddMarkerSwitch,
-  disactivateDeleteSwitch,
+  toggleAddMarker,
+  toggleDeleteSwitch,
 } from "../../store/controllerSlice";
 
 import { cancelForm } from "../../store/formSlice";
@@ -31,9 +31,8 @@ const NavBar = () => {
   };
 
   if (gameIsLoaded) {
-    dispatch(disactivateAddMarkerSwitch());
-    dispatch(disactivateDeleteSwitch());
-    dispatch(cancelForm());
+    dispatch(toggleAddMarker(false));
+    dispatch(toggleDeleteSwitch(false));
   }
 
   const mouseOverHandler = (e) => {

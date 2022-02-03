@@ -4,7 +4,7 @@ const initialState = {
   placeInput: "",
   descriptionInput: "",
   currentLocation: "",
-  userInput: null,
+  userInput: "Kubao",
   placeInputHasError: false,
   formIsVisible: false,
   spinnerIsLoading: false,
@@ -60,6 +60,7 @@ const formSlice = createSlice({
       state.descriptionInput = "";
       state.currentLocation = "";
       state.formIsVisible = false;
+
       state.spinnerIsLoading = false;
     },
     placeInputHasError: (state, amount) => {

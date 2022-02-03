@@ -1,15 +1,25 @@
 import React from "react";
 import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const NavInfo = ({ isHovered }) => {
-  if (isHovered)
-    return (
-      <Typography fontSize="small" color="error">
-        warning: if you click the chosen places will be gone...
-      </Typography>
-    );
+  const deleteSwitchIsActive = useSelector(
+    (state) => state.controller.deleteSwitchIsActive
+  );
+  const addMarkerSwitchIsActive = useSelector(
+    (state) => state.controller.addMarkerSwitchIsActive
+  );
 
-  return <div>text</div>;
+  return (
+    <Typography
+      fontSize="small"
+      color={deleteSwitchIsActive || isHovered ? "error" : null}
+    >
+      {deleteSwitchIsActive && "To delete a marker - click one..."}
+      {addMarkerSwitchIsActive && "Click on a map to add a marker"}
+      {isHovered && "Warning: Clicking here will reset the game!"}
+    </Typography>
+  );
 };
 
 export default NavInfo;

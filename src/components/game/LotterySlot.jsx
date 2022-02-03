@@ -52,6 +52,7 @@ const LotterySlot = () => {
           onClick={addOnePlaceHandler}
           variant="contained"
           color="secondary"
+          sx={{ borderRadius: "1rem" }}
         >
           Pick one more place
         </Button>

@@ -11,6 +11,10 @@ import Box from "@mui/material/Box";
 import { hideForm } from "../../store/formSlice";
 import { useDispatch } from "react-redux";
 import { cancelForm, deleteCurrentLocation } from "../../store/formSlice";
+import {
+  toggleAddMarker,
+  toggleDeleteSwitch,
+} from "../../store/controllerSlice";
 
 const pathToIndex = {
   map: 0,
@@ -54,6 +58,10 @@ const BasicTabs = () => {
           to="/game"
           LinkComponent={Link}
           className={styles.link}
+          onClick={() => {
+            dispatch(toggleAddMarker(false));
+            dispatch(toggleDeleteSwitch(false));
+          }}
         />
       </Tabs>
     </Box>

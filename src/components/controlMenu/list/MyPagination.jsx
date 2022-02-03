@@ -9,11 +9,10 @@ const MyPagination = () => {
   const placesCount = useSelector((state) => state.form.placesData.length);
   const dispatch = useDispatch();
   return (
-    <Stack spacing={2} sx={{ marginTop: "1em" }}>
+    <Stack sx={{ marginTop: "1em" }}>
       <Pagination
         count={Math.ceil(placesCount / ITEMS_PER_PAGE)}
         variant="outlined"
-        shape="rounded"
         color="success"
         onChange={(e, page) => dispatch(changeSelectedPagination(page))}
       />

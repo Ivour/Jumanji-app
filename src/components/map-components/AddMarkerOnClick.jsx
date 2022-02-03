@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   disactivateAddMarkerSwitch,
   hideList,
+  toggleAddMarker,
 } from "../../store/controllerSlice";
 import {
   showForm,
@@ -23,7 +24,6 @@ function AddMarkerToClick(props) {
   const map = useMapEvents({
     click(event) {
       if (addMarkerSwitchIsActive) {
-        dispatch(cancelForm());
         const { lat, lng } = event.latlng;
         // props.onGetPosition(event.latlng);
         dispatch(getCurrentLocation([lat, lng]));
@@ -35,7 +35,7 @@ function AddMarkerToClick(props) {
         });
 
         dispatch(showForm());
-        dispatch(disactivateAddMarkerSwitch());
+
         dispatch(hideList());
       }
     },

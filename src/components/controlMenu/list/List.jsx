@@ -25,10 +25,6 @@ const List = () => {
     });
   };
 
-  let footerContent = "";
-  if (placesArr.length === 0) footerContent = <p>nothing to show here</p>;
-  if (placesArr.length > ITEMS_PER_PAGE) footerContent = <MyPagination />;
-
   return (
     <div className={styles.list}>
       <Typography variant="h6">List of locations</Typography>
@@ -51,7 +47,8 @@ const List = () => {
           />
         ))}
 
-      {footerContent}
+      {placesArr.length === 0 && <p>nothing to show here</p>}
+      {placesArr.length > 5 && <MyPagination />}
     </div>
   );
 };
