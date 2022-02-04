@@ -10,6 +10,7 @@ import {
 } from "../../../store/formSlice";
 
 import styles from "./Inputs.module.css";
+import { debounce } from "lodash";
 
 const re = new RegExp("[0-9]");
 const includesNum = (str) => re.test(str);
@@ -19,9 +20,6 @@ const Inputs = () => {
 
   const dispatch = useDispatch();
   const enteredPlace = useSelector((state) => state.form.placeInput);
-  const enteredDescription = useSelector(
-    (state) => state.form.descriptionInput
-  );
 
   const placeInpHandler = (e) => {
     if (e.target.value.length > 2 && !includesNum(e.target.value)) {
@@ -31,6 +29,8 @@ const Inputs = () => {
     dispatch(setPlaceInput(e.target.value));
   };
 
+  const debouncePlaceInputHandler = debounce(placeInpHandler, 500);
+
   const placeBlurHandler = () => {
     if (enteredPlace.length < 2 || includesNum(enteredPlace)) {
       dispatch(placeInputHasError(true));
@@ -38,6 +38,17 @@ const Inputs = () => {
       dispatch(placeInputHasError(false));
     }
   };
+
+  const descriptionInputHandler = (e) => {
+    dispatch(setDescriptionInput(e.target.value));
+  };
+
+  const debounceDescriptionInputHandler = debounce(
+    descriptionInputHandler,
+    500
+  );
+
+  console.log("input render");
   return (
     <Fragment>
       <div className={styles.container}>
@@ -46,8 +57,7 @@ const Inputs = () => {
         </label>
         <input
           type="text"
-          value={enteredPlace || ""}
-          onChange={placeInpHandler}
+          onChange={debouncePlaceInputHandler}
           onBlur={placeBlurHandler}
           className={styles["container__input"]}
         />
@@ -59,8 +69,7 @@ const Inputs = () => {
         </label>
         <input
           type="text"
-          value={enteredDescription || ""}
-          onChange={(e) => dispatch(setDescriptionInput(e.target.value))}
+          onChange={debounceDescriptionInputHandler}
           className={styles["container__input"]}
         />
       </div>
