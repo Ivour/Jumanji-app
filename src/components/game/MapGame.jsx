@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 
 import styles from "./MapGame.module.css";
 
@@ -17,6 +17,7 @@ function Map() {
       zoomControl={true}
       doubleClickZoom={true}
       scrollWheelZoom={true}
+      tap={false}
     >
       <TileLayer
         url="https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=05d9beab414a4075a9a29990cc4e22bc"
@@ -24,11 +25,13 @@ function Map() {
       />
 
       {randomPlaces.map((obj) => {
-        return obj.isClicked ? (
-          <Marker position={obj.location} key={obj.id} icon={greenMarker}>
-            <Popup>bang</Popup>
-          </Marker>
-        ) : null;
+        return (
+          obj.isClicked && (
+            <Marker position={obj.location} key={obj.id} icon={greenMarker}>
+              <Popup>{obj.placeName}</Popup>
+            </Marker>
+          )
+        );
       })}
       <Scale />
     </MapContainer>

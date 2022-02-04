@@ -46,7 +46,7 @@ const Inputs = () => {
         </label>
         <input
           type="text"
-          value={enteredPlace}
+          value={enteredPlace || ""}
           onChange={placeInpHandler}
           onBlur={placeBlurHandler}
           className={styles["container__input"]}
@@ -59,7 +59,7 @@ const Inputs = () => {
         </label>
         <input
           type="text"
-          value={enteredDescription}
+          value={enteredDescription || ""}
           onChange={(e) => dispatch(setDescriptionInput(e.target.value))}
           className={styles["container__input"]}
         />

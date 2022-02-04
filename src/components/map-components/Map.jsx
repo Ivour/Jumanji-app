@@ -35,6 +35,7 @@ function Map() {
         zoomControl={true}
         doubleClickZoom={true}
         scrollWheelZoom={true}
+        tap={false}
       >
         <TileLayer
           url="https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=05d9beab414a4075a9a29990cc4e22bc"

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./BasicTabs.module.css";
 
@@ -16,49 +16,47 @@ import {
   toggleDeleteSwitch,
 } from "../../store/controllerSlice";
 
-const pathToIndex = {
-  map: 0,
-  game: 1,
-};
-
 const BasicTabs = () => {
+  const navigate = useNavigate();
   const location = useLocation();
 
   const dispatch = useDispatch();
-  const locationIndex = pathToIndex[location.pathname.slice(1)] || 0;
 
-  const [selectedTab, setSelectedTab] = useState(locationIndex);
+  const [selectedTab, setSelectedTab] = useState(location.pathname.slice(1));
 
-  if (selectedTab !== locationIndex) setSelectedTab(locationIndex);
+  // if (selectedTab !== locationIndex) setSelectedTab(locationIndex);
 
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
-
   return (
     <Box>
       <Tabs
-        value={selectedTab}
+        value={selectedTab || "map"}
         onChange={handleChange}
-        TabIndicatorProps={{ style: { background: "green" } }}
+        indicatorColor="secondary"
+        textColor="black"
+        className={styles.tabs}
       >
         <Tab
+          value="map"
+          to="game"
           label="Map"
-          to="/map"
-          LinkComponent={Link}
           className={styles.link}
           onClick={() => {
+            navigate("map");
             dispatch(hideForm());
             dispatch(cancelForm());
             dispatch(deleteCurrentLocation());
           }}
         />
         <Tab
+          value="game"
+          to="map"
           label="Game"
-          to="/game"
-          LinkComponent={Link}
           className={styles.link}
           onClick={() => {
+            navigate("game");
             dispatch(toggleAddMarker(false));
             dispatch(toggleDeleteSwitch(false));
           }}

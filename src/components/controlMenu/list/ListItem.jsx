@@ -7,6 +7,7 @@ import NotesIcon from "@mui/icons-material/Notes";
 import PersonIcon from "@mui/icons-material/Person";
 import { randomPlaceIsClicked } from "../../../store/gameSlice";
 import { useDispatch } from "react-redux";
+import { DecimalConverter } from "migratory-js";
 
 const ListItem = (props) => {
   const dispatch = useDispatch();
@@ -19,9 +20,19 @@ const ListItem = (props) => {
     props.onGetLocation(props.location);
   };
 
+  const [lat, lng] = props.location;
+  const decimalConverter = new DecimalConverter(
+    +lat.toFixed(1),
+    +lng.toFixed(1)
+  );
+  const finalLat = decimalConverter.toDmm().latitude.toString();
+  const finalLng = decimalConverter.toDmm().longitude.toString();
+
   return (
     <div
-      className={props.isGameList ? styles["item--game"] : styles["item"]}
+      className={`${styles["item"]} ${
+        props.isGameList && styles["item--game"]
+      } ${!props.isClicked && styles["item--is-hidden"]}`}
       onClick={
         props.isGameList ? revealPlaceHandler : showBorderOnSelectHandler
       }
@@ -48,7 +59,7 @@ const ListItem = (props) => {
                 className={styles["item__icon"]}
               />
               <Typography variant="body2" className={styles["item__location"]}>
-                {props.location.map((x) => x.toFixed(2)).join(" ")}
+                {`${finalLat} ${finalLng}`}
               </Typography>
             </div>
           </div>

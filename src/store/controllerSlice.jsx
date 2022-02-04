@@ -12,7 +12,6 @@ const controllerSlice = createSlice({
   reducers: {
     showList: (state) => {
       state.listIsVisible = true;
-      state.controllerBtnIsActive = false;
     },
     hideList: (state) => {
       state.listIsVisible = false;
@@ -20,7 +19,7 @@ const controllerSlice = createSlice({
 
     toggleAddMarker: (state, amount) => {
       if (state.deleteSwitchIsActive) return;
-      state.addMarkerSwitchIsActive = amount.payload;
+      state.addMarkerSwitchIsActive = amount.payload || false;
     },
     toggleDeleteSwitch: (state, amount) => {
       if (state.addMarkerSwitchIsActive) return;

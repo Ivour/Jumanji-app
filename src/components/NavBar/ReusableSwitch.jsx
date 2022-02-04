@@ -15,7 +15,7 @@ export default function ReusableSwitch(props) {
           size="medium"
           checked={props.checked}
           color={props.color}
-          sx={{ "margin-top": "-0.7em" }}
+          sx={{ marginTop: "-0.7em" }}
           onChange={props.onChange}
           disabled={location.pathname === "/game" || gameIsLoaded}
         />

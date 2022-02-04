@@ -19,6 +19,7 @@ const RadioBtns = () => {
       <RadioGroup
         aria-label="user"
         name="row-radio-buttons-group"
+        defaultValue="Kubao"
         className={styles["container__buttons"]}
         onChange={(e) => dispatch(selectUser(e.target.value))}
       >

@@ -5,18 +5,17 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { setPlacesToShow } from "../../store/gameSlice";
 import { useDispatch, useSelector } from "react-redux";
+import styles from "./Selector.module.css";
 
 const arr = Array.from({ length: 5 }, (_, i) => i + 1);
 
 export default function BasicSelect(props) {
-
   const dispatch = useDispatch();
-  const placesToShow = useSelector(state => state.game.placesToShow)
+  const placesToShow = useSelector((state) => state.game.placesToShow);
 
   const handleChange = (event) => {
-    dispatch(setPlacesToShow( event.target.value));
+    dispatch(setPlacesToShow(event.target.value));
   };
-
 
   return (
     <Box sx={{ width: "90%" }}>
@@ -32,9 +31,15 @@ export default function BasicSelect(props) {
           color="secondary"
           value={placesToShow}
           disabled={props.isChecked}
+          sx={{ borderRadius: "1rem" }}
         >
           {arr.map((n) => (
-            <MenuItem value={n} color="secondary" key={n}>
+            <MenuItem
+              value={n}
+              color="secondary"
+              key={n}
+              sx={{ borderRadius: "1rem" }}
+            >
               {n}
             </MenuItem>
           ))}
