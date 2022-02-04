@@ -26,8 +26,7 @@ const NavBar = () => {
   const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
 
   const refreshPageHandler = () => {
-    navigate("/");
-    window.location.reload(true);
+    window.location.replace(window.location.origin);
   };
 
   if (gameIsLoaded) {

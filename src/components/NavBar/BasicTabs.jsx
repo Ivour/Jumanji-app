@@ -35,7 +35,7 @@ const BasicTabs = () => {
         value={selectedTab || "map"}
         onChange={handleChange}
         indicatorColor="secondary"
-        textColor="black"
+        textColor="inherit"
         className={styles.tabs}
       >
         <Tab

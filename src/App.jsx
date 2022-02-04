@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from "react";
 
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import { updatePlacesData } from "./store/formSlice";
 import { URL_FIREBASE } from "./helpers/constants";
