@@ -5,7 +5,7 @@ import styles from "./MapGame.module.css";
 import { INIT_MAP_CENTER_POS, NORMAL_ZOOM_GAME } from "../../helpers/constants";
 import { useSelector } from "react-redux";
 import { greenMarker } from "../../helpers/markerColors";
-import Scale from "../map-components/Scale";
+import { ScaleControl } from "react-leaflet";
 
 function Map() {
   const randomPlaces = useSelector((state) => state.game.randomPlaces);
@@ -33,7 +33,7 @@ function Map() {
           )
         );
       })}
-      <Scale />
+      <ScaleControl imperial={false} position="topright" />
     </MapContainer>
   );
 }

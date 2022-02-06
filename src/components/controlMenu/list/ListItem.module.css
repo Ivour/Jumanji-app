@@ -42,6 +42,8 @@
   display: flex;
   justify-content: flex-start;
   width: 50%;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
 }
 .item__second-line {
   display: flex;
@@ -50,8 +52,4 @@
 
 .item__icon {
   margin-right: 0.2em;
-}
-
-.item__description {
-  word-break: break-all;
 }

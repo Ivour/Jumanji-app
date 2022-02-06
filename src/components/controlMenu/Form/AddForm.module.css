@@ -14,3 +14,10 @@
   box-shadow: 3px 2px 8px -1px #000000;
   padding: 1em;
 }
+
+.form__buttons {
+  width: 90%;
+  margin: 0.5em;
+  display: flex;
+  justify-content: space-around;
+}

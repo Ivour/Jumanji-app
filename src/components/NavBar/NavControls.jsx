@@ -19,6 +19,7 @@ const NavControls = () => {
   const dispatch = useDispatch();
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
+  const formIsVisible = useSelector((state) => state.form.formIsVisible);
   const addMarkerSwitchIsActive = useSelector(
     (state) => state.controller.addMarkerSwitchIsActive
   );
@@ -36,6 +37,7 @@ const NavControls = () => {
   };
 
   const toggleListBtnHandler = () => {
+    if (formIsVisible) return;
     listIsVisible ? dispatch(hideList()) : dispatch(showList());
   };
 
