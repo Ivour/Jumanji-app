@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Typography from "@mui/material/Typography";
@@ -19,10 +19,11 @@ const Inputs = () => {
   //const [placeInpHasError, setPlaceInpHasError] = useState(false);
 
   const dispatch = useDispatch();
-  const enteredPlace = useSelector((state) => state.form.placeInput);
 
   const placeInpHandler = (e) => {
-    if (e.target.value.length > 2 && !includesNum(e.target.value)) {
+    if (e.target.value.length < 2 || includesNum(e.target.value)) {
+      dispatch(placeInputHasError(true));
+    } else {
       dispatch(placeInputHasError(false));
     }
     //setEnteredPlace(e.target.value);
@@ -30,14 +31,6 @@ const Inputs = () => {
   };
 
   const debouncePlaceInputHandler = debounce(placeInpHandler, 500);
-
-  const placeBlurHandler = () => {
-    if (enteredPlace.length < 2 || includesNum(enteredPlace)) {
-      dispatch(placeInputHasError(true));
-    } else {
-      dispatch(placeInputHasError(false));
-    }
-  };
 
   const descriptionInputHandler = (e) => {
     dispatch(setDescriptionInput(e.target.value));
@@ -58,7 +51,6 @@ const Inputs = () => {
         <input
           type="text"
           onChange={debouncePlaceInputHandler}
-          onBlur={placeBlurHandler}
           className={styles["container__input"]}
         />
       </div>

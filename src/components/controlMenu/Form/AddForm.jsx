@@ -90,7 +90,8 @@ const AddForm = () => {
           color="secondary"
           endIcon={<SendIcon />}
           sx={{ borderRadius: "1rem" }}
-          onClick={() => {}}
+          onClick={submitHandler}
+          disabled={placeInpHasError || !enteredPlace}
         >
           Add place
         </Button>
