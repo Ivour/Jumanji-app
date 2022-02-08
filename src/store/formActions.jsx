@@ -1,6 +1,6 @@
 import { removePlaceAndUpdate } from "./formSlice";
 
-import { toggleDeleteSwitch } from "./controllerSlice";
+import { disactivateDeleteBtn, toggleDeleteSwitch } from "./controllerSlice";
 
 /* export const sendForm = (obj) => {
   return (dispatch) => {
@@ -54,7 +54,7 @@ export const removePlace = (id) => {
       .then((res) => {
         if (!res.ok) throw new Error("something went wrong");
         dispatch(removePlaceAndUpdate(id));
-        dispatch(toggleDeleteSwitch(false));
+        dispatch(disactivateDeleteBtn());
       })
       .catch((err) => console.error(err));
   };

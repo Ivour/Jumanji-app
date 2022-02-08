@@ -4,15 +4,15 @@ import BasicTabs from "./BasicTabs";
 import styles from "./NavControls.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { toggleAddMarker } from "../../store/controllerSlice";
 import {
-  hideList,
-  showList,
-  toggleDeleteSwitch,
+  activateAddMarkerBtn,
+  activateDeleteBtn,
+  disactivateAddMarkerBtn,
+  disactivateDeleteBtn,
 } from "../../store/controllerSlice";
+import { hideList, showList } from "../../store/controllerSlice";
 
 import { cancelForm } from "../../store/formSlice";
-import ReusableSwitch from "./ReusableSwitch";
 
 const NavControls = () => {
   const dispatch = useDispatch();
@@ -29,12 +29,16 @@ const NavControls = () => {
   );
 
   const toggleAddMarkerHandler = (e) => {
-    dispatch(toggleAddMarker(e.target.checked));
-    if (!e.target.checked) dispatch(cancelForm());
+    addMarkerSwitchIsActive
+      ? dispatch(disactivateAddMarkerBtn())
+      : dispatch(activateAddMarkerBtn()); // používáat toggle nebo showlist/hidelist
+    //if (!e.target.checked) dispatch(cancelForm());
   };
 
-  const toggleDeleteSwitchHandler = (e) => {
-    dispatch(toggleDeleteSwitch(e.target.checked)); // používáat toggle nebo showlist/hidelist
+  const toggleDeleteSwitchHandler = () => {
+    deleteSwitchIsActive
+      ? dispatch(disactivateDeleteBtn())
+      : dispatch(activateDeleteBtn()); // používáat toggle nebo showlist/hidelist
   };
 
   const toggleListBtnHandler = () => {
@@ -47,21 +51,25 @@ const NavControls = () => {
   return (
     <div className={styles["nav__controls"]}>
       {!pathIsGame && (
-        <ReusableSwitch
-          title="Add Marker"
+        <Button
+          variant={addMarkerSwitchIsActive ? "outlined" : "contained"}
           color="secondary"
-          onChange={toggleAddMarkerHandler}
-          checked={addMarkerSwitchIsActive}
-        />
+          onClick={toggleAddMarkerHandler}
+          sx={{ borderRadius: "1rem" }}
+        >
+          Add Marker
+        </Button>
       )}
 
       {!pathIsGame && (
-        <ReusableSwitch
-          title="Delete Marker"
+        <Button
+          variant={deleteSwitchIsActive ? "outlined" : "contained"}
           color="error"
-          onChange={toggleDeleteSwitchHandler}
-          checked={deleteSwitchIsActive}
-        />
+          onClick={toggleDeleteSwitchHandler}
+          sx={{ borderRadius: "1rem", margin: "0 0.5em" }}
+        >
+          Delete Marker
+        </Button>
       )}
       {!pathIsGame && (
         <Button

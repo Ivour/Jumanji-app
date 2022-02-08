@@ -15,7 +15,10 @@ import useHttp from "../../../hooks/useHttp";
 import { URL_FIREBASE } from "../../../helpers/constants";
 import { addPlace, showSpinner } from "../../../store/formSlice";
 import { cancelForm } from "../../../store/formSlice";
-import { toggleAddMarker } from "../../../store/controllerSlice";
+import {
+  disactivateAddMarkerBtn,
+  toggleAddMarker,
+} from "../../../store/controllerSlice";
 
 const AddForm = () => {
   // const [checkedUser, setCheckedUser] = useState(null);
@@ -50,7 +53,7 @@ const AddForm = () => {
       },
       addPlace,
       [showSpinner],
-      [cancelForm, toggleAddMarker]
+      [cancelForm, disactivateAddMarkerBtn]
     );
 
     //dispatch(sendForm(obj));
@@ -79,7 +82,7 @@ const AddForm = () => {
           sx={{ borderRadius: "1rem" }}
           onClick={() => {
             dispatch(cancelForm());
-            dispatch(toggleAddMarker(false));
+            dispatch(disactivateAddMarkerBtn());
           }}
         >
           Cancel

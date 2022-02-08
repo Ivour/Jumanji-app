@@ -17,18 +17,30 @@ const controllerSlice = createSlice({
       state.listIsVisible = false;
     },
 
-    toggleAddMarker: (state, amount) => {
+    activateAddMarkerBtn: (state) => {
       if (state.deleteSwitchIsActive) return;
-      state.addMarkerSwitchIsActive = amount.payload || false;
+      state.addMarkerSwitchIsActive = true;
     },
-    toggleDeleteSwitch: (state, amount) => {
+    disactivateAddMarkerBtn: (state) => {
+      state.addMarkerSwitchIsActive = false;
+    },
+    activateDeleteBtn: (state) => {
       if (state.addMarkerSwitchIsActive) return;
-      state.deleteSwitchIsActive = amount.payload || false;
+      state.deleteSwitchIsActive = true;
+    },
+    disactivateDeleteBtn: (state) => {
+      state.deleteSwitchIsActive = false;
     },
   },
 });
 
-export const { toggleAddMarker, toggleDeleteSwitch, showList, hideList } =
-  controllerSlice.actions;
+export const {
+  activateAddMarkerBtn,
+  disactivateAddMarkerBtn,
+  activateDeleteBtn,
+  disactivateDeleteBtn,
+  showList,
+  hideList,
+} = controllerSlice.actions;
 
 export default controllerSlice.reducer;

@@ -12,6 +12,8 @@ import { hideForm } from "../../store/formSlice";
 import { useDispatch } from "react-redux";
 import { cancelForm, deleteCurrentLocation } from "../../store/formSlice";
 import {
+  disactivateAddMarkerBtn,
+  disactivateDeleteBtn,
   toggleAddMarker,
   toggleDeleteSwitch,
 } from "../../store/controllerSlice";
@@ -57,8 +59,8 @@ const BasicTabs = () => {
           className={styles.link}
           onClick={() => {
             navigate("game");
-            dispatch(toggleAddMarker(false));
-            dispatch(toggleDeleteSwitch(false));
+            dispatch(disactivateAddMarkerBtn());
+            dispatch(disactivateDeleteBtn());
           }}
         />
       </Tabs>
