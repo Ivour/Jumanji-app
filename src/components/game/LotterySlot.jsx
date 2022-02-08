@@ -18,6 +18,7 @@ const LotterySlot = () => {
 
   useEffect(() => {
     if (gameIsLoading) {
+      console.log("effect", gameIsLoading);
       setTimeout(() => {
         dispatch(setGameIsLoaded());
       }, 1000);

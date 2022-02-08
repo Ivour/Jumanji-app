@@ -13,14 +13,11 @@ import {
   toggleDeleteSwitch,
 } from "../../store/controllerSlice";
 
-import { cancelForm } from "../../store/formSlice";
-
 import NavInfo from "./NavInfo";
 import NavControls from "./NavControls";
 
 const NavBar = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);

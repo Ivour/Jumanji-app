@@ -15,7 +15,6 @@ import { cancelForm } from "../../store/formSlice";
 import ReusableSwitch from "./ReusableSwitch";
 
 const NavControls = () => {
-  const location = useLocation();
   const dispatch = useDispatch();
   const urlLocation = useLocation();
   console.log(urlLocation.pathname);
@@ -44,7 +43,6 @@ const NavControls = () => {
   };
 
   const pathIsGame = urlLocation.pathname === "/game";
-  console.log(pathIsGame);
 
   return (
     <div className={styles["nav__controls"]}>

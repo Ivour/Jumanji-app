@@ -9,6 +9,7 @@ const NavInfo = ({ isHovered }) => {
   const addMarkerSwitchIsActive = useSelector(
     (state) => state.controller.addMarkerSwitchIsActive
   );
+  console.log(isHovered, "ishovered");
 
   return (
     <Typography
