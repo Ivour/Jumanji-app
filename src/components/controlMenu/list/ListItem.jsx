@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import styles from "./ListItem.module.css";
 import { Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -38,7 +38,11 @@ const ListItem = (props) => {
       }
       id={props.id}
     >
-      {!props.isClicked && props.isGameList && <p id={props.id}>Reveal me</p>}
+      {!props.isClicked && props.isGameList && (
+        <p id={props.id} className={styles["item--is-hidden"]}>
+          Reveal me
+        </p>
+      )}
       {props.isClicked && (
         <Fragment>
           <div className={styles["item__first-line"]}>

@@ -2,5 +2,6 @@
   width: 55vw;
   height: 80vh;
   border-radius: 1rem;
-  border: 1px solid black;
+  -webkit-box-shadow: 3px 2px 8px -1px #000000;
+  box-shadow: 3px 2px 8px -1px #000000;
 }

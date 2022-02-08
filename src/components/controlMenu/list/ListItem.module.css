@@ -1,9 +1,8 @@
 .item {
-  width: 100%;
-  margin: 0.5em 0;
-  padding: 0 1em;
   -webkit-box-shadow: 3px 2px 8px -1px #000000;
   box-shadow: 3px 2px 8px -1px #000000;
+  width: 95%;
+  margin: 0.5em;
 
   border-radius: 1rem;
 }
@@ -11,15 +10,15 @@
   width: 80%;
   background-color: white;
   cursor: pointer;
+  margin: 0.5em 0;
 }
 
 .item:hover {
   background-color: rgba(0, 128, 0, 0.137);
   cursor: pointer;
 }
-.item--is-hidden:hover {
-  background-color: rgba(0, 128, 0, 0.137);
-  cursor: pointer;
+.item--is-hidden {
+  text-align: center;
 }
 
 .item--active {
@@ -34,20 +33,22 @@
 
 .item__first-line {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 0.1em;
+  padding: 0.5em;
 }
 
 .item__containter {
   display: flex;
   justify-content: flex-start;
-  width: 50%;
   word-wrap: break-word;
-  text-overflow: ellipsis;
+  width: 50%;
 }
 .item__second-line {
   display: flex;
   justify-content: space-around;
+  padding: 0 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .item__icon {

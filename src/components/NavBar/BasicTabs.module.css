@@ -1,11 +1,12 @@
 .tabs {
   color: black;
+  margin: 0.2em;
+  margin-right: 1em;
 }
 
 .link {
   color: black;
   text-decoration: none;
-  border-radius: 1rem;
 }
 
 .link:hover {

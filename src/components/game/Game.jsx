@@ -7,7 +7,11 @@ import { useSelector } from "react-redux";
 const Game = () => {
   const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        gameIsLoaded && styles["container--loaded"]
+      }`}
+    >
       {gameIsLoaded && <MapGame />}
       <LotterySlot />
     </div>

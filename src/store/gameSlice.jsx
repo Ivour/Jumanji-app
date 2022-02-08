@@ -3,7 +3,7 @@ import { sampleSize } from "lodash";
 
 const initialState = {
   randomPlaces: [],
-  checkboxIsChecked: true,
+  checkboxIsChecked: false,
   placesToShow: 3,
   gameIsLoading: false,
   gameIsLoaded: false,

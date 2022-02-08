@@ -31,8 +31,7 @@ const LotterySlot = () => {
   // const IvoOne = IvoPlaces[Math.floor(Math.random() * 10)];
   return (
     <div className={styles.container}>
-      {!gameIsLoading && !gameIsLoaded && <BeginGame />}
-      {gameIsLoading && <LoadingSpinner />}
+      {!gameIsLoaded && <BeginGame />}
 
       {gameIsLoaded &&
         randomPlaces.map((obj) => (
@@ -52,7 +51,7 @@ const LotterySlot = () => {
           onClick={addOnePlaceHandler}
           variant="contained"
           color="secondary"
-          sx={{ borderRadius: "1rem" }}
+          sx={{ borderRadius: "1rem", margin: "1em" }}
         >
           Pick one more place
         </Button>

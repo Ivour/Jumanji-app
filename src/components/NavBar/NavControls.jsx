@@ -17,6 +17,8 @@ import ReusableSwitch from "./ReusableSwitch";
 const NavControls = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const urlLocation = useLocation();
+  console.log(urlLocation.pathname);
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
   const formIsVisible = useSelector((state) => state.form.formIsVisible);
@@ -41,30 +43,38 @@ const NavControls = () => {
     listIsVisible ? dispatch(hideList()) : dispatch(showList());
   };
 
+  const pathIsGame = urlLocation.pathname === "/game";
+  console.log(pathIsGame);
+
   return (
     <div className={styles["nav__controls"]}>
-      <ReusableSwitch
-        title="Add Marker"
-        color="secondary"
-        onChange={toggleAddMarkerHandler}
-        checked={addMarkerSwitchIsActive}
-      />
+      {!pathIsGame && (
+        <ReusableSwitch
+          title="Add Marker"
+          color="secondary"
+          onChange={toggleAddMarkerHandler}
+          checked={addMarkerSwitchIsActive}
+        />
+      )}
 
-      <ReusableSwitch
-        title="Delete Marker"
-        color="error"
-        onChange={toggleDeleteSwitchHandler}
-        checked={deleteSwitchIsActive}
-      />
-      <Button
-        variant={listIsVisible ? "outlined" : "contained"}
-        color="secondary"
-        onClick={toggleListBtnHandler}
-        disabled={location.pathname === "/game"}
-        sx={{ marginRight: "1em", borderRadius: "1rem" }}
-      >
-        Show List
-      </Button>
+      {!pathIsGame && (
+        <ReusableSwitch
+          title="Delete Marker"
+          color="error"
+          onChange={toggleDeleteSwitchHandler}
+          checked={deleteSwitchIsActive}
+        />
+      )}
+      {!pathIsGame && (
+        <Button
+          variant={listIsVisible ? "outlined" : "contained"}
+          color="secondary"
+          onClick={toggleListBtnHandler}
+          sx={{ marginRight: "1em", borderRadius: "1rem" }}
+        >
+          Show List
+        </Button>
+      )}
 
       <BasicTabs />
     </div>

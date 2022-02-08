@@ -4,45 +4,37 @@ import { Typography, Button } from "@mui/material";
 import Selector from "./Selector";
 import GameCheckbox from "./GameCheckbox";
 import { useDispatch } from "react-redux";
-import {
-  setCheckboxIsChecked,
-  setGameIsLoading,
-  updateRandomPlaces,
-  setPlacesToShow,
-} from "../../store/gameSlice";
+import { setGameIsLoading, updateRandomPlaces } from "../../store/gameSlice";
 import styles from "./BeginGame.module.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 const BeginGame = () => {
+  const dispatch = useDispatch();
+
   const placesData = useSelector((state) => state.form.placesData);
+  const gameIsLoading = useSelector((state) => state.game.gameIsLoading);
   const checkboxIsChecked = useSelector(
     (state) => state.game.checkboxIsChecked
   );
 
-  const dispatch = useDispatch();
-
-  const getSelectorValueHandler = (val) => {
-    dispatch(setPlacesToShow(val));
-  };
-
-  const getCheckStateHandler = (e) => {
-    dispatch(setCheckboxIsChecked(e));
-  };
   const choosePlaceHandler = () => {
     dispatch(updateRandomPlaces(placesData));
     dispatch(setGameIsLoading(true));
   };
+  if (gameIsLoading) {
+    return (
+      <div className={styles["choose-form"]}>
+        {gameIsLoading && <LoadingSpinner />}
+      </div>
+    );
+  }
   return (
     <div className={styles["choose-form"]}>
       <Typography variant="h4">LET THE GAME BEGIN</Typography>
 
-      <GameCheckbox onGetCheckState={getCheckStateHandler} />
+      <GameCheckbox />
 
-      {!checkboxIsChecked && (
-        <Selector
-          onGetValue={getSelectorValueHandler}
-          isChecked={checkboxIsChecked}
-        />
-      )}
+      {!checkboxIsChecked && <Selector isChecked={checkboxIsChecked} />}
 
       <Button
         variant="contained"
