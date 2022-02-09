@@ -15,9 +15,7 @@ import useHttp from "../../../hooks/useHttp";
 import { URL_FIREBASE } from "../../../helpers/constants";
 import { addPlace } from "../../../store/formSlice";
 import { cancelForm } from "../../../store/formSlice";
-import {
-  disactivateAddMarkerBtn,
-} from "../../../store/controllerSlice";
+import { disactivateAddMarkerBtn } from "../../../store/controllerSlice";
 
 const AddForm = () => {
   // const [checkedUser, setCheckedUser] = useState(null);
@@ -68,14 +66,18 @@ const AddForm = () => {
   if (!currentLocation && addMarkerSwitchIsActive)
     return (
       <div className={styles.form}>
-        <Typography variant="h6">Click the map</Typography>
+        <Typography variant="h6" sx={{ alignSelf: "center" }}>
+          Click the map
+        </Typography>
       </div>
     );
 
   if (!currentLocation && deleteSwitchIsActive)
     return (
       <div className={styles.form}>
-        <Typography variant="h6">Click a marker you want to delete</Typography>
+        <Typography variant="h6" sx={{ alignSelf: "center" }}>
+          Click a marker
+        </Typography>
       </div>
     );
 

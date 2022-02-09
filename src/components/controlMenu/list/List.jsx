@@ -15,7 +15,7 @@ const List = () => {
   const map = useMap();
   const placesArr = useSelector((state) => state.form.placesData);
   const selectedPagination = useSelector(
-    (state) => state.list.selectedPagination
+    (state) => state.controller.selectedPagination
   );
 
   const getClickedListItemLocation = (location) => {

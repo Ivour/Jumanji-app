@@ -4,6 +4,7 @@ const initialState = {
   addMarkerSwitchIsActive: false,
   deleteSwitchIsActive: false,
   listIsVisible: false,
+  selectedPagination: 1,
 };
 
 const controllerSlice = createSlice({
@@ -13,10 +14,14 @@ const controllerSlice = createSlice({
     showList: (state) => {
       state.addMarkerSwitchIsActive = false;
       state.deleteSwitchIsActive = false;
+      state.selectedPagination = 1;
       state.listIsVisible = true;
     },
     hideList: (state) => {
       state.listIsVisible = false;
+    },
+    changeSelectedPagination(state, amount) {
+      state.selectedPagination = amount.payload;
     },
 
     activateAddMarkerBtn: (state) => {
@@ -45,6 +50,7 @@ export const {
   disactivateDeleteBtn,
   showList,
   hideList,
+  changeSelectedPagination,
 } = controllerSlice.actions;
 
 export default controllerSlice.reducer;

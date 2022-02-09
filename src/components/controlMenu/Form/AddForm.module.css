@@ -1,7 +1,5 @@
 .form {
-  border-radius: 0.6rem;
-  width: auto;
-  height: auto;
+  border-radius: 1rem;
   position: absolute;
   right: 2rem;
   top: 5rem;
