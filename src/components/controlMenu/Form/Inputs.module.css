@@ -1,17 +1,20 @@
-.container {
+.error {
+  align-self: center;
+}
+.input-with-label {
   display: flex;
   align-items: center;
   padding: 0.5em;
   padding-left: 0;
 }
 
-.container__input {
+.input-with-label__input {
   margin-left: 0.7em;
   border: 1.5px solid rgb(143, 143, 143);
   border-radius: 0.5rem;
 }
 
-.container__input:focus {
+.input-with-label__input:focus {
   outline: none !important;
   border-color: black;
 }

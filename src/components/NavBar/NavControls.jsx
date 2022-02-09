@@ -10,17 +10,13 @@ import {
   disactivateDeleteBtn,
 } from "../../store/controllerSlice";
 import { hideList, showList } from "../../store/controllerSlice";
-
 import { cancelForm, showForm } from "../../store/formSlice";
 
 const NavControls = () => {
   const dispatch = useDispatch();
   const urlLocation = useLocation();
-  console.log(urlLocation.pathname);
-
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
   const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
-
   const addMarkerSwitchIsActive = useSelector(
     (state) => state.controller.addMarkerSwitchIsActive
   );

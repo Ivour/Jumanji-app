@@ -4,7 +4,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { Typography } from "@mui/material";
-
 import styles from "./RadioBtns.module.css";
 import { useDispatch } from "react-redux";
 import { selectUser } from "../../../store/formSlice";
@@ -12,8 +11,8 @@ import { useSelector } from "react-redux";
 
 const RadioBtns = () => {
   const dispatch = useDispatch();
-  const c = useSelector((state) => state.form.userInput);
-  console.log(c);
+  const userInput = useSelector((state) => state.form.userInput);
+  
   return (
     <FormControl component="fieldset" className={styles.container}>
       <Typography fontSize="small" className={styles["container__main-label"]}>
@@ -22,7 +21,7 @@ const RadioBtns = () => {
       <RadioGroup
         aria-label="user"
         name="row-radio-buttons-group"
-        value={c}
+        value={userInput}
         className={styles["container__buttons"]}
         onChange={(e) => dispatch(selectUser(e.target.value))}
       >

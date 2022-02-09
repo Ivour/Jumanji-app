@@ -1,17 +1,12 @@
 import React from "react";
-
 import styles from "./NavBar.module.css";
-
 import Typography from "@mui/material/Typography";
-
 import LandscapeIcon from "@mui/icons-material/Landscape";
-
 import { useSelector, useDispatch } from "react-redux";
 import {
   disactivateAddMarkerBtn,
   disactivateDeleteBtn,
 } from "../../store/controllerSlice";
-
 import NavControls from "./NavControls";
 import BasicTabs from "./BasicTabs";
 

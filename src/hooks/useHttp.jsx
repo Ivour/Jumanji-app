@@ -1,17 +1,11 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
 const useHttp = () => {
   const dispatch = useDispatch();
   const sendRequest = useCallback(
-    async (
-      requestConfig,
-      applyDataFn,
-      firstArrToDispatch = [],
-      arrToDispatch = []
-    ) => {
+    async (requestConfig, applyDataFn) => {
       try {
-        firstArrToDispatch.map((fn) => dispatch(fn()));
         const response = await fetch(requestConfig.url, {
           method: requestConfig.method || "GET",
           body: JSON.stringify(requestConfig.body) || null,
@@ -23,7 +17,6 @@ const useHttp = () => {
         const data = await response.json();
 
         dispatch(applyDataFn(data));
-        arrToDispatch.map((fn) => dispatch(fn()));
       } catch (err) {
         console.error(err.message);
       }
