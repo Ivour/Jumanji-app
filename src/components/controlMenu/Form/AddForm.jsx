@@ -13,7 +13,7 @@ import Inputs from "./Inputs";
 
 import useHttp from "../../../hooks/useHttp";
 import { URL_FIREBASE } from "../../../helpers/constants";
-import { addPlace, showSpinner } from "../../../store/formSlice";
+import { addPlace } from "../../../store/formSlice";
 import { cancelForm } from "../../../store/formSlice";
 import {
   disactivateAddMarkerBtn,
@@ -30,6 +30,12 @@ const AddForm = () => {
     (state) => state.form.descriptionInput
   );
   const currentLocation = useSelector((state) => state.form.currentLocation);
+  const deleteSwitchIsActive = useSelector(
+    (state) => state.controller.deleteSwitchIsActive
+  );
+  const addMarkerSwitchIsActive = useSelector(
+    (state) => state.controller.addMarkerSwitchIsActive
+  );
   const checkedUser = useSelector((state) => state.form.userInput);
   const placeInpHasError = useSelector(
     (state) => state.form.placeInputHasError
@@ -52,16 +58,33 @@ const AddForm = () => {
         headers: { "Content-Type": "application/json" },
       },
       addPlace,
-      [showSpinner],
+      [],
       [cancelForm, disactivateAddMarkerBtn]
     );
 
     //dispatch(sendForm(obj));
   };
+  console.log(currentLocation);
+
+  if (!currentLocation && addMarkerSwitchIsActive)
+    return (
+      <div className={styles.form}>
+        <Typography variant="h6">Click the map</Typography>
+      </div>
+    );
+
+  if (!currentLocation && deleteSwitchIsActive)
+    return (
+      <div className={styles.form}>
+        <Typography variant="h6">Click a marker you want to delete</Typography>
+      </div>
+    );
 
   return (
     <form onSubmit={submitHandler} className={styles.form}>
-      <Typography variant="h6">Add marker form</Typography>
+      <Typography variant="h6" sx={{ alignSelf: "center" }}>
+        Add marker form
+      </Typography>
       {placeInpHasError && (
         <Typography fontSize="small" color="error">
           Write valid place

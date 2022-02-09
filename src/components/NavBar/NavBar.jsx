@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 import styles from "./NavBar.module.css";
 
@@ -11,15 +10,12 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   disactivateAddMarkerBtn,
   disactivateDeleteBtn,
-  toggleAddMarker,
-  toggleDeleteSwitch,
 } from "../../store/controllerSlice";
 
-import NavInfo from "./NavInfo";
 import NavControls from "./NavControls";
+import BasicTabs from "./BasicTabs";
 
 const NavBar = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
 
   const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
@@ -33,20 +29,9 @@ const NavBar = () => {
     dispatch(disactivateAddMarkerBtn());
   }
 
-  const mouseOverHandler = (e) => {
-    if ((e.target.id === "jumanji" || e.target.id === "logo") && gameIsLoaded)
-      setIsHovered(true);
-  };
-  const mouseLeaveHandler = () => {
-    if (gameIsLoaded) setIsHovered(false);
-  };
   return (
     <nav className={styles.nav}>
-      <div
-        className={styles["nav__logo-container"]}
-        onMouseOver={mouseOverHandler}
-        onMouseLeave={mouseLeaveHandler}
-      >
+      <div className={styles["nav__logo-container"]}>
         <LandscapeIcon
           fontSize="large"
           color="success"
@@ -62,9 +47,9 @@ const NavBar = () => {
         >
           Jumanji App
         </Typography>
-      </div>
 
-      <NavInfo isHovered={isHovered} />
+        <BasicTabs />
+      </div>
 
       <NavControls />
     </nav>

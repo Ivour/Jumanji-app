@@ -23,7 +23,7 @@ export default function GameCheckbox() {
           />
         }
         label="Pick ONE place from EACH user"
-        labelPlacement="start"
+        labelPlacement="end"
       />
     </FormGroup>
   );

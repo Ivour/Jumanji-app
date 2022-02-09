@@ -7,7 +7,6 @@ const initialState = {
   userInput: "Kubao",
   placeInputHasError: false,
   formIsVisible: false,
-  spinnerIsLoading: false,
   formIsCanceled: false,
   placesData: [],
 };
@@ -22,12 +21,7 @@ const formSlice = createSlice({
     hideForm: (state) => {
       state.formIsVisible = false;
     },
-    showSpinner: (state) => {
-      state.spinnerIsLoading = true;
-    },
-    hideSpinner: (state) => {
-      state.spinnerIsLoading = false;
-    },
+
     updatePlacesData: (state, amount) => {
       const arr = [];
       for (const key in amount.payload) {
@@ -60,8 +54,6 @@ const formSlice = createSlice({
       state.descriptionInput = "";
       state.currentLocation = "";
       state.formIsVisible = false;
-
-      state.spinnerIsLoading = false;
     },
     placeInputHasError: (state, amount) => {
       state.placeInputHasError = amount.payload;
@@ -85,12 +77,10 @@ const formSlice = createSlice({
 export const {
   showForm,
   hideForm,
-  showSpinner,
   addPlace,
   setPlaceInput,
   setDescriptionInput,
   cancelForm,
-  hideSpinner,
   updatePlacesData,
   placeInputHasError,
   removePlaceAndUpdate,

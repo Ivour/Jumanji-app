@@ -11,6 +11,8 @@ const controllerSlice = createSlice({
   initialState,
   reducers: {
     showList: (state) => {
+      state.addMarkerSwitchIsActive = false;
+      state.deleteSwitchIsActive = false;
       state.listIsVisible = true;
     },
     hideList: (state) => {
@@ -18,15 +20,17 @@ const controllerSlice = createSlice({
     },
 
     activateAddMarkerBtn: (state) => {
-      if (state.deleteSwitchIsActive) return;
       state.addMarkerSwitchIsActive = true;
+      state.deleteSwitchIsActive = false;
+      state.listIsVisible = false;
     },
     disactivateAddMarkerBtn: (state) => {
       state.addMarkerSwitchIsActive = false;
     },
     activateDeleteBtn: (state) => {
-      if (state.addMarkerSwitchIsActive) return;
       state.deleteSwitchIsActive = true;
+      state.addMarkerSwitchIsActive = false;
+      state.listIsVisible = false;
     },
     disactivateDeleteBtn: (state) => {
       state.deleteSwitchIsActive = false;

@@ -2,12 +2,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
 }
 
 .container__main-label {
   margin-top: 0.6em;
-  margin-right: 0.5em;
 }
 
 .container__buttons {

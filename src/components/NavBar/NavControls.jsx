@@ -12,7 +12,7 @@ import {
 } from "../../store/controllerSlice";
 import { hideList, showList } from "../../store/controllerSlice";
 
-import { cancelForm } from "../../store/formSlice";
+import { hideForm, cancelForm, showForm } from "../../store/formSlice";
 
 const NavControls = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,8 @@ const NavControls = () => {
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
   const formIsVisible = useSelector((state) => state.form.formIsVisible);
+  const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
+
   const addMarkerSwitchIsActive = useSelector(
     (state) => state.controller.addMarkerSwitchIsActive
   );
@@ -29,21 +31,33 @@ const NavControls = () => {
   );
 
   const toggleAddMarkerHandler = (e) => {
-    addMarkerSwitchIsActive
-      ? dispatch(disactivateAddMarkerBtn())
-      : dispatch(activateAddMarkerBtn()); // používáat toggle nebo showlist/hidelist
-    //if (!e.target.checked) dispatch(cancelForm());
+    if (!addMarkerSwitchIsActive) {
+      dispatch(activateAddMarkerBtn());
+      dispatch(showForm());
+    } else {
+      dispatch(disactivateAddMarkerBtn());
+      dispatch(cancelForm());
+    }
   };
 
   const toggleDeleteSwitchHandler = () => {
-    deleteSwitchIsActive
-      ? dispatch(disactivateDeleteBtn())
-      : dispatch(activateDeleteBtn()); // používáat toggle nebo showlist/hidelist
+    if (!deleteSwitchIsActive) {
+      dispatch(activateDeleteBtn());
+      dispatch(cancelForm());
+      dispatch(showForm());
+    } else {
+      dispatch(disactivateDeleteBtn());
+      dispatch(cancelForm());
+    }
   };
 
   const toggleListBtnHandler = () => {
-    if (formIsVisible) return;
-    listIsVisible ? dispatch(hideList()) : dispatch(showList());
+    if (!listIsVisible) {
+      dispatch(cancelForm());
+      dispatch(showList());
+    } else {
+      dispatch(hideList());
+    }
   };
 
   const pathIsGame = urlLocation.pathname === "/game";
@@ -52,37 +66,35 @@ const NavControls = () => {
     <div className={styles["nav__controls"]}>
       {!pathIsGame && (
         <Button
-          variant={addMarkerSwitchIsActive ? "outlined" : "contained"}
+          variant="outlined"
+          color="secondary"
+          onClick={toggleListBtnHandler}
+          sx={{ borderRadius: "1rem" }}
+        >
+          Show List
+        </Button>
+      )}
+      {!pathIsGame && !gameIsLoaded && (
+        <Button
+          variant="outlined"
           color="secondary"
           onClick={toggleAddMarkerHandler}
-          sx={{ borderRadius: "1rem" }}
+          sx={{ borderRadius: "1rem", margin: "0 0.5em" }}
         >
           Add Marker
         </Button>
       )}
 
-      {!pathIsGame && (
+      {!pathIsGame && !gameIsLoaded && (
         <Button
-          variant={deleteSwitchIsActive ? "outlined" : "contained"}
+          variant="outlined"
           color="error"
           onClick={toggleDeleteSwitchHandler}
-          sx={{ borderRadius: "1rem", margin: "0 0.5em" }}
+          sx={{ borderRadius: "1rem", marginRight: "1em" }}
         >
           Delete Marker
         </Button>
       )}
-      {!pathIsGame && (
-        <Button
-          variant={listIsVisible ? "outlined" : "contained"}
-          color="secondary"
-          onClick={toggleListBtnHandler}
-          sx={{ marginRight: "1em", borderRadius: "1rem" }}
-        >
-          Show List
-        </Button>
-      )}
-
-      <BasicTabs />
     </div>
   );
 };

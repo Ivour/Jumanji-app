@@ -4,6 +4,7 @@ import { Marker, Popup } from "react-leaflet";
 import { Typography, Button } from "@mui/material";
 import { greenMarker, redMarker } from "../../helpers/markerColors";
 import { removePlace } from "../../store/formActions";
+import { hideForm } from "../../store/formSlice";
 
 const MarkersAndPopups = () => {
   const dispatch = useDispatch();
@@ -12,9 +13,10 @@ const MarkersAndPopups = () => {
     (state) => state.controller.deleteSwitchIsActive
   );
   const currentLocation = useSelector((state) => state.form.currentLocation);
-  console.log(places);
 
   const deleteHandler = (e) => {
+    dispatch(hideForm());
+
     dispatch(removePlace(e.target.id)); // using action creator thunk
   };
 

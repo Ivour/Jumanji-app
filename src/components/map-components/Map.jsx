@@ -48,6 +48,7 @@ function Map() {
         <AddMarkerOnClick />
         {listIsVisible && <List />}
       </MapContainer>
+
       {formIsVisible && <AddForm />}
     </div>
   );

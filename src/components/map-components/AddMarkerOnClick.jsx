@@ -34,8 +34,6 @@ function AddMarkerToClick(props) {
           easeLinearity: EASE_LINEARITY,
         });
 
-        dispatch(showForm());
-
         dispatch(hideList());
       }
     },
