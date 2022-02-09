@@ -9,7 +9,7 @@ import styles from "./App.module.css";
 import LoadingSpinner from "./components/game/LoadingSpinner";
 const Game = lazy(() => import("./components/game/Game"));
 const Map = lazy(() => import("./components/map/Map"));
-const NavBar = lazy(() => import("./components/navBar/NavBar"));
+const NavBar = lazy(() => import("./components/NavBar/NavBar"));
 
 let isInitial = true;
 
