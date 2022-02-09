@@ -1,12 +1,11 @@
 import React, { useEffect, lazy, Suspense } from "react";
-
 import { Routes, Route, Navigate } from "react-router-dom";
-
 import { updatePlacesData } from "./store/formSlice";
 import { URL_FIREBASE } from "./helpers/constants";
 import useHttp from "./hooks/useHttp";
 import styles from "./App.module.css";
 import LoadingSpinner from "./components/game/LoadingSpinner";
+
 const Game = lazy(() => import("./components/game/Game"));
 const Map = lazy(() => import("./components/map/Map"));
 const NavBar = lazy(() => import("./components/NavBar/NavBar"));
