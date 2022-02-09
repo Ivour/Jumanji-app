@@ -1,15 +1,7 @@
 import { useMapEvents } from "react-leaflet";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  disactivateAddMarkerSwitch,
-  hideList,
-  toggleAddMarker,
-} from "../../store/controllerSlice";
-import {
-  showForm,
-  cancelForm,
-  getCurrentLocation,
-} from "../../store/formSlice";
+import { hideList } from "../../store/controllerSlice";
+import { getCurrentLocation } from "../../store/formSlice";
 import {
   ADD_MARKER_PAN_DURATION,
   EASE_LINEARITY,

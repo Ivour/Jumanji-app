@@ -1,6 +1,6 @@
 import { removePlaceAndUpdate } from "./formSlice";
 
-import { disactivateDeleteBtn, toggleDeleteSwitch } from "./controllerSlice";
+import { disactivateDeleteBtn } from "./controllerSlice";
 
 /* export const sendForm = (obj) => {
   return (dispatch) => {

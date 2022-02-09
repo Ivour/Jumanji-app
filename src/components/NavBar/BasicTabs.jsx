@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./BasicTabs.module.css";
 
@@ -14,8 +14,6 @@ import { cancelForm, deleteCurrentLocation } from "../../store/formSlice";
 import {
   disactivateAddMarkerBtn,
   disactivateDeleteBtn,
-  toggleAddMarker,
-  toggleDeleteSwitch,
 } from "../../store/controllerSlice";
 
 const BasicTabs = () => {

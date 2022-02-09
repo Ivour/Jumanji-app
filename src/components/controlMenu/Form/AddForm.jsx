@@ -17,7 +17,6 @@ import { addPlace } from "../../../store/formSlice";
 import { cancelForm } from "../../../store/formSlice";
 import {
   disactivateAddMarkerBtn,
-  toggleAddMarker,
 } from "../../../store/controllerSlice";
 
 const AddForm = () => {

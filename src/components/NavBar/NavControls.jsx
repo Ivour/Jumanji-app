@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "@mui/material";
-import BasicTabs from "./BasicTabs";
 import styles from "./NavControls.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -12,7 +11,7 @@ import {
 } from "../../store/controllerSlice";
 import { hideList, showList } from "../../store/controllerSlice";
 
-import { hideForm, cancelForm, showForm } from "../../store/formSlice";
+import { cancelForm, showForm } from "../../store/formSlice";
 
 const NavControls = () => {
   const dispatch = useDispatch();
@@ -20,7 +19,6 @@ const NavControls = () => {
   console.log(urlLocation.pathname);
 
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
-  const formIsVisible = useSelector((state) => state.form.formIsVisible);
   const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
 
   const addMarkerSwitchIsActive = useSelector(

@@ -4,7 +4,6 @@ import { Button } from "@mui/material";
 import ListItem from "../controlMenu/list/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 
-import LoadingSpinner from "./LoadingSpinner";
 import { addOnePlace, setGameIsLoaded } from "../../store/gameSlice";
 import BeginGame from "./BeginGame";
 
