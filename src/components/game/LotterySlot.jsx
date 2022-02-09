@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./LotterySlot.module.css";
 import { Button } from "@mui/material";
-import ListItem from "../controlMenu/list/ListItem";
+import ListItem from "../list/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addOnePlace, setGameIsLoaded } from "../../store/gameSlice";

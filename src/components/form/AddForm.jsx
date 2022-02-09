@@ -5,11 +5,11 @@ import LocationField from "./LocationField";
 import RadioBtns from "./RadioBtns";
 import styles from "./AddForm.module.css";
 import Inputs from "./Inputs";
-import useHttp from "../../../hooks/useHttp";
-import { URL_FIREBASE } from "../../../helpers/constants";
-import { addPlace } from "../../../store/formSlice";
-import { cancelForm } from "../../../store/formSlice";
-import { disactivateAddMarkerBtn } from "../../../store/controllerSlice";
+import useHttp from "../../hooks/useHttp";
+import { URL_FIREBASE } from "../../helpers/constants";
+import { addPlace } from "../../store/formSlice";
+import { cancelForm } from "../../store/formSlice";
+import { disactivateAddMarkerBtn } from "../../store/controllerSlice";
 import FormButtons from "./FormButtons";
 
 const AddForm = () => {

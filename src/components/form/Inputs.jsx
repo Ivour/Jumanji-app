@@ -5,7 +5,7 @@ import {
   setPlaceInput,
   setDescriptionInput,
   placeInputHasError,
-} from "../../../store/formSlice";
+} from "../../store/formSlice";
 import styles from "./Inputs.module.css";
 import { debounce } from "lodash";
 

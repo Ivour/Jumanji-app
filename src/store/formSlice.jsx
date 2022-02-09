@@ -7,7 +7,7 @@ const initialState = {
   userInput: "Kubao",
   placeInputHasError: false,
   formIsVisible: false,
-  formIsCanceled: false,
+
   placesData: [],
 };
 
@@ -68,9 +68,6 @@ const formSlice = createSlice({
     getCurrentLocation: (state, amount) => {
       state.currentLocation = amount.payload;
     },
-    deleteCurrentLocation: (state) => {
-      state.currentLocation = "";
-    },
   },
 });
 
@@ -85,7 +82,6 @@ export const {
   placeInputHasError,
   removePlaceAndUpdate,
   getCurrentLocation,
-  deleteCurrentLocation,
   selectUser,
 } = formSlice.actions;
 

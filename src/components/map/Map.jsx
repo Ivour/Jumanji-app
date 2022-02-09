@@ -6,9 +6,9 @@ import AddMarkerOnClick from "./AddMarkerOnClick";
 import styles from "./Map.module.css";
 import AutoZoom from "./AutoZoom";
 
-import AddForm from "../controlMenu/Form/AddForm";
+import AddForm from "../form/AddForm";
 import MarkersAndPopups from "./MarkersAndPopups";
-import List from "../controlMenu/list/List";
+import List from "../list/List";
 import {
   INIT_MAP_CENTER_POS,
   INIT_ZOOM,

@@ -1,16 +1,11 @@
 import { useState } from "react";
-
 import { useLocation, useNavigate } from "react-router-dom";
-
 import styles from "./BasicTabs.module.css";
-
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-
-import { hideForm } from "../../store/formSlice";
 import { useDispatch } from "react-redux";
-import { cancelForm, deleteCurrentLocation } from "../../store/formSlice";
+import { cancelForm } from "../../store/formSlice";
 import {
   disactivateAddMarkerBtn,
   disactivateDeleteBtn,
@@ -24,9 +19,7 @@ const BasicTabs = () => {
 
   const [selectedTab, setSelectedTab] = useState(location.pathname.slice(1));
 
-  // if (selectedTab !== locationIndex) setSelectedTab(locationIndex);
-
-  const handleChange = (event, newValue) => {
+  const handleChange = (e, newValue) => {
     setSelectedTab(newValue);
   };
   return (
@@ -44,10 +37,10 @@ const BasicTabs = () => {
           label="Map"
           className={styles.link}
           onClick={() => {
-            navigate("map");
-            dispatch(hideForm());
             dispatch(cancelForm());
-            dispatch(deleteCurrentLocation());
+            dispatch(disactivateAddMarkerBtn());
+            dispatch(disactivateDeleteBtn());
+            navigate("map");
           }}
         />
         <Tab

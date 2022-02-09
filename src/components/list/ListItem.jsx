@@ -5,7 +5,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import NotesIcon from "@mui/icons-material/Notes";
 import PersonIcon from "@mui/icons-material/Person";
-import { randomPlaceIsClicked } from "../../../store/gameSlice";
+import { randomPlaceIsClicked } from "../../store/gameSlice";
 import { useDispatch } from "react-redux";
 import { DecimalConverter } from "migratory-js";
 

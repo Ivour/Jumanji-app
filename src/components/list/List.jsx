@@ -10,7 +10,7 @@ import {
   EASE_LINEARITY,
   FLYTO_LIST_CLICK_DURATION,
   ITEMS_PER_PAGE,
-} from "../../../helpers/constants";
+} from "../../helpers/constants";
 const List = () => {
   const map = useMap();
   const placesArr = useSelector((state) => state.form.placesData);

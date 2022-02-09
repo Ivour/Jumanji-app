@@ -4,8 +4,8 @@ import styles from "./FormButtons.module.css";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
-import { cancelForm } from "../../../store/formSlice";
-import { disactivateAddMarkerBtn } from "../../../store/controllerSlice";
+import { cancelForm } from "../../store/formSlice";
+import { disactivateAddMarkerBtn } from "../../store/controllerSlice";
 
 const FormButtons = ({ onSubmit }) => {
   const dispatch = useDispatch();

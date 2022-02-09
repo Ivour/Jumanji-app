@@ -2,27 +2,18 @@ import React from "react";
 import styles from "./NavBar.module.css";
 import Typography from "@mui/material/Typography";
 import LandscapeIcon from "@mui/icons-material/Landscape";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  disactivateAddMarkerBtn,
-  disactivateDeleteBtn,
-} from "../../store/controllerSlice";
 import NavControls from "./NavControls";
 import BasicTabs from "./BasicTabs";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
-  const dispatch = useDispatch();
-
-  const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
+  const urlLocation = useLocation();
 
   const refreshPageHandler = () => {
     window.location.replace(window.location.origin);
   };
 
-  if (gameIsLoaded) {
-    dispatch(disactivateDeleteBtn());
-    dispatch(disactivateAddMarkerBtn());
-  }
+  const pathIsMap = urlLocation.pathname === "/map";
 
   return (
     <nav className={styles.nav}>
@@ -32,13 +23,11 @@ const NavBar = () => {
           color="success"
           onClick={refreshPageHandler}
           className={styles["nav__logo"]}
-          id="logo"
         />
         <Typography
           variant="h6"
           onClick={refreshPageHandler}
           className={styles["nav__logo-text"]}
-          id="jumanji"
         >
           Jumanji App
         </Typography>
@@ -46,7 +35,7 @@ const NavBar = () => {
         <BasicTabs />
       </div>
 
-      <NavControls />
+      {pathIsMap && <NavControls />}
     </nav>
   );
 };

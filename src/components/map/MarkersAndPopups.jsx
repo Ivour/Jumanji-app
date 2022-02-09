@@ -16,7 +16,6 @@ const MarkersAndPopups = () => {
 
   const deleteHandler = (e) => {
     dispatch(hideForm());
-
     dispatch(removePlace(e.target.id)); // using action creator thunk
   };
 

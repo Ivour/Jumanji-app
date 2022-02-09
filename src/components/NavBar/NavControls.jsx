@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "@mui/material";
 import styles from "./NavControls.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
 import {
   activateAddMarkerBtn,
   activateDeleteBtn,
@@ -14,7 +13,6 @@ import { cancelForm, showForm } from "../../store/formSlice";
 
 const NavControls = () => {
   const dispatch = useDispatch();
-  const urlLocation = useLocation();
   const listIsVisible = useSelector((state) => state.controller.listIsVisible);
   const gameIsLoaded = useSelector((state) => state.game.gameIsLoaded);
   const addMarkerSwitchIsActive = useSelector(
@@ -54,21 +52,18 @@ const NavControls = () => {
     }
   };
 
-  const pathIsGame = urlLocation.pathname === "/game";
-
   return (
     <div className={styles["nav__controls"]}>
-      {!pathIsGame && (
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={toggleListBtnHandler}
-          sx={{ borderRadius: "1rem" }}
-        >
-          Show List
-        </Button>
-      )}
-      {!pathIsGame && !gameIsLoaded && (
+      <Button
+        variant="outlined"
+        color="secondary"
+        onClick={toggleListBtnHandler}
+        sx={{ borderRadius: "1rem" }}
+      >
+        Show List
+      </Button>
+
+      {!gameIsLoaded && (
         <Button
           variant="outlined"
           color="secondary"
@@ -79,7 +74,7 @@ const NavControls = () => {
         </Button>
       )}
 
-      {!pathIsGame && !gameIsLoaded && (
+      {!gameIsLoaded && (
         <Button
           variant="outlined"
           color="error"

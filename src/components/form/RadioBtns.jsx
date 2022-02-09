@@ -6,13 +6,13 @@ import FormControl from "@mui/material/FormControl";
 import { Typography } from "@mui/material";
 import styles from "./RadioBtns.module.css";
 import { useDispatch } from "react-redux";
-import { selectUser } from "../../../store/formSlice";
+import { selectUser } from "../../store/formSlice";
 import { useSelector } from "react-redux";
 
 const RadioBtns = () => {
   const dispatch = useDispatch();
   const userInput = useSelector((state) => state.form.userInput);
-  
+
   return (
     <FormControl component="fieldset" className={styles.container}>
       <Typography fontSize="small" className={styles["container__main-label"]}>
