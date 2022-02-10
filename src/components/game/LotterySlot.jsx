@@ -28,6 +28,12 @@ const LotterySlot = () => {
     dispatch(addOnePlace(placesData));
   };
 
+  const addOnePlaceBtnIsVisible =
+    gameIsLoaded &&
+    randomPlaces.length < 5 &&
+    randomPlaces.length < placesData.length &&
+    randomPlaces.length > 0;
+
   // const IvoOne = IvoPlaces[Math.floor(Math.random() * 10)];
   return (
     <div className={styles.container}>
@@ -46,19 +52,16 @@ const LotterySlot = () => {
             isGameList={true}
           />
         ))}
-      {gameIsLoaded &&
-        randomPlaces.length < 5 &&
-        randomPlaces.length > placesData.length &&
-        randomPlaces.length > 0 && (
-          <Button
-            onClick={addOnePlaceHandler}
-            variant="contained"
-            color="secondary"
-            sx={{ borderRadius: "1rem", margin: "1em" }}
-          >
-            Pick one more place
-          </Button>
-        )}
+      {addOnePlaceBtnIsVisible && (
+        <Button
+          onClick={addOnePlaceHandler}
+          variant="contained"
+          color="secondary"
+          sx={{ borderRadius: "1rem", margin: "1em" }}
+        >
+          Pick one more place
+        </Button>
+      )}
     </div>
   );
 };
