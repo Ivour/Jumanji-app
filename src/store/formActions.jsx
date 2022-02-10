@@ -46,7 +46,7 @@ import { disactivateDeleteBtn } from "./controllerSlice";
 export const removePlace = (id) => {
   return (dispatch) => {
     fetch(
-      `https://jumanjiapp-c982f-default-rtdb.europe-west1.firebasedatabase.app/test/${id}.json`,
+      `https://jumanji-67d52-default-rtdb.europe-west1.firebasedatabase.app/places/${id}.json`,
       {
         method: "DELETE",
       }
