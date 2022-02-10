@@ -6,12 +6,17 @@ import Select from "@mui/material/Select";
 import { setPlacesToShow } from "../../store/gameSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const itemsInSelect = Array.from({ length: 5 }, (_, i) => i + 1);
-
 export default function BasicSelect(props) {
   const dispatch = useDispatch();
   const placesToShow = useSelector((state) => state.game.placesToShow);
+  const placesData = useSelector((state) => state.form.placesData);
 
+  const numberOfPlacesToShow = placesData.length > 5 ? 5 : placesData.length;
+
+  const itemsInSelect = Array.from(
+    { length: numberOfPlacesToShow },
+    (_, i) => i + 1
+  );
   const handleChange = (event) => {
     dispatch(setPlacesToShow(event.target.value));
   };

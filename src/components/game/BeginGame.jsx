@@ -21,6 +21,15 @@ const BeginGame = () => {
     dispatch(updateRandomPlaces(placesData));
     dispatch(setGameIsLoading(true));
   };
+  if (placesData.length === 0)
+    return (
+      <div className={styles["choose-form"]}>
+        <Typography>
+          You must add at least one place in the map section
+        </Typography>
+      </div>
+    );
+
   if (gameIsLoading) {
     return (
       <div className={styles["choose-form"]}>

@@ -32,6 +32,7 @@ const FormButtons = ({ onSubmit }) => {
         size="small"
         variant="contained"
         color="secondary"
+        type="submit"
         endIcon={<SendIcon />}
         sx={{ borderRadius: "1rem" }}
         onClick={onSubmit}

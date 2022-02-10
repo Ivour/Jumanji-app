@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./LotterySlot.module.css";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import ListItem from "../list/ListItem";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -46,16 +46,19 @@ const LotterySlot = () => {
             isGameList={true}
           />
         ))}
-      {gameIsLoaded && randomPlaces.length < 5 && (
-        <Button
-          onClick={addOnePlaceHandler}
-          variant="contained"
-          color="secondary"
-          sx={{ borderRadius: "1rem", margin: "1em" }}
-        >
-          Pick one more place
-        </Button>
-      )}
+      {gameIsLoaded &&
+        randomPlaces.length < 5 &&
+        randomPlaces.length > placesData.length &&
+        randomPlaces.length > 0 && (
+          <Button
+            onClick={addOnePlaceHandler}
+            variant="contained"
+            color="secondary"
+            sx={{ borderRadius: "1rem", margin: "1em" }}
+          >
+            Pick one more place
+          </Button>
+        )}
     </div>
   );
 };
